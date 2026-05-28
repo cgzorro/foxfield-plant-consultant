@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Foxfield Plant Consultant — MVP v2.8 Premium Light Stability Pass</title>
+<title>Foxfield Plant Consultant — MVP v2.8.1 Mobile Light Correction</title>
 <meta name="description" content="Foxfield bilingual plant consultation intake with site intelligence, photo previews, map reference, and consultant field notes." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,6 +73,39 @@
 [data-theme=light] .foxmark-img{filter:none}
 [data-theme=light] .entry-brand img{filter:none}
 [data-theme=light] .dictate-btn{background:#eef2df}
+
+
+
+/* v2.8.1 corrective pass: mobile/light hero containment + logo contrast */
+.entry-brand img{flex:0 0 auto}
+[data-theme=light] .entry-brand img,[data-theme=light] .foxmark-img{filter:brightness(0) saturate(100%) invert(18%) sepia(27%) saturate(789%) hue-rotate(92deg) brightness(92%) contrast(92%);opacity:1}
+[data-theme=light] .entry-brand h1,[data-theme=light] .brand-name{color:#173f2c;text-shadow:none}
+.entry-title{font-size:clamp(34px,4.2vw,52px);line-height:1.08;max-width:900px;overflow-wrap:normal;text-wrap:balance}
+.entry-copy{font-size:clamp(17px,1.6vw,22px);max-width:850px}
+@media(max-width:900px){
+  .entry-top{padding:24px 22px}
+  .entry-brand{gap:14px;align-items:center}
+  .entry-brand img{width:64px}
+  .entry-brand h1{font-size:clamp(36px,10vw,58px);letter-spacing:.08em}
+  .entry-body{padding:28px 22px}
+  .entry-title{font-size:clamp(42px,12vw,62px);line-height:1.02;max-width:100%;overflow-wrap:break-word}
+  .entry-copy{font-size:clamp(20px,5vw,28px);line-height:1.55;max-width:100%}
+}
+@media(max-width:560px){
+  .entry{padding:10px}
+  .entry-inner{border-radius:24px}
+  .entry-top{padding:22px 18px}
+  .entry-brand{display:grid;grid-template-columns:76px 1fr;gap:12px}
+  .entry-brand img{width:76px}
+  .entry-brand h1{font-size:clamp(32px,11vw,48px);letter-spacing:.07em}
+  .entry-brand p{font-size:11px;letter-spacing:.12em}
+  .entry-tools{gap:8px}
+  .entry-body{padding:26px 18px}
+  .entry-kicker{font-size:12px}
+  .entry-title{font-size:clamp(38px,13vw,52px);line-height:1.04;letter-spacing:-.015em}
+  .entry-copy{font-size:clamp(18px,5.7vw,24px);line-height:1.55}
+  .entry-card h2{font-size:clamp(30px,10vw,44px)}
+}
 
 </style>
 <!-- v2.4: bilingual field dictation verified (en-US/es-US based on language toggle) -->
