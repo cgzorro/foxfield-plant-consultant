@@ -125,6 +125,29 @@
   body[data-print-mode=notes] .hint{color:#666!important}
 }
 
+
+/* ── Feedback survey ── */
+.survey-card{border:1px solid var(--line);border-radius:20px;background:var(--field);margin-top:22px;overflow:hidden}
+.survey-toggle{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;flex-wrap:wrap}
+.survey-emoji{font-size:20px;margin-right:6px}
+.survey-toggle strong{font-size:14px}
+.survey-sub{display:block;font-size:12px;color:var(--soft);margin-top:2px}
+.survey-open-btn{font-size:12px!important;padding:8px 14px!important}
+.survey-body{padding:0 20px 20px;display:grid;gap:18px}
+.survey-q{display:grid;gap:8px}
+.survey-label{font:700 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.star-row{display:flex;gap:4px}
+.star{border:0;background:transparent;font-size:26px;color:var(--line2);cursor:pointer;padding:2px;line-height:1;transition:color .12s}
+.star.on,.star:hover~.star{color:var(--line2)}.star-row:hover .star{color:var(--accent2)}
+.star.on{color:var(--accent2)}.star-label{font-size:12px;color:var(--soft);margin-top:2px}
+/* ── Entry contact strip ── */
+.entry-contact{padding:20px 30px 28px;border-top:1px solid var(--line);text-align:center}
+.entry-contact-line{margin:0 0 12px;font-size:13px;color:var(--soft)}
+.entry-contact-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.entry-contact-btn{border:1px solid var(--line2);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;background:var(--card2);transition:.15s}
+.entry-contact-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(47,104,66,.08)}
+[data-theme=light] .entry-contact-btn{background:#eef2df}
+
 /* ── Mobile brand in top header (shown only when rail is hidden) ── */
 .top-brand-mobile{display:none;align-items:center;gap:9px;flex:0 0 auto}
 .top-foxmark{width:30px;height:30px;object-fit:contain;display:block}
@@ -218,6 +241,18 @@
           onclick="navigator.clipboard.writeText('https://cgzorro.github.io/foxfield-plant-consultant/').then(()=>{const b=this;b.textContent='✓ Copied';setTimeout(()=>b.textContent='⧉ Copy link',1800)})">
           ⧉ Copy link
         </button>
+      </div>
+    </div>
+    <!-- Contact strip -->
+    <div class="entry-contact">
+      <p class="entry-contact-line">Questions? Let&#8217;s talk.</p>
+      <div class="entry-contact-links">
+        <a class="entry-contact-btn" href="mailto:cgzorro@gmail.com">
+          &#9993; cgzorro@gmail.com
+        </a>
+        <a class="entry-contact-btn" href="https://www.linkedin.com/in/chrisfox2" target="_blank" rel="noopener">
+          &#128101; linkedin.com/in/chrisfox2
+        </a>
       </div>
     </div>
     </div>
@@ -385,6 +420,66 @@
         <div class="brief-action-row">
           <button class="btn primary" type="button" id="copyBrief">&#10695; <span data-i18n="copyBrief">Copy brief</span></button>
           <button class="btn" type="button" id="printBrief">&#9113; Print / Save PDF</button>
+        </div>
+
+        <!-- ── Optional feedback survey ─────────────────────────────── -->
+        <div class="survey-card" id="surveyCard">
+          <div class="survey-toggle">
+            <div><span class="survey-emoji">&#128203;</span>
+              <strong>Optional: 2-minute feedback</strong>
+              <span class="survey-sub">Help shape what Foxfield builds next.</span>
+            </div>
+            <button class="btn survey-open-btn" type="button" id="surveyOpenBtn">Share feedback &#8595;</button>
+          </div>
+          <div class="survey-body" id="surveyBody" style="display:none">
+            <div class="survey-q">
+              <label class="survey-label">1. What best describes you?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="sq1" value="Homeowner">Homeowner<small>Getting ideas</small></label>
+                <label class="choice"><input type="radio" name="sq1" value="Contractor">Contractor<small>Doing installs</small></label>
+                <label class="choice"><input type="radio" name="sq1" value="Consultant">Consultant<small>Design + planning</small></label>
+                <label class="choice"><input type="radio" name="sq1" value="Just exploring">Exploring<small>Curious</small></label>
+              </div>
+            </div>
+            <div class="survey-q">
+              <label class="survey-label">2. How easy was the intake flow?</label>
+              <div class="star-row" id="starRow" role="group" aria-label="Rating 1 to 5">
+                <button type="button" class="star" data-v="1">&#9733;</button>
+                <button type="button" class="star" data-v="2">&#9733;</button>
+                <button type="button" class="star" data-v="3">&#9733;</button>
+                <button type="button" class="star" data-v="4">&#9733;</button>
+                <button type="button" class="star" data-v="5">&#9733;</button>
+              </div>
+              <span class="star-label" id="starLabel"></span>
+            </div>
+            <div class="survey-q">
+              <label class="survey-label">3. Which feature would be most valuable?</label>
+              <div class="choices multi">
+                <label class="choice"><input type="checkbox" name="sq3" value="AI plant picks">AI plant picks<small>Zone + condition matched</small></label>
+                <label class="choice"><input type="checkbox" name="sq3" value="Contractor matching">Contractor matching<small>Vetted local pros</small></label>
+                <label class="choice"><input type="checkbox" name="sq3" value="Plant database">Plant database<small>Browse + filter</small></label>
+                <label class="choice"><input type="checkbox" name="sq3" value="Branded briefs">Branded briefs<small>PDF for clients</small></label>
+                <label class="choice"><input type="checkbox" name="sq3" value="Mobile field notes">Field notes<small>On-site capture</small></label>
+              </div>
+            </div>
+            <div class="survey-q">
+              <label class="survey-label">4. Would you pay for a premium version?</label>
+              <div class="choices" style="grid-template-columns:repeat(3,1fr)">
+                <label class="choice"><input type="radio" name="sq4" value="Yes — definitely">Yes, definitely</label>
+                <label class="choice"><input type="radio" name="sq4" value="Maybe — depends on price">Maybe</label>
+                <label class="choice"><input type="radio" name="sq4" value="No — needs to be free">No, free only</label>
+              </div>
+            </div>
+            <div class="survey-q">
+              <label class="survey-label">5. Anything else? <span style="font-weight:400;color:var(--soft)">(optional)</span></label>
+              <textarea id="sqFree" placeholder="What would make this indispensable for you?" style="min-height:80px"></textarea>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
+              <button class="btn primary" type="button" id="surveySubmit">&#9993; Send feedback</button>
+              <button class="btn ghost" type="button" id="surveySkip">No thanks</button>
+            </div>
+            <p class="secure" style="margin-top:10px">Feedback opens your email client with responses pre-filled. Nothing is collected automatically.</p>
+          </div>
         </div>
       </section>
 
@@ -846,6 +941,60 @@ function _modalEsc(e){if(e.key==='Escape')closeHandoffModal();}
 })();
 
 build();
+
+// ── Survey ─────────────────────────────────────────────────────────────────
+let surveyRating = 0;
+const _sob = document.getElementById('surveyOpenBtn');
+const _sbody = document.getElementById('surveyBody');
+if(_sob && _sbody){
+  _sob.onclick = () => {
+    const open = _sbody.style.display !== 'none';
+    _sbody.style.display = open ? 'none' : 'grid';
+    _sob.textContent = open ? 'Share feedback ↓' : 'Hide ↑';
+  };
+}
+document.querySelectorAll('.star').forEach(s => {
+  s.onclick = () => {
+    surveyRating = +s.dataset.v;
+    document.querySelectorAll('.star').forEach((x,i) => x.classList.toggle('on', i < surveyRating));
+    const labels = ['','Too confusing','Could be simpler','Pretty good','Smooth','Super easy'];
+    const lbl = document.getElementById('starLabel');
+    if(lbl) lbl.textContent = labels[surveyRating] || '';
+  };
+});
+// Re-wire choice clicks inside survey (survey uses same .choice pattern)
+document.querySelectorAll('.survey-body .choice').forEach(c => c.onclick = () => setTimeout(() => {
+  const i = c.querySelector('input');
+  if(i.type === 'radio') document.querySelectorAll(`input[name="${i.name}"]`).forEach(x => x.closest('.choice').classList.toggle('active', x.checked));
+  else c.classList.toggle('active', i.checked);
+}, 0));
+const _ss = document.getElementById('surveySkip');
+if(_ss) _ss.onclick = () => { const sc = document.getElementById('surveyCard'); if(sc) sc.style.display='none'; };
+const _ssub = document.getElementById('surveySubmit');
+if(_ssub) _ssub.onclick = () => {
+  const role   = (document.querySelector('input[name="sq1"]:checked')||{}).value || '—';
+  const rating = surveyRating || '—';
+  const feats  = [...document.querySelectorAll('input[name="sq3"]:checked')].map(x=>x.value).join(', ') || '—';
+  const pay    = (document.querySelector('input[name="sq4"]:checked')||{}).value || '—';
+  const free   = (document.getElementById('sqFree')||{}).value || '';
+  const d      = formData();
+  const body   = encodeURIComponent(
+    'Foxfield Plant Consultant — Feedback\n' +
+    '='.repeat(38) + '\n' +
+    'Role: ' + role + '\n' +
+    'Ease of use: ' + rating + '/5' + '\n' +
+    'Features wanted: ' + feats + '\n' +
+    'Would pay: ' + pay + '\n' +
+    (free ? 'Open feedback: ' + free + '\n' : '') +
+    '\n— Client context —\n' +
+    'ZIP: ' + (d.zip||'—') + '  Zone: ' + zdata().z + '\n' +
+    'Goals: ' + (d.goals||'—')
+  );
+  const subject = encodeURIComponent('Foxfield Feedback — ' + (role));
+  window.open('mailto:cgzorro@gmail.com?subject=' + subject + '&body=' + body);
+  const sc = document.getElementById('surveyCard');
+  if(sc){ sc.innerHTML = '<div style="padding:20px;text-align:center;color:var(--good);font-weight:700">&#10003; Thanks — feedback sent!</div>'; }
+};
 </script>
 </body>
 </html>
