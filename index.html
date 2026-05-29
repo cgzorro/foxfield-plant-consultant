@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Foxfield Plant Consultant — Zone-Based Intake</title>
+<title>Foxfield Plant Consultant v31 — Zone-Based Intake</title>
 <meta name="description" content="Foxfield bilingual plant consultation intake with site intelligence, photo previews, map reference, and consultant field notes." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
 .rail{position:sticky;top:0;height:100vh;padding:26px 18px;border-right:1px solid var(--line);background:linear-gradient(180deg,var(--bg2),rgba(7,19,15,.96));display:flex;flex-direction:column;gap:22px;overflow:auto}.brand{text-align:center;padding-bottom:16px;border-bottom:1px solid var(--line)}.markbox{width:96px;height:82px;margin:0 auto 14px;display:grid;place-items:center}.foxmark-img{display:block;width:90px;height:auto;object-fit:contain}.foxmark-img.lightmark{display:none}[data-theme=light] .foxmark-img.darkmark{display:none}[data-theme=light] .foxmark-img.lightmark{display:block}.brand-name{font:500 27px/1 var(--serif);letter-spacing:.19em;margin:0}.brand-sub{margin:10px 0 0;color:var(--accent);font-size:11px;letter-spacing:.18em;text-transform:uppercase}.rail-tag{margin-top:auto;text-align:center;color:var(--muted);font-size:13px;line-height:1.55}.rail-leaves{height:118px;opacity:.48;margin:auto auto 10px;color:var(--accent)}
 .steps{display:grid;gap:8px}.stepnav{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;width:100%;border:1px solid transparent;background:transparent;color:var(--muted);padding:10px;border-radius:14px;text-align:left}.stepnav:hover{border-color:var(--line);background:rgba(255,255,255,.03)}.stepnav.active{background:linear-gradient(90deg,rgba(197,138,66,.32),rgba(197,138,66,.12));border-color:rgba(197,138,66,.35);color:var(--ink)}.bubble{width:34px;height:34px;border-radius:999px;border:1px solid var(--line2);display:grid;place-items:center;font:600 16px var(--serif);color:var(--accent3)}.stepnav.active .bubble{border-color:var(--accent2);color:var(--ink)}.st{font-weight:600;font-size:14px}.ss{display:block;margin-top:3px;font-size:11px;color:var(--soft)}.done{color:var(--good);opacity:0}.stepnav.done .done{opacity:1}
 .main{min-width:0}.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 32px;border-bottom:1px solid var(--line);background:rgba(7,19,15,.92)}[data-theme=light] .top{background:rgba(244,239,227,.95)}.top h1{font:500 clamp(22px,2.6vw,36px)/1.15 var(--serif);margin:0;text-wrap:balance}
-.top p{margin:6px 0 0;color:var(--accent);font-size:14px;text-wrap:balance}.tools{display:flex;align-items:center;gap:6px}.icon-btn{border:1px solid var(--line2);background:var(--card);color:var(--muted);border-radius:999px;padding:8px 13px;font-weight:700;font-size:13px;line-height:1;transition:border-color .15s,color .15s,background .15s}.icon-btn:hover{border-color:var(--accent2);color:var(--ink)}.icon-btn.active{border-color:var(--accent2);background:rgba(197,138,66,.13);color:var(--accent2)}.theme-btn{font-size:17px;padding:7px 11px;min-width:36px;text-align:center;font-variant-emoji:text}
+.top p{margin:6px 0 0;color:var(--accent);font-size:14px;text-wrap:balance}.tools{display:flex;align-items:center;gap:6px}.icon-btn{border:1px solid var(--line2);background:var(--card);color:var(--muted);border-radius:999px;padding:8px 13px;font-weight:700;font-size:13px;line-height:1;transition:border-color .15s,color .15s,background .15s}.icon-btn:hover{border-color:var(--accent2);color:var(--ink)}.icon-btn.active{border-color:var(--accent2);background:rgba(197,138,66,.13);color:var(--accent2)}.theme-btn{padding:9px 12px;min-width:40px;display:inline-flex;align-items:center;justify-content:center;font-variant-emoji:text}
 /* ── Language dropdown ── */
 .lang-drop{position:relative;z-index:9999}
 .lang-trigger{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;font-size:12px;font-weight:700;letter-spacing:.04em}
@@ -41,7 +41,7 @@
 .map{height:235px;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--field)}.map iframe{width:100%;height:100%;border:0;filter:var(--map)}.upload{border:1px dashed var(--line2);background:var(--field);border-radius:22px;padding:24px;text-align:center}.upload strong{display:block;font:500 23px var(--serif);margin-bottom:6px}.upload p{color:var(--muted);line-height:1.6;margin:0 0 16px}.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:12px;margin-top:16px}.thumb{position:relative;aspect-ratio:1.2/1;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card2)}.thumb img{width:100%;height:100%;object-fit:cover}.thumb button{position:absolute;right:8px;top:8px;border:0;border-radius:999px;width:28px;height:28px;background:rgba(0,0,0,.65);color:#fff}.review{display:grid;gap:8px}.review-row{display:grid;grid-template-columns:190px 1fr;gap:12px;border:1px solid var(--line);border-radius:13px;background:var(--field);padding:10px 12px}.review-row b{color:var(--accent3);font-size:12px}.review-row span{color:var(--muted);font-size:13px}.summary{white-space:pre-wrap;min-height:250px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.55}.actions{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:20px;margin-top:24px}.btn{border:1px solid var(--line2);background:var(--card2);color:var(--ink);border-radius:999px;padding:12px 16px;font-weight:800;text-decoration:none;display:inline-flex;gap:8px;align-items:center}.btn.primary{background:linear-gradient(90deg,var(--accent2),#8a5529);border-color:var(--accent2);color:#fff}.btn.ghost{background:transparent}.btn:hover{transform:translateY(-1px)}
 .checklist{display:grid;gap:9px}.checkline{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:13px}.checkline input{width:auto;margin-top:3px}.toast{position:fixed;right:22px;bottom:22px;background:var(--card);border:1px solid var(--line2);border-radius:999px;padding:12px 15px;color:var(--ink);box-shadow:var(--shadow);opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s var(--ease);z-index:100}.toast.show{opacity:1;transform:none}.mobilebar{display:none}.secure{font-size:12px;color:var(--soft);margin-top:10px}.divider{height:1px;background:var(--line);margin:22px 0}
 .note-field-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}.note-field-head label{margin:0}.dictate-btn{border:1px solid var(--line2);background:var(--card2);color:var(--ink);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.dictate-btn.on{background:rgba(197,138,66,.2);border-color:var(--accent2);color:var(--accent3)}.dictate-btn.compact{padding:6px 9px;font-size:11px;opacity:.82}.dictate-btn.compact span{display:none}.dictate-btn.compact:after{content:"Dictate"}.dictate-btn.compact.on:after{content:"Stop"}.notes-shell{grid-template-columns:minmax(0,1fr) 340px}.note-card{border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.018);padding:18px}.note-card textarea{min-height:160px}.onsite-note{border:1px solid var(--line);border-radius:18px;background:rgba(143,162,107,.09);padding:16px;color:var(--muted);line-height:1.6;text-wrap:balance}.right-note-panel{display:grid;gap:10px;align-content:start}.right-note-panel .btn{justify-content:center;width:100%}
-.stephead p,.sidecard p,.sidecard li,.hint{text-wrap:balance}
+.rail-version{text-align:center;font-size:10px;letter-spacing:.08em;color:var(--soft);opacity:.5;margin-top:6px}@media print{.rail-version{display:none}}
 .consultantOnly{display:block}body[data-role=homeowner] .consultantOnly{display:none}
 /* Entry */
 .entry{min-height:100vh;padding:32px;display:grid;place-items:center;background:var(--bg);color:var(--ink)}.entry-inner{width:min(1040px,100%);border:1px solid var(--line);border-radius:32px;background:linear-gradient(180deg,var(--panel),rgba(255,255,255,.018));box-shadow:var(--shadow)}.entry-top{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:28px 30px;border-bottom:1px solid var(--line)}.entry-brand{display:flex;gap:18px;align-items:center;min-width:0;flex:1}.entry-brand img{width:72px;height:auto;display:block;flex:0 0 auto}.entry-brand h1{font:500 clamp(30px,4vw,54px)/1 var(--serif);margin:0;letter-spacing:.1em}.entry-brand p{margin:8px 0 0;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-size:12px}.entry-tools{display:flex;gap:10px;align-items:center;flex-shrink:0}.entry-body{padding:32px}.entry-kicker{color:var(--accent2);text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:12px}.entry-title{font:500 clamp(32px,5vw,58px)/1.06 var(--serif);margin:10px 0 12px;text-wrap:balance}.entry-copy{color:var(--muted);max-width:720px;line-height:1.7;margin:0 0 28px}.entry-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.entry-card{border:1px solid var(--line);background:var(--field);border-radius:24px;padding:24px;text-align:left;color:var(--ink);transition:.2s var(--ease)}.entry-card:hover{border-color:var(--accent2);transform:translateY(-2px);background:rgba(197,138,66,.10)}.entry-card .emoji{font-size:32px;margin-bottom:14px}.entry-card h2{font:500 30px/1.1 var(--serif);margin:0 0 10px}.entry-card p{color:var(--muted);line-height:1.55;margin:0 0 18px}.entry-card small{color:var(--accent);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
@@ -215,13 +215,13 @@
 
 /* ── A2: Bloom color picker ── */
 .bloom-picker-field{width:100%}
-.bloom-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px}
-@media(max-width:760px){.bloom-grid{grid-template-columns:repeat(2,1fr)}}
-.bloom-swatch{border:2px solid transparent;border-radius:14px;padding:16px 8px 10px;cursor:pointer;position:relative;transition:.15s;min-height:64px;display:flex;align-items:flex-end;justify-content:center}
-.bloom-swatch:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18)}
-.bloom-swatch.sel{border-color:var(--ink)!important;box-shadow:0 0 0 3px rgba(24,54,39,.2),0 6px 18px rgba(0,0,0,.18);transform:translateY(-2px)}
-.bloom-swatch.sel::after{content:"✓";position:absolute;top:6px;right:8px;font-size:13px;font-weight:900;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5)}
-.bloom-label{font-size:11px;font-weight:800;letter-spacing:.01em;text-shadow:0 1px 4px rgba(0,0,0,.5);pointer-events:none;text-align:center;line-height:1.2}
+.bloom-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:4px}
+@media(max-width:760px){.bloom-grid{grid-template-columns:repeat(4,1fr)}}
+.bloom-swatch{border:1.5px solid transparent;border-radius:12px;padding:0;cursor:pointer;position:relative;transition:.15s;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;overflow:hidden}
+.bloom-swatch:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.22)}
+.bloom-swatch.sel{border-color:var(--ink)!important;box-shadow:0 0 0 2px rgba(255,255,255,.25),0 6px 18px rgba(0,0,0,.22);transform:translateY(-2px)}
+.bloom-swatch.sel::after{content:"✓";position:absolute;top:5px;right:7px;font-size:11px;font-weight:900;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.bloom-label{font-size:10px;font-weight:800;letter-spacing:.02em;text-shadow:0 1px 4px rgba(0,0,0,.6);pointer-events:none;text-align:center;line-height:1.25;padding:0 4px 7px;width:100%}
 
 /* ── A1/A3: Plant trait badges ── */
 .plant-chip{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
@@ -322,7 +322,7 @@
         <div><h1>FOXFIELD</h1><p data-i18n="brandSub">Plant Consultant</p></div>
       </div>
       <div class="entry-tools">
-        <button class="icon-btn theme-btn" type="button" id="entryThemeBtn" title="Toggle theme" aria-label="Toggle light/dark theme" onclick="if(typeof setTheme==='function')setTheme(document.body.dataset.theme==='dark'?'light':'dark');">&#9790;&#65038;</button>
+        <button class="icon-btn theme-btn" type="button" id="entryThemeBtn" title="Switch to light mode" aria-label="Toggle light/dark theme" onclick="setTheme(document.body.dataset.theme==='dark'?'light':'dark');"></button>
         <div class="lang-drop" id="entryLangDrop">
           <button class="icon-btn lang-trigger" type="button" id="entryLangTrigger" aria-haspopup="listbox" aria-expanded="false">
             <svg class="lang-globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><ellipse cx="8" cy="8" rx="2.6" ry="6.5"/><line x1="1.5" y1="6" x2="14.5" y2="6"/><line x1="1.5" y1="10" x2="14.5" y2="10"/></svg><span class="lang-current" id="entryLangCurrent">EN</span><span class="lang-caret">&#8964;</span>
@@ -340,12 +340,12 @@
       <p class="entry-copy" data-i18n="entryCopy">Homeowners can prepare a clean project profile. Consultants can use the full planning workspace, field notes, dictation, and visit checklist.</p>
       <div class="entry-cards">
         <button class="entry-card" type="button" onclick="document.body.dataset.role='homeowner';document.getElementById('entry').style.display='none';document.getElementById('app').style.display='grid';document.getElementById('consultantNotes').style.display='none';document.querySelector('.workspace').style.display='grid';if(typeof applyText==='function')applyText();">
-          <div class="emoji">&#127968;&#65038;</div><h2 data-i18n="homeownerTitle">Homeowner</h2>
+          <div class="emoji"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent2)" aria-hidden="true"><path d="M4 16L18 4l14 12v16a2 2 0 01-2 2H22v-9h-8v9H6a2 2 0 01-2-2z"/></svg></div><h2 data-i18n="homeownerTitle">Homeowner</h2>
           <p data-i18n="homeownerCopy">Prepare for your consultation with address, goals, preferences, budget, and up to five site photos.</p>
           <small data-i18n="homeownerAction">Prepare my profile &#8594;</small>
         </button>
         <button class="entry-card" type="button" onclick="document.body.dataset.role='consultant';document.getElementById('entry').style.display='none';document.getElementById('app').style.display='grid';document.getElementById('consultantNotes').style.display='none';document.querySelector('.workspace').style.display='grid';if(typeof applyText==='function')applyText();if(typeof toast==='function'&&typeof I18N!=='undefined')toast(I18N[lang]?.consultantMode||'Consultant Mode');">
-          <div class="emoji">&#127807;&#65038;</div><h2 data-i18n="consultantTitle">Consultant</h2>
+          <div class="emoji"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)" aria-hidden="true"><path d="M18 32V14"/><path d="M18 26c-6-2-10-6-12-14 6 1 10 5 12 14z"/><path d="M18 20c5-2 9-7 10-14-6 2-9 7-10 14z"/><path d="M18 32c-7-1-13-4-17-10 7-1 13 2 17 10z"/></svg></div><h2 data-i18n="consultantTitle">Consultant</h2>
           <p data-i18n="consultantCopy">Run the full workflow onsite, including field notes, dictation, checklist, and discovery brief prep.</p>
           <small data-i18n="consultantAction">Open consultant workspace &#8594;</small>
         </button>
@@ -367,10 +367,10 @@
       <p class="entry-contact-line">Questions? Let&#8217;s talk.</p>
       <div class="entry-contact-links">
         <a class="entry-contact-btn" href="mailto:cgzorro@gmail.com">
-          &#9993; cgzorro@gmail.com
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="1" y="3" width="12" height="9" rx="1.5"/><path d="M1 5l6 4 6-4"/></svg> cgzorro@gmail.com
         </a>
         <a class="entry-contact-btn" href="https://www.linkedin.com/in/chrisfox2" target="_blank" rel="noopener">
-          &#128101; linkedin.com/in/chrisfox2
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="2"/><path d="M4.5 6v4M4.5 4.5v.01M7 10V7.5a1.5 1.5 0 013 0V10M7 6v4"/></svg> linkedin.com/in/chrisfox2
         </a>
       </div>
     </div>
@@ -388,6 +388,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
+  <div class="rail-version">v31 · 2026-05-29</div>
 </aside>
 <main class="main">
   <header class="top">
@@ -400,8 +401,10 @@
     <div><h1 id="pageTitle">Plant Consultant</h1><p id="pageSub">Plan with purpose. Plant with confidence.</p></div>
     <div class="tools">
       <button class="btn consultantOnly" type="button" id="consultantToolsBtn" onclick="if(typeof openNotes==='function')openNotes();">&#9998; <span data-i18n="consultantTools">Consultant Tools</span></button>
-      <button class="btn icon-btn" type="button" id="homeBtn" title="Home" onclick="if(typeof goHome==='function')goHome();">&#8962;</button>
-      <button class="icon-btn theme-btn" type="button" id="themeBtn" title="Toggle theme" aria-label="Toggle light/dark theme" onclick="if(typeof setTheme==='function')setTheme(document.body.dataset.theme==='dark'?'light':'dark');">&#9790;&#65038;</button>
+      <button class="btn icon-btn" type="button" id="homeBtn" title="Home" onclick="if(typeof goHome==='function')goHome();">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7.5L8.5 2 15 7.5V15a1 1 0 01-1 1H11v-4H6v4H3a1 1 0 01-1-1z"/></svg>
+      </button>
+      <button class="icon-btn theme-btn" type="button" id="themeBtn" title="Switch to light mode" aria-label="Toggle light/dark theme" onclick="setTheme(document.body.dataset.theme==='dark'?'light':'dark');"></button>
       <div class="lang-drop" id="langDrop">
         <button class="icon-btn lang-trigger" type="button" id="langTrigger" aria-haspopup="listbox" aria-expanded="false">
           <svg class="lang-globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><ellipse cx="8" cy="8" rx="2.6" ry="6.5"/><line x1="1.5" y1="6" x2="14.5" y2="6"/><line x1="1.5" y1="10" x2="14.5" y2="10"/></svg><span class="lang-current" id="langCurrent">EN</span><span class="lang-caret">&#8964;</span>
@@ -438,7 +441,7 @@
           <a class="btn" id="directions" target="_blank" rel="noopener">&#8599; <span data-i18n="directions">Open directions</span></a>
         </div>
         <div class="divider"></div>
-        <div class="map"><iframe id="mapFrame" title="Satellite site reference" loading="lazy" src="https://maps.google.com/maps?q=Kansas%20City%2C%20MO&t=k&z=17&output=embed"></iframe></div>
+        <div class="map"><iframe id="mapFrame" title="Satellite site reference" loading="lazy" src="https://maps.google.com/maps?q=Kansas+City,MO&t=k&z=16&output=embed" allowfullscreen></iframe></div>
       </section>
 
       <!-- Step 2: Site Intelligence (compass-only) -->
@@ -518,33 +521,37 @@
 
       <!-- Step 5: Style & Preferences -->
       <section class="step" data-step="4">
-        <div class="stephead"><div><h2 data-i18n="s4t">Style &amp; Preferences</h2><p data-i18n="s4p">Color, mood, maintenance, and design direction.</p></div><span class="badge">Step 5 of 8</span></div>
-        <div class="choices" data-name="style" data-choice="style"></div>
-        <div class="grid two" style="margin-top:16px">
-          <div class="field bloom-picker-field">
-            <div class="note-field-head">
-              <label data-i18n="colors">Preferred bloom colors</label>
-              <button class="dictate-btn compact" type="button" data-dictate="colorsField" aria-label="Dictate preferred colors"></button>
-            </div>
-            <div class="bloom-grid" id="bloomGrid">
-              <button type="button" class="bloom-swatch" data-color="Whites &amp; creams" style="background:linear-gradient(135deg,#e8e4dc,#f4efe3)"><span class="bloom-label" style="color:#3d3428">Whites &amp; creams</span></button>
-              <button type="button" class="bloom-swatch" data-color="Yellows &amp; golds" style="background:linear-gradient(135deg,#c8a060,#e8c840)"><span class="bloom-label" style="color:#3d2e04">Yellows &amp; golds</span></button>
-              <button type="button" class="bloom-swatch" data-color="Pinks &amp; soft reds" style="background:linear-gradient(135deg,#c85070,#f0a0b0)"><span class="bloom-label" style="color:#fff">Pinks &amp; soft reds</span></button>
-              <button type="button" class="bloom-swatch" data-color="Bold reds &amp; burgundy" style="background:linear-gradient(135deg,#6a0818,#c02030)"><span class="bloom-label" style="color:#fff">Bold reds</span></button>
-              <button type="button" class="bloom-swatch" data-color="Purples &amp; lavender" style="background:linear-gradient(135deg,#6050a0,#b0a0c8)"><span class="bloom-label" style="color:#fff">Purples</span></button>
-              <button type="button" class="bloom-swatch" data-color="Blues &amp; violet" style="background:linear-gradient(135deg,#3858a0,#7090c8)"><span class="bloom-label" style="color:#fff">Blues</span></button>
-              <button type="button" class="bloom-swatch" data-color="Warm oranges" style="background:linear-gradient(135deg,#c86030,#f08040)"><span class="bloom-label" style="color:#fff">Warm oranges</span></button>
-              <button type="button" class="bloom-swatch" data-color="Mixed naturalistic" style="background:linear-gradient(135deg,#6a9850 0%,#c8a060 50%,#c85070 100%)"><span class="bloom-label" style="color:#fff">Mixed</span></button>
-            </div>
-            <input name="colors" id="colorsField" placeholder="Or type custom colors..." style="margin-top:8px;font-size:12px">
+        <div class="stephead"><div><h2 data-i18n="s4t">Style &amp; Preferences</h2><p data-i18n="s4p">Design direction, color mood, and what to avoid.</p></div><span class="badge">Step 5 of 8</span></div>
+        <div class="field" style="margin-bottom:18px">
+          <label data-i18n="styleLabel">Design character</label>
+          <span class="hint" data-i18n="styleHint">Pick the aesthetic that feels closest to your vision.</span>
+          <div class="choices" data-name="style" data-choice="style"></div>
+        </div>
+        <div class="field bloom-picker-field" style="margin-bottom:16px">
+          <div class="note-field-head">
+            <label data-i18n="colors">Bloom color palette</label>
+            <button class="dictate-btn compact" type="button" data-dictate="colorsField" aria-label="Dictate preferred colors"></button>
           </div>
-          <div class="field">
-            <div class="note-field-head">
-              <label data-i18n="avoid">Avoid</label>
-              <button class="dictate-btn compact" type="button" data-dictate="avoidField" aria-label="Dictate plants or colors to avoid"></button>
-            </div>
-            <input name="avoid" id="avoidField">
+          <span class="hint">Select all that apply. These guide plant palette suggestions.</span>
+          <div class="bloom-grid" id="bloomGrid">
+            <button type="button" class="bloom-swatch" data-color="Whites &amp; creams" style="background:linear-gradient(160deg,#f0ece2,#e0dbd0)"><span class="bloom-label" style="color:#3d3428">White &amp; cream</span></button>
+            <button type="button" class="bloom-swatch" data-color="Yellows &amp; golds" style="background:linear-gradient(160deg,#e8c840,#c8900c)"><span class="bloom-label" style="color:#3d2800">Yellow &amp; gold</span></button>
+            <button type="button" class="bloom-swatch" data-color="Pinks &amp; soft reds" style="background:linear-gradient(160deg,#f0a0b8,#c85070)"><span class="bloom-label" style="color:#fff">Pink &amp; rose</span></button>
+            <button type="button" class="bloom-swatch" data-color="Bold reds &amp; burgundy" style="background:linear-gradient(160deg,#c02030,#6a0818)"><span class="bloom-label" style="color:#fff">Red &amp; burgundy</span></button>
+            <button type="button" class="bloom-swatch" data-color="Purples &amp; lavender" style="background:linear-gradient(160deg,#b0a0d0,#5848a0)"><span class="bloom-label" style="color:#fff">Purple &amp; lavender</span></button>
+            <button type="button" class="bloom-swatch" data-color="Blues &amp; violet" style="background:linear-gradient(160deg,#6888c8,#2840a0)"><span class="bloom-label" style="color:#fff">Blue &amp; violet</span></button>
+            <button type="button" class="bloom-swatch" data-color="Warm oranges" style="background:linear-gradient(160deg,#f08040,#c05818)"><span class="bloom-label" style="color:#fff">Orange &amp; copper</span></button>
+            <button type="button" class="bloom-swatch" data-color="Mixed naturalistic" style="background:linear-gradient(160deg,#78a850 0%,#c8a040 50%,#c84860 100%)"><span class="bloom-label" style="color:#fff">Mixed palette</span></button>
           </div>
+          <input name="colors" id="colorsField" placeholder="Or describe your color preference..." style="margin-top:10px;font-size:13px">
+        </div>
+        <div class="field">
+          <div class="note-field-head">
+            <label data-i18n="avoid">Plants or colors to avoid</label>
+            <button class="dictate-btn compact" type="button" data-dictate="avoidField" aria-label="Dictate plants or colors to avoid"></button>
+          </div>
+          <span class="hint">Allergies, dislikes, past failures, invasives to exclude.</span>
+          <input name="avoid" id="avoidField" placeholder="e.g. Bradford pear, anything thorny, very dark purples">
         </div>
       </section>
 
@@ -560,13 +567,23 @@
 
       <!-- Step 7: Photos & Context -->
       <section class="step" data-step="6">
-        <div class="stephead"><div><h2 data-i18n="s6t">Photos &amp; Context</h2><p data-i18n="s6p">Upload up to five photos of the area.</p></div><span class="badge">Step 7 of 8</span></div>
+        <div class="stephead"><div><h2 data-i18n="s6t">Photos &amp; Context</h2><p data-i18n="s6p">Up to five site photos help the consultant see what you're working with.</p></div><span class="badge">Step 7 of 8</span></div>
         <div class="upload">
           <strong data-i18n="photoTitle">Site Photos</strong>
-          <p data-i18n="photoHelp">Recommended: overall property, project area, alternate angle, existing issues, and one detail photo.</p>
+          <p data-i18n="photoHelp">Aim for: overall property, project area, an alternate angle, any problem areas, and one close detail.</p>
           <input id="photoInput" type="file" accept="image/*" multiple hidden>
-          <button class="btn primary" type="button" id="photoBtn" onclick="document.getElementById('photoInput').click();">＋ <span data-i18n="selectPhotos">Select photos</span></button>
-          <p id="photoCount" class="hint">0 of 5 selected</p>
+          <input id="cameraInput" type="file" accept="image/*" capture="environment" hidden>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:4px">
+            <button class="btn primary" type="button" onclick="document.getElementById('photoInput').click();">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 4h11v9H2zM5 4V2.5a1 1 0 011-1h3a1 1 0 011 1V4"/><circle cx="7.5" cy="8.5" r="2"/></svg>
+              <span data-i18n="selectPhotos">Choose from library</span>
+            </button>
+            <button class="btn" type="button" onclick="document.getElementById('cameraInput').click();">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3.5" width="13" height="10" rx="1.5"/><circle cx="7.5" cy="8.5" r="2.5"/><path d="M5 3.5V3a1 1 0 011-1h3a1 1 0 011 1v.5"/><circle cx="11.5" cy="6" r=".6" fill="currentColor" stroke="none"/></svg>
+              Take photo
+            </button>
+          </div>
+          <p id="photoCount" class="hint" style="margin-top:10px">0 of 5 selected</p>
         </div>
         <div class="photos" id="photos"></div>
       </section>
@@ -630,21 +647,7 @@
           <p class="secure" style="margin-top:8px">Suggestions are filtered by hardiness zone. Add your Perenual API key in CONFIG to enable.</p>
         </div>
 
-        <div id="plantSuggestSetup" class="plant-suggest-card" style="display:none">
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-            <span style="font-size:20px">&#127807;</span>
-            <div>
-              <strong style="font-size:13px">Enable live plant suggestions</strong>
-              <p style="margin:3px 0 0;font-size:12px;color:var(--soft)">Add a free Perenual API key to get zone-matched plant photos and names on this screen.</p>
-            </div>
-            <a class="btn" href="https://perenual.com/user/developer" target="_blank" rel="noopener" style="font-size:12px;padding:8px 14px;white-space:nowrap">Get free key &#8599;</a>
-          </div>
-          <div style="display:flex;gap:8px;margin-top:12px;align-items:center">
-            <input id="perenualKeyInput" type="text" placeholder="Paste API key here"
-              style="flex:1;padding:8px 12px;border:1px solid var(--line2);border-radius:999px;font-size:12px;background:var(--field);color:var(--ink)">
-            <button class="btn primary" type="button" id="savePerenualKey" style="font-size:12px;padding:8px 14px">Save key</button>
-          </div>
-        </div>
+        <!-- Plant suggestions powered by Cloudflare Worker proxy -->
         <!-- ── Optional feedback survey ─────────────────────────────── -->
         <div class="survey-card" id="surveyCard">
           <div class="survey-toggle">
@@ -703,6 +706,7 @@
             </div>
             <p class="secure" style="margin-top:10px">Feedback opens your email client with responses pre-filled. Nothing is collected automatically.</p>
           </div>
+        </div><!-- /survey-card -->
 
       <!-- ── B3: Consultant Pipeline Dashboard ──────────────────────────── -->
       <div class="pipeline-card consultantOnly" id="pipelineCard" style="display:none">
@@ -715,7 +719,6 @@
         </div>
         <button class="btn" type="button" id="saveToPipeline" style="font-size:12px;margin-top:10px;width:100%">&#43; Save current brief to pipeline</button>
       </div>
-        </div>
       </section>
 
       <div class="actions"><button class="btn ghost" id="prev" type="button" onclick="if(typeof go==='function')go((typeof step!=='undefined'?step:0)-1);">&larr; Back</button><button class="btn primary" id="next" type="button" onclick="if(typeof step!=='undefined'&&step<7){if(typeof go==='function')go(step+1);}else{if(typeof updateReview==='function')updateReview();if(typeof toast==='function')toast('Brief prepared');}">Save &amp; Continue &rarr;</button></div>
@@ -869,7 +872,7 @@
 const I18N={
 en:{brandSub:'Plant Consultant',tagline:'Thoughtful landscapes.<br>Rooted in place.',title:'Plant Consultant',sub:'Plan with purpose. Plant with confidence.',
 steps:[['Property Details','Address & contact'],['Site Intelligence','Zone, map & light'],['Existing Landscape','What is there now'],['Goals & Challenges','What to improve'],['Style Preferences','Design direction'],['Budget & Timing','Scope expectations'],['Photos & Context','Up to 5 photos'],['Review & Confirm','Discovery brief']],
-s0t:'Property Details',s0p:'Start with the basics so the profile can be tied to a real site.',s1t:'Site Intelligence',s1p:'Capture orientation and preliminary conditions. Verify on-site before final recommendations.',s2t:'Existing Landscape',s2p:'What is already there, and what should stay or go?',s3t:'Goals & Challenges',s3p:'Tell us what you hope to improve.',s4t:'Style & Preferences',s4p:'Color, mood, maintenance, and design direction.',s5t:'Budget & Timing',s5p:'Set expectations for scope and phasing.',s6t:'Photos & Context',s6p:'Upload up to five photos of the area.',s7t:'Review & Confirm',s7p:'Prepare a consultant-ready discovery brief.',
+s0t:'Property Details',s0p:'Start with the basics so the profile can be tied to a real site.',s1t:'Site Intelligence',s1p:'Capture orientation and preliminary conditions. Verify on-site before final recommendations.',s2t:'Existing Landscape',s2p:'What is already there, and what should stay or go?',s3t:'Goals & Challenges',s3p:'Tell us what you hope to improve.',s4t:'Style & Preferences',s4p:'Design character, bloom colors, and what to avoid.',styleLabel:'Design character',styleHint:'Choose the aesthetic that best matches your vision.',s5t:'Budget & Timing',s5p:'Set expectations for scope and phasing.',s6t:'Photos & Context',s6p:'Upload up to five photos of the area.',s7t:'Review & Confirm',s7p:'Prepare a consultant-ready discovery brief.',
 name:'Name',phone:'Phone',zip:'ZIP',entryKicker:'Choose your path',entryTitle:'Start with the right workflow.',entryCopy:'Homeowners can prepare a clean project profile. Consultants can use the full planning workspace, field notes, dictation, and visit checklist.',homeownerTitle:'Homeowner',homeownerCopy:'Prepare for your consultation with address, goals, preferences, budget, and up to five site photos.',homeownerAction:'Prepare my profile →',consultantTitle:'Consultant',consultantCopy:'Run the full workflow onsite, including field notes, dictation, checklist, and discovery brief prep.',consultantAction:'Open consultant workspace →',
 address:'Project Address',addressHint:'Used for map reference and future geocode / USDA lookup.',updateMap:'Update map',directions:'Open directions',frontDoor:'Front door orientation',frontHint:'Facing direction when you stand at the front door.',zoneEstimate:'Planning zone estimate',lightZones:'Preliminary light-zone guidance',existing:'Describe the existing area',keepRemove:'Keep / remove / protect',utilities:'Known utilities, drainage, roots, slopes, or access issues',primaryGoals:'Primary goals',challenges:'Challenges',outcome:'Ideal outcome',colors:'Preferred colors',avoid:'Avoid',budget:'Budget range',timeline:'Timeline',installPref:'Installation preference',photoTitle:'Site Photos',photoHelp:'Recommended: overall property, project area, alternate angle, existing issues, and one detail photo.',selectPhotos:'Select photos',copyBrief:'Copy brief',
 secure:'Your information stays in this session and is not transmitted.',summaryTitle:'Site Intelligence Summary',summarySub:'Planning estimate for your property.',frontDoorShort:'Front Orientation',fieldNotesShort:'Field Notes',homeAccess:'Home',roleHomeowner:'Homeowner mode',roleConsultant:'Consultant mode',whyAsk:'Why we ask',whyAskText:'Your answers, photos, and field notes help align the right plants with the right place before design begins.',openNotes:'Open consultant notes',notesExplain:'Use on-site with the client to capture conditions, requests, and next actions.',notesTitle:'Consultant Field Notes',notesSub:'Use this during the site visit for typed or dictated notes.',consultantMode:'Consultant Mode',consultantTools:'Consultant Tools',onsiteCapture:'<b>On-site capture:</b> keep consultant observations separate from client requests. Dictate in the field, then edit before copying the recap into the discovery brief.',liveNotes:'General notes',conditions:'Observed conditions',conditionsHint:'What you see onsite: light, slope, drainage, soil, roots, utilities, existing plants.',requests:'Client requests',requestsHint:'What the client says they want: colors, privacy, maintenance level, plant likes/dislikes.',measurements:'Measurements / counts',nextActions:'Next actions',startDictation:'Start dictation',stopDictation:'Stop dictation',copyNotes:'Copy notes recap',clearNotes:'Clear notes',backPlanner:'Back to planner',visitChecklist:'Visit checklist',chk1:'Confirm sun exposure',chk2:'Check drainage / grade',chk3:'Identify roots or utilities',chk4:'Confirm budget and timing',chk5:'Capture follow-up photos',back:'← Back',next:'Save & Continue →',finish:'Prepare brief',selected:'selected',notStarted:'Not started',started:'In progress',copied:'Copied to clipboard',photoLimit:'Photo limit is 5 for MVP',mapUpdated:'Map reference updated',speechUnsupported:'Speech dictation not supported in this browser',
@@ -877,11 +880,11 @@ prosTitle:'Need help bringing this to life?',prosCopy:'Select the kinds of vette
 choices:{
 pros:[['Landscape installation','Planting and bed prep'],['Irrigation','Drip or sprinkler support'],['Drainage','Grading or water issues'],['Hardscape','Stone, edging, patios'],['Tree care','Pruning or arborist work'],['Maintenance','Ongoing care']],
 goals:[['Low maintenance','Reduce upkeep'],['Pollinator habitat','Support bees/butterflies'],['More privacy','Screen views'],['Curb appeal','Improve first impression'],['Drainage help','Solve wet areas'],['Seasonal color','Long bloom window']],
-style:[['Naturalistic','Loose drifts'],['Formal','Clean structure'],['Cottage','Layered color'],['Modern','Simple masses'],['Native-forward','Regional ecology'],['Unsure','Consultant guidance']],
+style:[['Naturalistic','Loose drifts & meadow layers'],['Formal','Defined structure & symmetry'],['Cottage','Layered abundance & texture'],['Modern','Clean masses & strong form'],['Native-forward','Regional ecology & habitat'],['Open to guidance','Let the consultant lead']],
 install:[['DIY'],['Done-for-me'],['Phased'],['Not sure']]}},
 es:{brandSub:'Consultor de Plantas',tagline:'Paisajes pensados.<br>Arraigados al lugar.',title:'Consultor de Plantas',sub:'Planifique con propósito. Plante con confianza.',
 steps:[['Detalles','Dirección y contacto'],['Sitio','Zona, mapa y luz'],['Paisaje Actual','Lo que existe'],['Metas y Retos','Qué mejorar'],['Preferencias','Dirección de diseño'],['Presupuesto','Alcance y fechas'],['Fotos','Hasta 5 fotos'],['Revisión','Brief de consulta']],
-s0t:'Detalles de la Propiedad',s0p:'Comience con lo básico para vincular el perfil a un sitio real.',s1t:'Inteligencia del Sitio',s1p:'Capture orientación y condiciones preliminares. Verifique en sitio antes de recomendaciones finales.',s2t:'Paisaje Actual',s2p:'Qué existe ahora, y qué debe quedarse o retirarse.',s3t:'Metas y Retos',s3p:'Cuéntenos qué espera mejorar.',s4t:'Estilo y Preferencias',s4p:'Color, ambiente, mantenimiento y dirección de diseño.',s5t:'Presupuesto y Tiempo',s5p:'Defina expectativas de alcance y fases.',s6t:'Fotos y Contexto',s6p:'Suba hasta cinco fotos del área.',s7t:'Revisar y Confirmar',s7p:'Prepare un brief listo para el consultor.',
+s0t:'Detalles de la Propiedad',s0p:'Comience con lo básico para vincular el perfil a un sitio real.',s1t:'Inteligencia del Sitio',s1p:'Capture orientación y condiciones preliminares. Verifique en sitio antes de recomendaciones finales.',s2t:'Paisaje Actual',s2p:'Qué existe ahora, y qué debe quedarse o retirarse.',s3t:'Metas y Retos',s3p:'Cuéntenos qué espera mejorar.',s4t:'Estilo y Preferencias',s4p:'Carácter de diseño, paleta de colores y qué evitar.',styleLabel:'Carácter del diseño',styleHint:'Elige el estilo que mejor represente tu visión.',s5t:'Presupuesto y Tiempo',s5p:'Defina expectativas de alcance y fases.',s6t:'Fotos y Contexto',s6p:'Suba hasta cinco fotos del área.',s7t:'Revisar y Confirmar',s7p:'Prepare un brief listo para el consultor.',
 name:'Nombre',phone:'Teléfono',zip:'Código postal',entryKicker:'Elija su camino',entryTitle:'Comience con el flujo correcto.',entryCopy:'Los propietarios pueden preparar un perfil claro del proyecto. Los consultores pueden usar el espacio completo con notas de campo, dictado, lista de visita y brief.',homeownerTitle:'Propietario',homeownerCopy:'Prepare su consulta con dirección, metas, preferencias, presupuesto y hasta cinco fotos del sitio.',homeownerAction:'Preparar mi perfil →',consultantTitle:'Consultor',consultantCopy:'Use el flujo completo en sitio, incluyendo notas de campo, dictado, lista de visita y brief.',consultantAction:'Abrir espacio de consultor →',
 address:'Dirección del proyecto',addressHint:'Se usa para mapa y futura búsqueda geográfica / USDA.',updateMap:'Actualizar mapa',directions:'Abrir direcciones',frontDoor:'Orientación de la entrada',frontHint:'Dirección mirando desde la puerta principal.',zoneEstimate:'Estimación de zona',lightZones:'Guía preliminar de luz',existing:'Describa el área actual',keepRemove:'Conservar / retirar / proteger',utilities:'Servicios, drenaje, raíces, pendientes o acceso',primaryGoals:'Metas principales',challenges:'Retos',outcome:'Resultado ideal',colors:'Colores preferidos',avoid:'Evitar',budget:'Rango de presupuesto',timeline:'Cronograma',installPref:'Preferencia de instalación',photoTitle:'Fotos del sitio',photoHelp:'Recomendado: propiedad general, área del proyecto, otro ángulo, problemas existentes y una foto de detalle.',selectPhotos:'Seleccionar fotos',copyBrief:'Copiar brief',
 secure:'Su información permanece en esta sesión y no se transmite.',summaryTitle:'Resumen del Sitio',summarySub:'Estimación de planificación para su propiedad.',frontDoorShort:'Orientación Frontal',fieldNotesShort:'Notas de Campo',homeAccess:'Inicio',roleHomeowner:'Modo propietario',roleConsultant:'Modo consultor',whyAsk:'Por qué preguntamos',whyAskText:'Sus respuestas, fotos y notas de campo ayudan a alinear las plantas correctas con el lugar correcto antes del diseño.',openNotes:'Abrir notas del consultor',notesExplain:'Use en sitio con el cliente para capturar condiciones, solicitudes y próximos pasos.',notesTitle:'Notas de Campo del Consultor',notesSub:'Use durante la visita para notas escritas o dictadas.',consultantMode:'Modo Consultor',consultantTools:'Herramientas del consultor',onsiteCapture:'<b>Captura en sitio:</b> mantenga las observaciones del consultor separadas de las solicitudes del cliente. Dicte en campo y luego edite antes de copiar el resumen al brief.',liveNotes:'Notas generales',conditions:'Condiciones observadas',conditionsHint:'Lo que ve en sitio: luz, pendiente, drenaje, suelo, raíces, servicios y plantas existentes.',requests:'Solicitudes del cliente',requestsHint:'Lo que el cliente dice que quiere: colores, privacidad, mantenimiento y plantas que le gustan o no.',measurements:'Medidas / cantidades',nextActions:'Próximos pasos',startDictation:'Iniciar dictado',stopDictation:'Detener dictado',copyNotes:'Copiar resumen',clearNotes:'Borrar notas',backPlanner:'Volver al planificador',visitChecklist:'Lista de visita',chk1:'Confirmar exposición solar',chk2:'Revisar drenaje / pendiente',chk3:'Identificar raíces o servicios',chk4:'Confirmar presupuesto y tiempo',chk5:'Tomar fotos de seguimiento',back:'← Atrás',next:'Guardar y continuar →',finish:'Preparar brief',selected:'seleccionadas',notStarted:'Sin iniciar',started:'En progreso',copied:'Copiado',photoLimit:'El límite MVP es 5 fotos',mapUpdated:'Mapa actualizado',speechUnsupported:'El dictado no es compatible con este navegador',
@@ -889,7 +892,7 @@ prosTitle:'¿Necesita ayuda para hacerlo realidad?',prosCopy:'Seleccione los pro
 choices:{
 pros:[['Instalación de paisaje','Plantación y preparación'],['Riego','Goteo o aspersores'],['Drenaje','Pendiente o agua'],['Hardscape','Piedra, bordes, patios'],['Árboles','Poda o arborista'],['Mantenimiento','Cuidado continuo']],
 goals:[['Bajo mantenimiento','Reducir cuidado'],['Hábitat polinizador','Abejas/mariposas'],['Más privacidad','Pantalla visual'],['Atractivo exterior','Mejor impresión'],['Ayuda con drenaje','Zonas húmedas'],['Color estacional','Floración prolongada']],
-style:[['Naturalista','Masas suaves'],['Formal','Estructura clara'],['Cottage','Color en capas'],['Moderno','Masas simples'],['Nativas','Ecología regional'],['No seguro','Guía del consultor']],
+style:[['Naturalista','Ondas sueltas y capas de pradera'],['Formal','Estructura definida y simetría'],['Cottage','Abundancia en capas y textura'],['Moderno','Masas limpias y forma sólida'],['Nativas','Ecología regional y hábitat'],['Guía del consultor','El consultor recomienda']],
 install:[['Hágalo usted'],['Instalado'],['Por fases'],['No seguro']]}}
 };
 
@@ -2125,12 +2128,9 @@ function go(i){
   window.scrollTo({top:0,behavior:'smooth'});
   // C1: Fire step completion event
   if(window.plausible) window.plausible('Step Complete',{props:{step:i+1,name:(I18N[lang]?.steps?.[i]?.[0]||'Step '+(i+1))}});
-  if(step===7){ renderPipeline(); // Step 8: trigger plant fetch + show setup if no key
+  if(step===7){ renderPipeline(); // Step 8: trigger plant fetch via Worker
     const ps=document.getElementById('plantSuggest');
-    const pss=document.getElementById('plantSuggestSetup');
-    if(CONFIG.PERENUAL_KEY){ fetchPlantSuggestions(); if(ps)ps.style.display=''; if(pss)pss.style.display='none'; }
-    else { if(pss)pss.style.display=''; if(ps)ps.style.display='none'; }
-    // Update zone label in plant section
+    fetchPlantSuggestions(); if(ps)ps.style.display='';
     const lbl=document.getElementById('plantSuggestZone'); if(lbl)lbl.textContent='Zone '+zdata().z+' · powered by Perenual';
   }
   // Also ensure the active mobile step tab is visible
@@ -2247,22 +2247,27 @@ function closeNotes(){
 function goHome(){if(recognition&&dictating)recognition.stop();$('#consultantNotes').style.display='none';document.querySelector('.workspace').style.display='grid';$('#app').style.display='none';$('#entry').style.display='grid';window.scrollTo({top:0,behavior:'smooth'});}
 function toast(m){let t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(window.__t);window.__t=setTimeout(()=>t.classList.remove('show'),2800);}
 function updateMap(){
-  let a=encodeURIComponent($('#address').value.trim()||'Kansas City, MO');
+  let a=encodeURIComponent(($('#address').value||'').trim()||'Kansas City, MO');
   $('#mapFrame').src=`https://maps.google.com/maps?q=${a}&t=k&z=18&output=embed`;
   $('#directions').href=`https://www.google.com/maps/dir/?api=1&destination=${a}`;
   updateAll();toast(I18N[lang].mapUpdated);
 }
-$('#mapBtn').onclick=updateMap;$('#address').onchange=updateMap;$('#directions').href='https://www.google.com/maps/dir/?api=1&destination=Kansas%20City%2C%20MO';
+$('#mapBtn').onclick=updateMap;$('#address').onchange=updateMap;$('#directions').href='https://www.google.com/maps/dir/?api=1&destination=Kansas+City,MO';
 $('#next').onclick=()=>{if(step<7)go(step+1);else{updateReview();toast('Brief prepared');}};
 $('#prev').onclick=()=>go(step-1);
 $('#copyBrief').onclick=async()=>{updateReview();await navigator.clipboard.writeText($('#summary').value);toast(I18N[lang].copied);};
 $('#printBrief').onclick=()=>{updateReview();setTimeout(()=>window.print(),150);};
 const _pi=$('#prosIntro');if(_pi)_pi.onclick=()=>{updateReview();openHandoffModal();};
-$('#photoBtn').onclick=()=>$('#photoInput').click();
+$('#photoBtn')?.onclick && ($('#photoBtn').onclick=()=>$('#photoInput').click());
 $('#photoInput').onchange=e=>{
   let add=[...e.target.files].slice(0,5-photos.length);
   photos=photos.concat(add).slice(0,5);renderPhotos();e.target.value='';
 };
+// Camera capture handler — same pipeline
+document.getElementById('cameraInput') && (document.getElementById('cameraInput').onchange=e=>{
+  let add=[...e.target.files].slice(0,5-photos.length);
+  photos=photos.concat(add).slice(0,5);renderPhotos();e.target.value='';
+});
 function renderPhotos(){
   $('#photos').innerHTML=photos.map((f,i)=>`<div class="thumb"><img src="${URL.createObjectURL(f)}"><button type="button" data-rm="${i}">×</button></div>`).join('');
   $$('[data-rm]').forEach(b=>b.onclick=()=>{photos.splice(+b.dataset.rm,1);renderPhotos();updateAll();});
@@ -2273,9 +2278,13 @@ function renderPhotos(){
 // ── Theme + Language controls ─────────────────────────────────────────────────
 function setTheme(mode){
   document.body.dataset.theme = mode;
-  const icon = mode === 'dark' ? '\u263D\uFE0E' : '\u2600\uFE0E';
-  const tip  = mode === 'dark' ? 'Switch to light' : 'Switch to dark';
-  document.querySelectorAll('.theme-btn').forEach(b=>{ b.textContent=icon; b.title=tip; });
+  // Sun SVG = currently dark, click to go light
+  const sunSVG = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><line x1="9" y1="1" x2="9" y2="3"/><line x1="9" y1="15" x2="9" y2="17"/><line x1="1" y1="9" x2="3" y2="9"/><line x1="15" y1="9" x2="17" y2="9"/><line x1="3.2" y1="3.2" x2="4.6" y2="4.6"/><line x1="13.4" y1="13.4" x2="14.8" y2="14.8"/><line x1="14.8" y1="3.2" x2="13.4" y2="4.6"/><line x1="4.6" y1="13.4" x2="3.2" y2="14.8"/></svg>';
+  // Moon SVG = currently light, click to go dark
+  const moonSVG = '<svg width="16" height="18" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 11.5A7 7 0 0 1 4.5 2a7 7 0 1 0 9.5 9.5z"/></svg>';
+  const icon = mode === 'dark' ? sunSVG : moonSVG;
+  const tip  = mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  document.querySelectorAll('.theme-btn').forEach(b=>{ b.innerHTML=icon; b.title=tip; });
 }
 function setLang(next){
   lang = next;
@@ -2285,13 +2294,7 @@ function setLang(next){
   build();
 }
 (function(){
-  // Theme toggles — works on every .theme-btn anywhere in the page
-  document.querySelectorAll('.theme-btn').forEach(btn=>{
-    btn.addEventListener('click', function(){
-      setTheme(document.body.dataset.theme==='dark'?'light':'dark');
-    });
-  });
-  // Lang dropdowns — one handler per .lang-drop container
+  // Lang dropdowns only — theme handled by inline onclick on buttons
   document.querySelectorAll('.lang-drop').forEach(function(drop){
     var trigger = drop.querySelector('.lang-trigger');
     var menu    = drop.querySelector('.lang-menu');
@@ -2407,6 +2410,7 @@ function _modalEsc(e){if(e.key==='Escape')closeHandoffModal();}
 })();
 
 build();
+setTheme('dark'); // populate SVG icons on load
 
 // ── Survey ─────────────────────────────────────────────────────────────────
 let surveyRating = 0;
@@ -2493,10 +2497,7 @@ async function fetchPlantSuggestions(lightFilter, waterFilter){
   } else if(CONFIG.PERENUAL_KEY){
     url = `https://perenual.com/api/v2/species-list?key=${CONFIG.PERENUAL_KEY}&hardiness_min=${zn}&hardiness_max=${zn}&per_page=20&cycle=perennial${lightFilter?'&sunlight='+lightFilter:''}${waterFilter?'&watering='+waterFilter:''}`;
   } else {
-    // No key or worker — show setup card
-    const setup=document.getElementById('plantSuggestSetup');
-    if(setup) setup.style.display='';
-    return;
+    return; // Worker not configured — silent, no UI shown
   }
 
   try {
@@ -2560,20 +2561,6 @@ async function checkNative(commonName){
 }
 
 // Restore saved Perenual key on load
-(()=>{ const k=localStorage.getItem('perenual_key'); if(k) CONFIG.PERENUAL_KEY=k; })();
-
-// Save key handler
-document.getElementById('savePerenualKey')?.addEventListener('click',()=>{
-  const k=document.getElementById('perenualKeyInput')?.value?.trim();
-  if(k){
-    CONFIG.PERENUAL_KEY=k;
-    localStorage.setItem('perenual_key',k);
-    const setup=document.getElementById('plantSuggestSetup');
-    if(setup) setup.style.display='none';
-    fetchPlantSuggestions();
-  }
-});
-
 // Auto-fetch on ZIP input
 document.getElementById('zip')?.addEventListener('change', ()=>setTimeout(fetchPlantSuggestions,400));
 
