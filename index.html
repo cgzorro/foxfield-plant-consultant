@@ -380,8 +380,20 @@
         <div class="stephead"><div><h2 data-i18n="s3t">Goals &amp; Challenges</h2><p data-i18n="s3p">Tell us what you hope to improve.</p></div><span class="badge">Step 4 of 8</span></div>
         <div class="field"><label data-i18n="primaryGoals">Primary goals</label></div>
         <div class="choices multi" data-name="goals" data-choice="goals"></div>
-        <div class="field" style="margin-top:16px"><label data-i18n="challenges">Challenges</label><textarea name="challenges"></textarea></div>
-        <div class="field" style="margin-top:16px"><label data-i18n="outcome">Ideal outcome</label><textarea name="outcome"></textarea></div>
+        <div class="field" style="margin-top:16px">
+          <div class="note-field-head">
+            <label data-i18n="challenges">Challenges</label>
+            <button class="dictate-btn compact" type="button" data-dictate="challengesField" aria-label="Dictate challenges"></button>
+          </div>
+          <textarea name="challenges" id="challengesField"></textarea>
+        </div>
+        <div class="field" style="margin-top:16px">
+          <div class="note-field-head">
+            <label data-i18n="outcome">Ideal outcome</label>
+            <button class="dictate-btn compact" type="button" data-dictate="outcomeField" aria-label="Dictate ideal outcome"></button>
+          </div>
+          <textarea name="outcome" id="outcomeField"></textarea>
+        </div>
       </section>
 
       <!-- Step 5: Style & Preferences -->
@@ -389,8 +401,20 @@
         <div class="stephead"><div><h2 data-i18n="s4t">Style &amp; Preferences</h2><p data-i18n="s4p">Color, mood, maintenance, and design direction.</p></div><span class="badge">Step 5 of 8</span></div>
         <div class="choices" data-name="style" data-choice="style"></div>
         <div class="grid two" style="margin-top:16px">
-          <div class="field"><label data-i18n="colors">Preferred colors</label><input name="colors"></div>
-          <div class="field"><label data-i18n="avoid">Avoid</label><input name="avoid"></div>
+          <div class="field">
+            <div class="note-field-head">
+              <label data-i18n="colors">Preferred colors</label>
+              <button class="dictate-btn compact" type="button" data-dictate="colorsField" aria-label="Dictate preferred colors"></button>
+            </div>
+            <input name="colors" id="colorsField">
+          </div>
+          <div class="field">
+            <div class="note-field-head">
+              <label data-i18n="avoid">Avoid</label>
+              <button class="dictate-btn compact" type="button" data-dictate="avoidField" aria-label="Dictate plants or colors to avoid"></button>
+            </div>
+            <input name="avoid" id="avoidField">
+          </div>
         </div>
       </section>
 
@@ -457,7 +481,7 @@
               <strong style="font-size:13px">Enable live plant suggestions</strong>
               <p style="margin:3px 0 0;font-size:12px;color:var(--soft)">Add a free Perenual API key to get zone-matched plant photos and names on this screen.</p>
             </div>
-            <a class="btn" href="https://perenual.com/api/key-request" target="_blank" rel="noopener" style="font-size:12px;padding:8px 14px;white-space:nowrap">Get free key &#8599;</a>
+            <a class="btn" href="https://perenual.com/user/developer" target="_blank" rel="noopener" style="font-size:12px;padding:8px 14px;white-space:nowrap">Get free key &#8599;</a>
           </div>
           <div style="display:flex;gap:8px;margin-top:12px;align-items:center">
             <input id="perenualKeyInput" type="text" placeholder="Paste API key here"
@@ -672,7 +696,7 @@ const DIR_INFO={
 const DIR_ANGLE={N:0,NE:45,E:90,SE:135,S:180,SW:225,W:270,NW:315};
 // ── Configuration (set your keys here) ───────────────────────────────────────
 const CONFIG={
-  PERENUAL_KEY:'',        // get free key at perenual.com (100 req/day)
+  PERENUAL_KEY:'sk-wAr16a18e3136381e17699', // perenual.com — free tier 100 req/day
   FORMSPREE_ID:'xlgvzoqy',  // formspree.io/f/xlgvzoqy → cgzorro@gmail.com
 };
 
@@ -2093,7 +2117,7 @@ async function fetchPlantSuggestions(){
   const zn = parseInt(z.z);
   const cacheKey = z.z;
   if(_plantCache[cacheKey]){ renderPlantSuggestions(_plantCache[cacheKey]); return; }
-  const url = `https://perenual.com/api/species-list?key=${CONFIG.PERENUAL_KEY}&hardiness_min=${zn}&hardiness_max=${zn}&per_page=20&cycle=perennial`;
+  const url = `https://perenual.com/api/v2/species-list?key=${CONFIG.PERENUAL_KEY}&hardiness_min=${zn}&hardiness_max=${zn}&per_page=20&cycle=perennial`;
   try {
     const resp = await fetch(url);
     if(!resp.ok) throw new Error('Perenual ' + resp.status);
