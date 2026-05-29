@@ -322,8 +322,16 @@
         <div><h1>FOXFIELD</h1><p data-i18n="brandSub">Plant Consultant</p></div>
       </div>
       <div class="entry-tools">
-        <div class="theme pill"><button id="entryDarkBtn" class="active">&#9790; Dark</button><button id="entryLightBtn">&#9728; Light</button></div>
-        <div class="lang pill"><button data-entry-lang="en" class="active">EN</button><button data-entry-lang="es">ES</button></div>
+        <button class="icon-btn theme-btn" type="button" id="entryThemeBtn" title="Toggle theme" aria-label="Toggle light/dark theme">&#9790;</button>
+        <div class="lang-drop" id="entryLangDrop">
+          <button class="icon-btn lang-trigger" type="button" id="entryLangTrigger" aria-haspopup="listbox" aria-expanded="false">
+            <span class="lang-globe">&#127760;</span><span class="lang-current" id="entryLangCurrent">EN</span><span class="lang-caret">&#8964;</span>
+          </button>
+          <ul class="lang-menu" id="entryLangMenu" role="listbox" aria-label="Select language">
+            <li role="option" data-entry-lang="en" class="active">EN <span>English</span></li>
+            <li role="option" data-entry-lang="es">ES <span>Español</span></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="entry-body">
@@ -2264,26 +2272,23 @@ function renderPhotos(){
 }
 function setTheme(mode){
   document.body.dataset.theme=mode;
-  const btn=$('#themeBtn');
-  if(btn){ btn.textContent=mode==='dark'?'☽':'☀'; btn.title=mode==='dark'?'Switch to light mode':'Switch to dark mode'; }
-  // entry screen toggles (still exist)
-  ['entryDarkBtn'].forEach(id=>$('#'+id)?.classList.toggle('active',mode==='dark'));
-  ['entryLightBtn'].forEach(id=>$('#'+id)?.classList.toggle('active',mode==='light'));
+  const icon=mode==='dark'?'☽':'☀';
+  const tip=mode==='dark'?'Switch to light mode':'Switch to dark mode';
+  ['themeBtn','entryThemeBtn'].forEach(id=>{const b=$('#'+id);if(b){b.textContent=icon;b.title=tip;}});
 }
 $('#themeBtn').onclick=()=>setTheme(document.body.dataset.theme==='dark'?'light':'dark');
-$('#entryDarkBtn').onclick=()=>setTheme('dark');$('#entryLightBtn').onclick=()=>setTheme('light');
+$('#entryThemeBtn').onclick=()=>setTheme(document.body.dataset.theme==='dark'?'light':'dark');
 $('#homeBtn').onclick=goHome;$('#notesHomeBtn').onclick=goHome;
 $('#consultantToolsBtn').onclick=openNotes;
 function setLang(next){
   lang=next;
-  // update dropdown display
   const cur=$('#langCurrent');if(cur)cur.textContent=next.toUpperCase();
+  const ecur=$('#entryLangCurrent');if(ecur)ecur.textContent=next.toUpperCase();
   $$('#langMenu li').forEach(li=>li.classList.toggle('active',li.dataset.lang===lang));
-  // entry screen lang buttons
-  $$('[data-entry-lang]').forEach(x=>x.classList.toggle('active',x.dataset.entryLang===lang));
+  $$('#entryLangMenu li').forEach(li=>li.classList.toggle('active',li.dataset.entryLang===lang));
   build();
 }
-// Globe dropdown open/close
+// Main app globe dropdown
 (function(){
   const drop=$('#langDrop'),trigger=$('#langTrigger');
   if(!drop||!trigger)return;
@@ -2291,6 +2296,15 @@ function setLang(next){
   document.addEventListener('click',()=>{drop.classList.remove('open');trigger.setAttribute('aria-expanded','false');});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){drop.classList.remove('open');trigger.setAttribute('aria-expanded','false');}});
   $$('#langMenu li').forEach(li=>li.addEventListener('click',e=>{e.stopPropagation();setLang(li.dataset.lang);drop.classList.remove('open');trigger.setAttribute('aria-expanded','false');}));
+})();
+// Entry screen globe dropdown
+(function(){
+  const drop=$('#entryLangDrop'),trigger=$('#entryLangTrigger');
+  if(!drop||!trigger)return;
+  trigger.addEventListener('click',e=>{e.stopPropagation();drop.classList.toggle('open');trigger.setAttribute('aria-expanded',drop.classList.contains('open'));});
+  document.addEventListener('click',()=>{drop.classList.remove('open');trigger.setAttribute('aria-expanded','false');});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){drop.classList.remove('open');trigger.setAttribute('aria-expanded','false');}});
+  $$('#entryLangMenu li').forEach(li=>li.addEventListener('click',e=>{e.stopPropagation();setLang(li.dataset.entryLang);drop.classList.remove('open');trigger.setAttribute('aria-expanded','false');}));
 })();
 $$('[data-entry-lang]').forEach(b=>b.onclick=()=>setLang(b.dataset.entryLang));
 $$('[data-role-select]').forEach(b=>b.onclick=()=>{
