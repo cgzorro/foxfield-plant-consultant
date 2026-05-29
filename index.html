@@ -16,13 +16,30 @@
 .rail{position:sticky;top:0;height:100vh;padding:26px 18px;border-right:1px solid var(--line);background:linear-gradient(180deg,var(--bg2),rgba(7,19,15,.96));display:flex;flex-direction:column;gap:22px;overflow:auto}.brand{text-align:center;padding-bottom:16px;border-bottom:1px solid var(--line)}.markbox{width:96px;height:82px;margin:0 auto 14px;display:grid;place-items:center}.foxmark-img{display:block;width:90px;height:auto;object-fit:contain}.foxmark-img.lightmark{display:none}[data-theme=light] .foxmark-img.darkmark{display:none}[data-theme=light] .foxmark-img.lightmark{display:block}.brand-name{font:500 27px/1 var(--serif);letter-spacing:.19em;margin:0}.brand-sub{margin:10px 0 0;color:var(--accent);font-size:11px;letter-spacing:.18em;text-transform:uppercase}.rail-tag{margin-top:auto;text-align:center;color:var(--muted);font-size:13px;line-height:1.55}.rail-leaves{height:118px;opacity:.48;margin:auto auto 10px;color:var(--accent)}
 .steps{display:grid;gap:8px}.stepnav{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;width:100%;border:1px solid transparent;background:transparent;color:var(--muted);padding:10px;border-radius:14px;text-align:left}.stepnav:hover{border-color:var(--line);background:rgba(255,255,255,.03)}.stepnav.active{background:linear-gradient(90deg,rgba(197,138,66,.32),rgba(197,138,66,.12));border-color:rgba(197,138,66,.35);color:var(--ink)}.bubble{width:34px;height:34px;border-radius:999px;border:1px solid var(--line2);display:grid;place-items:center;font:600 16px var(--serif);color:var(--accent3)}.stepnav.active .bubble{border-color:var(--accent2);color:var(--ink)}.st{font-weight:600;font-size:14px}.ss{display:block;margin-top:3px;font-size:11px;color:var(--soft)}.done{color:var(--good);opacity:0}.stepnav.done .done{opacity:1}
 .main{min-width:0}.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 32px;border-bottom:1px solid var(--line);background:rgba(7,19,15,.7);backdrop-filter:blur(18px)}[data-theme=light] .top{background:rgba(244,239,227,.76)}.top h1{font:500 clamp(22px,2.6vw,36px)/1.15 var(--serif);margin:0;text-wrap:balance}
-.top p{margin:6px 0 0;color:var(--accent);font-size:14px;text-wrap:balance}.tools{display:flex;align-items:center;gap:12px}.pill{border:1px solid var(--line2);background:var(--card);color:var(--ink);border-radius:999px;padding:10px 14px;font-weight:700;font-size:13px}.theme button,.lang button{border:0;background:transparent;color:var(--muted);padding:7px 10px;border-radius:999px}.theme button.active,.lang button.active{background:var(--accent);color:var(--bg);font-weight:800}.workspace{padding:28px 32px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;max-width:1440px}.panel,.sidecard{border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,var(--panel),rgba(255,255,255,.018));box-shadow:var(--shadow)}.panel{padding:26px;min-height:690px}.side{display:grid;align-content:start;gap:18px}.sidecard{padding:22px}.sidecard h3{font:500 23px/1.15 var(--serif);margin:0 0 8px}.sidecard p,.sidecard li{color:var(--muted);font-size:13px;line-height:1.6}.sidecard ul{margin:8px 0 0;padding-left:18px}.side-row{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}.side-row:first-of-type{border-top:0}.side-ico{font-size:25px;color:var(--accent);text-align:center}.side-row b{display:block;color:var(--ink);font:500 15px var(--serif);margin-bottom:3px}.chiprow{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.chip{border:1px solid var(--line);background:var(--card2);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:12px}.step{display:none}.step.active{display:block;animation:rise .22s var(--ease)}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.stephead{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}.stephead h2{font:500 32px/1.15 var(--serif);margin:0}.stephead p{margin:7px 0 0;color:var(--muted);line-height:1.55}.badge{border:1px solid var(--line2);border-radius:999px;padding:8px 12px;color:var(--accent2);font-size:12px;font-weight:800;white-space:nowrap}.grid{display:grid;gap:16px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.field label{display:block;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}.hint{display:block;color:var(--soft);font-size:12px;margin:-3px 0 8px;line-height:1.45}input,select,textarea{width:100%;background:var(--field);border:1px solid var(--line);border-radius:14px;color:var(--ink);padding:13px 14px;outline:none}textarea{min-height:120px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--accent2);box-shadow:0 0 0 4px rgba(197,138,66,.12)}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px}.choice{border:1px solid var(--line);border-radius:16px;background:var(--field);padding:13px;color:var(--muted);font-weight:700;font-size:13px}.choice input{display:none}.choice.active{border-color:var(--accent2);background:rgba(197,138,66,.12);color:var(--ink)}.choice small{display:block;font-weight:500;color:var(--soft);margin-top:4px;line-height:1.35}
+.top p{margin:6px 0 0;color:var(--accent);font-size:14px;text-wrap:balance}.tools{display:flex;align-items:center;gap:6px}.icon-btn{border:1px solid var(--line2);background:var(--card);color:var(--muted);border-radius:999px;padding:8px 13px;font-weight:700;font-size:13px;line-height:1;transition:border-color .15s,color .15s,background .15s}.icon-btn:hover{border-color:var(--accent2);color:var(--ink)}.icon-btn.active{border-color:var(--accent2);background:rgba(197,138,66,.13);color:var(--accent2)}.theme-btn{font-size:17px;padding:7px 11px;min-width:36px;text-align:center}
+/* ── Language dropdown ── */
+.lang-drop{position:relative}
+.lang-trigger{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;font-size:12px;font-weight:700;letter-spacing:.04em}
+.lang-globe{font-size:15px;line-height:1}
+.lang-current{letter-spacing:.06em}
+.lang-caret{font-size:10px;color:var(--muted);transition:transform .18s var(--ease);display:inline-block}
+.lang-drop.open .lang-caret{transform:rotate(180deg)}
+.lang-drop.open .lang-trigger{border-color:var(--accent2);color:var(--ink)}
+.lang-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:148px;background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:6px;margin:0;list-style:none;box-shadow:0 12px 32px rgba(0,0,0,.28);opacity:0;transform:translateY(-6px) scale(.97);pointer-events:none;transition:opacity .16s var(--ease),transform .16s var(--ease);z-index:200}
+.lang-drop.open .lang-menu{opacity:1;transform:none;pointer-events:auto}
+.lang-menu li{display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:10px;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--muted);cursor:pointer;transition:background .12s,color .12s}
+.lang-menu li span{font-weight:500;letter-spacing:0;font-size:12px;color:var(--soft)}
+.lang-menu li:hover{background:rgba(197,138,66,.1);color:var(--ink)}
+.lang-menu li.active{color:var(--accent2);background:rgba(197,138,66,.12)}
+.lang-menu li.active span{color:var(--accent)}.workspace{padding:28px 32px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;max-width:1440px}.panel,.sidecard{border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,var(--panel),rgba(255,255,255,.018));box-shadow:var(--shadow)}.panel{padding:26px;min-height:690px}.side{display:grid;align-content:start;gap:18px}.sidecard{padding:22px}.sidecard h3{font:500 23px/1.15 var(--serif);margin:0 0 8px}.sidecard p,.sidecard li{color:var(--muted);font-size:13px;line-height:1.6}.sidecard ul{margin:8px 0 0;padding-left:18px}.side-row{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}.side-row:first-of-type{border-top:0}.side-ico{font-size:25px;color:var(--accent);text-align:center}.side-row b{display:block;color:var(--ink);font:500 15px var(--serif);margin-bottom:3px}.chiprow{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.chip{border:1px solid var(--line);background:var(--card2);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:12px}.step{display:none}.step.active{display:block;animation:rise .22s var(--ease)}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.stephead{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}.stephead h2{font:500 32px/1.15 var(--serif);margin:0}.stephead p{margin:7px 0 0;color:var(--muted);line-height:1.55}.badge{border:1px solid var(--line2);border-radius:999px;padding:8px 12px;color:var(--accent2);font-size:12px;font-weight:800;white-space:nowrap}.grid{display:grid;gap:16px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.field label{display:block;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}.hint{display:block;color:var(--soft);font-size:12px;margin:-3px 0 8px;line-height:1.45}input,select,textarea{width:100%;background:var(--field);border:1px solid var(--line);border-radius:14px;color:var(--ink);padding:13px 14px;outline:none}textarea{min-height:120px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--accent2);box-shadow:0 0 0 4px rgba(197,138,66,.12)}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px}.choice{border:1px solid var(--line);border-radius:16px;background:var(--field);padding:13px;color:var(--muted);font-weight:700;font-size:13px}.choice input{display:none}.choice.active{border-color:var(--accent2);background:rgba(197,138,66,.12);color:var(--ink)}.choice small{display:block;font-weight:500;color:var(--soft);margin-top:4px;line-height:1.35}
 .orientation-wrap{display:block;padding:18px 0 12px}
 .site-intel-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
 .orientation-card{min-width:0;position:relative;z-index:1;padding-right:32px}
-.zone-card-inline{min-width:0;isolation:isolate}.compass-only{width:230px;height:230px;margin:28px auto 24px;overflow:visible;position:relative;border:1px solid var(--line2);border-radius:50%;background:radial-gradient(circle,rgba(143,162,107,.16),transparent 60%),var(--field);color:var(--accent3);box-shadow:inset 0 0 0 18px rgba(143,162,107,.035)}.compass-only:before,.compass-only:after{content:"";position:absolute;background:var(--line2);opacity:.7}.compass-only:before{left:22px;right:22px;top:50%;height:1px}.compass-only:after{top:22px;bottom:22px;left:50%;width:1px}.compass-only strong{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--card2);border:1px solid var(--line);font:700 24px var(--serif);color:var(--accent2);z-index:2}.needle{position:absolute;left:50%;top:9px;transform:translateX(-50%) rotate(var(--needle,0deg));transform-origin:50% 99px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:14px solid var(--accent2);transition:transform .2s var(--ease)}.compass-choice{position:absolute;width:48px;height:48px;border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--ink);font:700 15px var(--sans);display:grid;place-items:center;cursor:pointer;z-index:4;box-shadow:0 10px 22px rgba(0,0,0,.18)}.compass-choice:hover,.compass-choice.active{border-color:var(--accent2);background:rgba(197,138,66,.16);color:var(--accent3)}.compass-choice[data-dir="N"]{top:-24px;left:50%;transform:translateX(-50%)}.compass-choice[data-dir="NE"]{top:12px;right:12px}.compass-choice[data-dir="E"]{top:50%;right:-24px;transform:translateY(-50%)}.compass-choice[data-dir="SE"]{right:12px;bottom:12px}.compass-choice[data-dir="S"]{bottom:-24px;left:50%;transform:translateX(-50%)}.compass-choice[data-dir="SW"]{left:12px;bottom:12px}.compass-choice[data-dir="W"]{top:50%;left:-24px;transform:translateY(-50%)}.compass-choice[data-dir="NW"]{top:12px;left:12px}.dirgrid{display:none!important}.orientation-status{border:1px solid var(--line);border-radius:18px;background:var(--card2);padding:16px 18px;max-width:560px;margin:0 auto}.orientation-status b{display:block;font:600 20px var(--serif);color:var(--ink);margin-bottom:5px}.orientation-status p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}.orientation-status small{display:block;color:var(--accent);font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-top:10px;font-size:11px}.zone-card-inline .side-row{border-top:0}.zone-card-inline .chiprow{margin-top:12px}
+.zone-card-inline{min-width:0;isolation:isolate}.compass-only{width:210px;height:210px;margin:36px auto 28px;overflow:visible;position:relative;border:1px solid var(--line2);border-radius:50%;background:radial-gradient(circle,rgba(143,162,107,.16),transparent 60%),var(--field);color:var(--accent3);box-shadow:inset 0 0 0 18px rgba(143,162,107,.035)}.compass-only:before,.compass-only:after{content:"";position:absolute;background:var(--line2);opacity:.7}.compass-only:before{left:22px;right:22px;top:50%;height:1px}.compass-only:after{top:22px;bottom:22px;left:50%;width:1px}.compass-only strong{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--card2);border:1px solid var(--line);font:700 24px var(--serif);color:var(--accent2);z-index:2}.needle{position:absolute;left:50%;top:9px;transform:translateX(-50%) rotate(var(--needle,0deg));transform-origin:50% 90px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:14px solid var(--accent2);transition:transform .2s var(--ease)}.compass-choice{position:absolute;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--ink);font:700 13px var(--sans);display:grid;place-items:center;cursor:pointer;z-index:4;box-shadow:0 8px 18px rgba(0,0,0,.18)}.compass-choice:hover,.compass-choice.active{border-color:var(--accent2);background:rgba(197,138,66,.16);color:var(--accent3)}
+/* Cardinal directions pushed outward — offset = -(half button + gap) from circle edge */
+.compass-choice[data-dir="N"]{top:-34px;left:50%;transform:translateX(-50%)}.compass-choice[data-dir="NE"]{top:4px;right:4px}.compass-choice[data-dir="E"]{top:50%;right:-34px;transform:translateY(-50%)}.compass-choice[data-dir="SE"]{right:4px;bottom:4px}.compass-choice[data-dir="S"]{bottom:-34px;left:50%;transform:translateX(-50%)}.compass-choice[data-dir="SW"]{left:4px;bottom:4px}.compass-choice[data-dir="W"]{top:50%;left:-34px;transform:translateY(-50%)}.compass-choice[data-dir="NW"]{top:4px;left:4px}.dirgrid{display:none!important}.orientation-status{border:1px solid var(--line);border-radius:18px;background:var(--card2);padding:16px 18px;max-width:560px;margin:0 auto}.orientation-status b{display:block;font:600 20px var(--serif);color:var(--ink);margin-bottom:5px}.orientation-status p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}.orientation-status small{display:block;color:var(--accent);font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-top:10px;font-size:11px}.zone-card-inline .side-row{border-top:0}.zone-card-inline .chiprow{margin-top:12px}
 .map{height:235px;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--field)}.map iframe{width:100%;height:100%;border:0;filter:var(--map)}.upload{border:1px dashed var(--line2);background:var(--field);border-radius:22px;padding:24px;text-align:center}.upload strong{display:block;font:500 23px var(--serif);margin-bottom:6px}.upload p{color:var(--muted);line-height:1.6;margin:0 0 16px}.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:12px;margin-top:16px}.thumb{position:relative;aspect-ratio:1.2/1;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card2)}.thumb img{width:100%;height:100%;object-fit:cover}.thumb button{position:absolute;right:8px;top:8px;border:0;border-radius:999px;width:28px;height:28px;background:rgba(0,0,0,.65);color:#fff}.review{display:grid;gap:8px}.review-row{display:grid;grid-template-columns:190px 1fr;gap:12px;border:1px solid var(--line);border-radius:13px;background:var(--field);padding:10px 12px}.review-row b{color:var(--accent3);font-size:12px}.review-row span{color:var(--muted);font-size:13px}.summary{white-space:pre-wrap;min-height:250px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.55}.actions{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:20px;margin-top:24px}.btn{border:1px solid var(--line2);background:var(--card2);color:var(--ink);border-radius:999px;padding:12px 16px;font-weight:800;text-decoration:none;display:inline-flex;gap:8px;align-items:center}.btn.primary{background:linear-gradient(90deg,var(--accent2),#8a5529);border-color:var(--accent2);color:#fff}.btn.ghost{background:transparent}.btn:hover{transform:translateY(-1px)}
-.checklist{display:grid;gap:9px}.checkline{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:13px}.checkline input{width:auto;margin-top:3px}.role-pill{font-size:12px;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:8px 10px;background:var(--field)}.home-access{white-space:nowrap}.toast{position:fixed;right:22px;bottom:22px;background:var(--card);border:1px solid var(--line2);border-radius:999px;padding:12px 15px;color:var(--ink);box-shadow:var(--shadow);opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s var(--ease);z-index:100}.toast.show{opacity:1;transform:none}.mobilebar{display:none}.secure{font-size:12px;color:var(--soft);margin-top:10px}.divider{height:1px;background:var(--line);margin:22px 0}
+.checklist{display:grid;gap:9px}.checkline{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:13px}.checkline input{width:auto;margin-top:3px}.toast{position:fixed;right:22px;bottom:22px;background:var(--card);border:1px solid var(--line2);border-radius:999px;padding:12px 15px;color:var(--ink);box-shadow:var(--shadow);opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s var(--ease);z-index:100}.toast.show{opacity:1;transform:none}.mobilebar{display:none}.secure{font-size:12px;color:var(--soft);margin-top:10px}.divider{height:1px;background:var(--line);margin:22px 0}
 .note-field-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}.note-field-head label{margin:0}.dictate-btn{border:1px solid var(--line2);background:var(--card2);color:var(--ink);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.dictate-btn.on{background:rgba(197,138,66,.2);border-color:var(--accent2);color:var(--accent3)}.dictate-btn.compact{padding:6px 9px;font-size:11px;opacity:.82}.dictate-btn.compact span{display:none}.dictate-btn.compact:after{content:"Dictate"}.dictate-btn.compact.on:after{content:"Stop"}.notes-shell{grid-template-columns:minmax(0,1fr) 340px}.note-card{border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.018);padding:18px}.note-card textarea{min-height:160px}.onsite-note{border:1px solid var(--line);border-radius:18px;background:rgba(143,162,107,.09);padding:16px;color:var(--muted);line-height:1.6;text-wrap:balance}.right-note-panel{display:grid;gap:10px;align-content:start}.right-note-panel .btn{justify-content:center;width:100%}
 .stephead p,.sidecard p,.sidecard li,.hint{text-wrap:balance}
 .consultantOnly{display:block}body[data-role=homeowner] .consultantOnly{display:none}
@@ -50,7 +67,7 @@
 [data-theme=light] .dictate-btn{background:#eef2df}
 /* Responsive */
 @media(max-width:1120px){.app{grid-template-columns:1fr}.rail{display:none}.top{padding:14px 16px}.top p{display:none}.workspace{grid-template-columns:1fr;padding:16px}.side{grid-row:1}.mobilebar{display:flex;position:sticky;top:77px;z-index:20;background:var(--bg2);border-bottom:1px solid var(--line);padding:10px 16px;overflow:auto;gap:8px}.mobilebar button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:9px 13px;font-size:13px}.mobilebar button.active{background:var(--accent);color:var(--bg)}}
-@media(max-width:760px){.compass-only{width:210px;height:210px}.compass-choice{width:46px;height:46px}.two,.notes-shell{grid-template-columns:1fr}.side{display:none!important}.workspace{grid-template-columns:1fr!important;padding:12px}.panel{padding:18px;border-radius:20px}.review-row{grid-template-columns:1fr}.stephead{display:block}.badge{display:inline-flex;margin-top:12px}.brand-name,.top h1{font-size:24px}.top{display:flex!important;flex-direction:column;align-items:flex-start;gap:10px;padding:14px 14px 10px!important}.tools{width:100%;display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;gap:8px;padding-bottom:2px}.pill{flex:0 0 auto}.mobilebar{top:112px!important;padding:8px 10px!important;gap:8px!important}.mobilebar button{flex:0 0 auto;font-size:14px;padding:10px 12px}#rolePill{display:none!important}}
+@media(max-width:760px){.compass-only{width:210px;height:210px}.compass-choice{width:46px;height:46px}.two,.notes-shell{grid-template-columns:1fr}.side{display:none!important}.workspace{grid-template-columns:1fr!important;padding:12px}.panel{padding:18px;border-radius:20px}.review-row{grid-template-columns:1fr}.stephead{display:block}.badge{display:inline-flex;margin-top:12px}.brand-name,.top h1{font-size:24px}.top{display:flex!important;flex-direction:column;align-items:flex-start;gap:10px;padding:14px 14px 10px!important}.tools{width:100%;display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;gap:6px;padding-bottom:2px}.icon-btn,.lang-wrap{flex:0 0 auto}.mobilebar{top:112px!important;padding:8px 10px!important;gap:8px!important}.mobilebar button{flex:0 0 auto;font-size:14px;padding:10px 12px}}
 @media(max-width:900px){.entry{padding:14px}.entry-top{display:block}.entry-tools{justify-content:flex-start;margin-top:18px}.entry-cards{grid-template-columns:1fr}
   .site-intel-layout{grid-template-columns:1fr;gap:16px}
   .orientation-card{padding-right:0}
@@ -109,6 +126,11 @@
   .stephead{border-bottom:1px solid #ddd!important;padding-bottom:12px!important}
   .stephead h2{font-size:22px!important}
   .divider{background:#ddd!important}
+  /* D1: White-label print header */
+  .wl-print-header{display:block!important;margin-bottom:18px!important;padding-bottom:14px!important;border-bottom:2px solid #2f6842!important}
+  .wl-print-logo{max-height:54px!important;max-width:160px!important;object-fit:contain!important;display:block!important;margin-bottom:6px!important}
+  .wl-print-biz{font-size:16px!important;font-weight:700!important;color:#111!important}
+  .wl-print-lic{font-size:12px!important;color:#555!important;margin-top:2px!important}
   /* Notes print mode */
   body[data-print-mode=notes] .workspace{display:none!important}
   body[data-print-mode=notes] #consultantNotes{display:block!important}
@@ -138,6 +160,78 @@
 .plant-chip img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--line2);display:block}
 .plant-chip-name{font-size:11px;font-weight:700;color:var(--ink);line-height:1.2}
 .plant-chip-sci{font-size:10px;color:var(--soft);font-style:italic;line-height:1.2}
+
+
+
+
+
+
+/* ── B3: Pipeline ── */
+.pipeline-card{border:1px solid var(--line);border-radius:16px;background:var(--field);padding:16px;margin-top:16px}
+.pipeline-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.pipeline-head strong{font-size:14px}
+.pipeline-list{display:grid;gap:8px;max-height:280px;overflow-y:auto}
+.pipeline-item{border:1px solid var(--line2);border-radius:12px;background:var(--card2,var(--field));padding:10px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.pipeline-item-name{font-weight:700;font-size:13px;color:var(--ink)}
+.pipeline-item-meta{font-size:11px;color:var(--soft);margin-top:2px}
+.pipeline-item-zone{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--sage-lt,#eaf3e8);color:var(--accent)}
+.pipeline-item-del{border:0;background:transparent;color:var(--soft);cursor:pointer;font-size:16px;line-height:1;padding:2px 4px}
+.pipeline-item-del:hover{color:#c85070}
+
+/* ── B2: Plant browse filters ── */
+.plant-browse-card{border:1px solid var(--line);border-radius:16px;background:var(--field);padding:14px;margin-top:16px}
+.plant-browse-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.plant-browse-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.browse-select{flex:1;min-width:110px;border:1px solid var(--line2);border-radius:999px;background:var(--field);color:var(--ink);padding:7px 12px;font-size:12px;font-weight:700}
+
+/* ── B1: Scanner ── */
+.scan-section{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--field);margin-top:14px}
+.compact{font-size:12px!important;padding:8px 14px!important}
+.sku-result-card{border:1px solid var(--accent);border-radius:12px;background:var(--sage-lt,#eaf3e8);padding:12px;margin-top:8px}
+.sku-result-card h4{margin:0 0 4px;font-size:13px;color:var(--ink)}
+.sku-result-card p{margin:2px 0;font-size:12px;color:var(--muted)}
+#scanStatus.ok{color:var(--accent)}
+#scanStatus.err{color:#c85070}
+
+/* ── D1: White-label branding ── */
+.wl-section{border:1px solid var(--line2);border-radius:14px;padding:14px;background:rgba(143,162,107,.06);margin-top:14px}
+.wl-section strong{font-size:13px;display:block;margin-bottom:6px;color:var(--ink)}
+.wl-logo-row{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.wl-logo-preview{width:52px;height:52px;border-radius:10px;border:1px solid var(--line2);object-fit:contain;background:var(--field);display:none;flex-shrink:0}
+.wl-logo-preview.show{display:block}
+.wl-logo-placeholder{width:52px;height:52px;border-radius:10px;border:1px dashed var(--line2);background:var(--field);display:grid;place-items:center;font-size:22px;color:var(--soft);flex-shrink:0}
+.wl-logo-placeholder.hide{display:none}
+.wl-logo-actions{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.wl-logo-url{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink);padding:7px 10px;font-size:12px}
+.wl-logo-url:focus{border-color:var(--accent2);box-shadow:0 0 0 3px rgba(197,138,66,.1)}
+.wl-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--good);border:1px solid var(--good);border-radius:999px;padding:3px 8px;background:rgba(47,104,66,.08)}
+@media print{
+  .wl-print-header{display:block!important}
+}
+.wl-print-header{display:none;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid #333}
+.wl-print-logo{max-height:54px;max-width:160px;object-fit:contain;display:block;margin-bottom:6px}
+.wl-print-biz{font-size:16px;font-weight:700;color:#111}
+.wl-print-lic{font-size:12px;color:#555;margin-top:2px}
+
+/* ── A2: Bloom color picker ── */
+.bloom-picker-field{width:100%}
+.bloom-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px}
+@media(max-width:760px){.bloom-grid{grid-template-columns:repeat(2,1fr)}}
+.bloom-swatch{border:2px solid transparent;border-radius:14px;padding:16px 8px 10px;cursor:pointer;position:relative;transition:.15s;min-height:64px;display:flex;align-items:flex-end;justify-content:center}
+.bloom-swatch:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.bloom-swatch.sel{border-color:var(--ink)!important;box-shadow:0 0 0 3px rgba(24,54,39,.2),0 6px 18px rgba(0,0,0,.18);transform:translateY(-2px)}
+.bloom-swatch.sel::after{content:"✓";position:absolute;top:6px;right:8px;font-size:13px;font-weight:900;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.bloom-label{font-size:11px;font-weight:800;letter-spacing:.01em;text-shadow:0 1px 4px rgba(0,0,0,.5);pointer-events:none;text-align:center;line-height:1.2}
+
+/* ── A1/A3: Plant trait badges ── */
+.plant-chip{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.plant-chip img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--line2);display:block;flex-shrink:0}
+.plant-chip-name{font-size:11px;font-weight:700;color:var(--ink);line-height:1.2}
+.plant-chip-sci{font-size:10px;color:var(--soft);font-style:italic;line-height:1.2}
+.plant-chip-traits{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
+.plant-trait-badge{display:inline-flex;align-items:center;gap:2px;padding:2px 6px;border-radius:99px;font-size:9px;font-weight:700;border:1px solid;line-height:1.4;white-space:nowrap}
+.native-badge{background:rgba(47,104,66,.12)!important;color:#2f6842!important;border-color:rgba(47,104,66,.3)!important}
+.plant-chip-native{min-height:16px;display:flex;justify-content:center}
 
 /* ── Feedback survey ── */
 .survey-card{border:1px solid var(--line);border-radius:20px;background:var(--field);margin-top:22px;overflow:hidden}
@@ -215,6 +309,10 @@
   padding:8px 18px !important;
 }
 </style>
+<!-- C1: Analytics — no cookies, GDPR-safe -->
+<script defer data-domain="cgzorro.github.io" src="https://plausible.io/js/script.js"></script>
+<!-- B1: Plant scanner library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js" defer></script>
 <body data-theme="dark">
 <section class="entry" id="entry">
   <div class="entry-inner">
@@ -293,16 +391,30 @@
     </div>
     <div><h1 id="pageTitle">Plant Consultant</h1><p id="pageSub">Plan with purpose. Plant with confidence.</p></div>
     <div class="tools">
-      <span class="role-pill" id="rolePill" data-i18n="roleHomeowner">Homeowner mode</span>
       <button class="btn consultantOnly" type="button" id="consultantToolsBtn">&#9998; <span data-i18n="consultantTools">Consultant Tools</span></button>
-      <button class="btn home-access" type="button" id="homeBtn">&#8962; <span data-i18n="homeAccess">Home</span></button>
-      <div class="theme pill"><button id="darkBtn" class="active">&#9790; Dark</button><button id="lightBtn">&#9728; Light</button></div>
-      <div class="lang pill"><button data-lang="en" class="active">EN</button><button data-lang="es">ES</button></div>
+      <button class="btn icon-btn" type="button" id="homeBtn" title="Home">&#8962;</button>
+      <button class="icon-btn theme-btn" type="button" id="themeBtn" title="Toggle theme" aria-label="Toggle light/dark theme">&#9790;</button>
+      <div class="lang-drop" id="langDrop">
+        <button class="icon-btn lang-trigger" type="button" id="langTrigger" aria-haspopup="listbox" aria-expanded="false">
+          <span class="lang-globe">&#127760;</span><span class="lang-current" id="langCurrent">EN</span><span class="lang-caret">&#8964;</span>
+        </button>
+        <ul class="lang-menu" id="langMenu" role="listbox" aria-label="Select language">
+          <li role="option" data-lang="en" class="active">EN <span>English</span></li>
+          <li role="option" data-lang="es">ES <span>Español</span></li>
+        </ul>
+      </div>
     </div>
   </header>
   <div class="mobilebar" id="mobileSteps"></div>
   <section class="workspace">
     <form class="panel" id="form">
+      <!-- D1: White-label print header (hidden on screen, shown on print) -->
+      <div class="wl-print-header" id="wlPrintHeader" style="display:none">
+        <img class="wl-print-logo" id="wlPrintLogo" src="" alt="">
+        <div class="wl-print-biz" id="wlPrintBiz"></div>
+        <div class="wl-print-lic" id="wlPrintLic"></div>
+      </div>
+
       <!-- Step 1: Property Details -->
       <section class="step active" data-step="0">
         <div class="stephead"><div><h2 data-i18n="s0t">Property Details</h2><p data-i18n="s0p">Start with the basics so the profile can be tied to a real site.</p></div><span class="badge">Step 1 of 8</span></div>
@@ -401,12 +513,22 @@
         <div class="stephead"><div><h2 data-i18n="s4t">Style &amp; Preferences</h2><p data-i18n="s4p">Color, mood, maintenance, and design direction.</p></div><span class="badge">Step 5 of 8</span></div>
         <div class="choices" data-name="style" data-choice="style"></div>
         <div class="grid two" style="margin-top:16px">
-          <div class="field">
+          <div class="field bloom-picker-field">
             <div class="note-field-head">
-              <label data-i18n="colors">Preferred colors</label>
+              <label data-i18n="colors">Preferred bloom colors</label>
               <button class="dictate-btn compact" type="button" data-dictate="colorsField" aria-label="Dictate preferred colors"></button>
             </div>
-            <input name="colors" id="colorsField">
+            <div class="bloom-grid" id="bloomGrid">
+              <button type="button" class="bloom-swatch" data-color="Whites &amp; creams" style="background:linear-gradient(135deg,#e8e4dc,#f4efe3)"><span class="bloom-label" style="color:#3d3428">Whites &amp; creams</span></button>
+              <button type="button" class="bloom-swatch" data-color="Yellows &amp; golds" style="background:linear-gradient(135deg,#c8a060,#e8c840)"><span class="bloom-label" style="color:#3d2e04">Yellows &amp; golds</span></button>
+              <button type="button" class="bloom-swatch" data-color="Pinks &amp; soft reds" style="background:linear-gradient(135deg,#c85070,#f0a0b0)"><span class="bloom-label" style="color:#fff">Pinks &amp; soft reds</span></button>
+              <button type="button" class="bloom-swatch" data-color="Bold reds &amp; burgundy" style="background:linear-gradient(135deg,#6a0818,#c02030)"><span class="bloom-label" style="color:#fff">Bold reds</span></button>
+              <button type="button" class="bloom-swatch" data-color="Purples &amp; lavender" style="background:linear-gradient(135deg,#6050a0,#b0a0c8)"><span class="bloom-label" style="color:#fff">Purples</span></button>
+              <button type="button" class="bloom-swatch" data-color="Blues &amp; violet" style="background:linear-gradient(135deg,#3858a0,#7090c8)"><span class="bloom-label" style="color:#fff">Blues</span></button>
+              <button type="button" class="bloom-swatch" data-color="Warm oranges" style="background:linear-gradient(135deg,#c86030,#f08040)"><span class="bloom-label" style="color:#fff">Warm oranges</span></button>
+              <button type="button" class="bloom-swatch" data-color="Mixed naturalistic" style="background:linear-gradient(135deg,#6a9850 0%,#c8a060 50%,#c85070 100%)"><span class="bloom-label" style="color:#fff">Mixed</span></button>
+            </div>
+            <input name="colors" id="colorsField" placeholder="Or type custom colors..." style="margin-top:8px;font-size:12px">
           </div>
           <div class="field">
             <div class="note-field-head">
@@ -460,6 +582,32 @@
         </div>
 
 
+
+        <!-- ── B2: Plant Browse ──────────────────────────────────────────── -->
+        <div class="plant-browse-card" id="plantBrowseCard">
+          <div class="plant-browse-head">
+            <span class="plant-suggest-icon">&#128269;</span>
+            <div>
+              <strong>Browse zone-matched plants</strong>
+              <span class="plant-suggest-sub" id="plantBrowseZone">Filter by your conditions</span>
+            </div>
+          </div>
+          <div class="plant-browse-filters">
+            <select id="browseLight" class="browse-select">
+              <option value="">Any light</option>
+              <option value="full_sun">Full sun</option>
+              <option value="part_shade">Part shade</option>
+              <option value="full_shade">Full shade</option>
+            </select>
+            <select id="browseWater" class="browse-select">
+              <option value="">Any water</option>
+              <option value="minimum">Low water</option>
+              <option value="average">Average</option>
+              <option value="frequent">Frequent</option>
+            </select>
+            <button class="btn primary" type="button" id="browseRefreshBtn" style="font-size:12px;padding:8px 14px">&#8635; Refresh</button>
+          </div>
+        </div>
         <!-- ── Plant Suggestions (Layer 2) ───────────────────────────────── -->
         <div id="plantSuggest" class="plant-suggest-card" style="display:none">
           <div class="plant-suggest-header">
@@ -547,6 +695,18 @@
             </div>
             <p class="secure" style="margin-top:10px">Feedback opens your email client with responses pre-filled. Nothing is collected automatically.</p>
           </div>
+
+      <!-- ── B3: Consultant Pipeline Dashboard ──────────────────────────── -->
+      <div class="pipeline-card consultantOnly" id="pipelineCard" style="display:none">
+        <div class="pipeline-head">
+          <strong>Project Pipeline</strong>
+          <span class="chip" id="pipelineCount" style="font-size:11px;padding:3px 10px">0 projects</span>
+        </div>
+        <div class="pipeline-list" id="pipelineList">
+          <p class="hint" style="text-align:center;padding:12px">Complete an intake and save it to build your pipeline.</p>
+        </div>
+        <button class="btn" type="button" id="saveToPipeline" style="font-size:12px;margin-top:10px;width:100%">&#43; Save current brief to pipeline</button>
+      </div>
         </div>
       </section>
 
@@ -625,6 +785,51 @@
       <button class="btn" type="button" id="printNotes">&#9113; <span>Print notes</span></button>
       <button class="btn" type="button" id="clearNotes">&times; <span data-i18n="clearNotes">Clear notes</span></button>
       <button class="btn primary" type="button" id="backPlanner">&larr; <span data-i18n="backPlanner">Back to planner</span></button>
+
+      <!-- ── D1: White-Label Branding ──────────────────────────────────── -->
+      <div class="wl-section consultantOnly" id="wlSection">
+        <strong>&#127981; Contractor Branding</strong>
+        <p class="hint" style="margin:0 0 10px">Your logo and license appear on printed briefs and PDF output.</p>
+        <div class="wl-logo-row">
+          <img class="wl-logo-preview" id="wlLogoPreview" src="" alt="Your logo">
+          <div class="wl-logo-placeholder" id="wlLogoPlaceholder">&#128444;</div>
+          <div class="wl-logo-actions">
+            <button class="btn" style="font-size:12px;padding:7px 12px" type="button" id="wlUploadBtn">&#8679; Upload logo</button>
+            <input id="wlLogoFile" type="file" accept="image/*" style="display:none">
+            <input id="wlLogoUrl" class="wl-logo-url" type="url" placeholder="or paste logo URL" autocomplete="off">
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:8px">
+          <label style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px">Business name</label>
+          <input id="wlBizName" type="text" placeholder="Green Roots Landscape Co." style="padding:8px 12px;font-size:13px">
+        </div>
+        <div class="field" style="margin-bottom:10px">
+          <label style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px">License number</label>
+          <input id="wlLicNum" type="text" placeholder="e.g. KS-LCA-00123" style="padding:8px 12px;font-size:13px">
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+          <button class="btn primary" style="font-size:12px;padding:8px 14px" type="button" id="wlSaveBtn">&#10003; Save branding</button>
+          <span class="wl-badge" id="wlSavedBadge" style="display:none">&#10003; Saved</span>
+          <button class="btn ghost" style="font-size:11px;padding:6px 10px;color:var(--soft)" type="button" id="wlClearBtn">Clear</button>
+        </div>
+      </div>
+      <!-- ── B1: Nursery SKU Scanner ──────────────────────────────────── -->
+      <div class="scan-section" style="margin-top:16px">
+        <strong style="font-size:13px;display:block;margin-bottom:6px">&#128247; Nursery Plant Scanner</strong>
+        <p class="hint" style="margin:0 0 10px">Scan a plant tag at the nursery to check zone fit.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:8px">
+          <button class="btn" style="font-size:12px;padding:8px 12px" type="button" id="startScannerBtn">Start scanner</button>
+          <input id="scanSkuInput" type="text" inputmode="text" autocomplete="off" autocapitalize="off"
+            spellcheck="false" placeholder="Or type SKU / name" style="flex:1;min-width:120px">
+          <button class="btn primary" style="font-size:12px;padding:8px 12px" type="button" id="findSkuBtn">Find</button>
+        </div>
+        <div id="scanStatus" class="hint" style="min-height:18px"></div>
+        <div id="scannerShell" style="display:none;margin-top:10px">
+          <div id="reader" style="width:100%;min-height:220px;border-radius:14px;overflow:hidden;background:#000"></div>
+          <button class="btn ghost" type="button" id="stopScannerBtn" style="margin-top:8px;font-size:12px">&#9632; Stop</button>
+        </div>
+        <div id="skuResult" class="sku-result-card" style="display:none;margin-top:10px"></div>
+      </div>
       <div class="sidecard"><h3 data-i18n="whyAsk">Why we ask</h3><p data-i18n="whyAskText">These notes help turn a live site walk into a cleaner recap, better recommendations, and a more accurate follow-up proposal.</p></div>
     </aside>
   </section>
@@ -694,6 +899,131 @@ const DIR_INFO={
   NW:{en:['Northwest','Mixed exposure with later-day light. Conditions can vary widely depending on trees, fences, and structures.','Confirm actual light window onsite before final plant choices.'],es:['Noroeste','Exposición mixta con luz más tarde en el día. Puede variar mucho según árboles, cercas y estructuras.','Confirme la ventana real de luz en sitio antes de elegir plantas.']}
 };
 const DIR_ANGLE={N:0,NE:45,E:90,SE:135,S:180,SW:225,W:270,NW:315};
+
+// ── A1: Known plant traits (ported from Wayfinder BROCHURE_TRAITS) ────────────
+const BROCHURE_TRAITS = {
+  "aspen":["wet-tolerant"],
+  "bald cypress":["deer-resistant","wet-tolerant"],
+  "birch":["deer-resistant","wet-tolerant"],
+  "black gum":["wet-tolerant","attracts-birds"],
+  "catalpa":["drought-tolerant","pollinator-friendly"],
+  "cherry":["drought-tolerant"],
+  "ornamental cherry":["drought-tolerant"],
+  "crabapple":["pollinator-friendly","attracts-birds"],
+  "dawn redwood":["deer-resistant","wet-tolerant"],
+  "dogwood":["pollinator-friendly","attracts-birds"],
+  "ginkgo":["deer-resistant","drought-tolerant"],
+  "honeylocust":["deer-resistant","drought-tolerant"],
+  "hornbeam":["deer-resistant"],
+  "japanese maple":["deer-resistant"],
+  "lilac":["deer-resistant","drought-tolerant","pollinator-friendly"],
+  "linden":["pollinator-friendly"],
+  "magnolia":["deer-resistant","pollinator-friendly"],
+  "redbud":["deer-resistant"],
+  "serviceberry":["deer-resistant","wet-tolerant","pollinator-friendly","attracts-birds"],
+  "spruce":["deer-resistant"],
+  "tulip tree":["deer-resistant","pollinator-friendly"],
+  "willow":["deer-resistant","wet-tolerant"],
+  "abelia":["deer-resistant","pollinator-friendly"],
+  "althea":["deer-resistant","pollinator-friendly"],
+  "azalea":["pollinator-friendly"],
+  "barberry":["deer-resistant","drought-tolerant","attracts-birds"],
+  "boxwood":["deer-resistant","drought-tolerant"],
+  "buckthorn":["deer-resistant","drought-tolerant"],
+  "butterfly bush":["drought-tolerant","pollinator-friendly"],
+  "catmint":["deer-resistant","drought-tolerant","pollinator-friendly"],
+  "nepeta":["deer-resistant","drought-tolerant","pollinator-friendly"],
+  "caryopteris":["deer-resistant","drought-tolerant","pollinator-friendly"],
+  "chokeberry":["wet-tolerant","pollinator-friendly","attracts-birds"],
+  "clethra":["wet-tolerant","pollinator-friendly"],
+  "cotoneaster":["attracts-birds"],
+  "crape myrtle":["drought-tolerant","attracts-birds"],
+  "crapemyrtle":["drought-tolerant","attracts-birds"],
+  "deutzia":["deer-resistant"],
+  "euonymus":["drought-tolerant"],
+  "forsythia":["deer-resistant"],
+  "holly":["deer-resistant","attracts-birds"],
+  "honeysuckle":["pollinator-friendly"],
+  "hypericum":["drought-tolerant","pollinator-friendly"],
+  "juniper":["deer-resistant","drought-tolerant","attracts-birds"],
+  "mahonia":["deer-resistant","drought-tolerant","attracts-birds"],
+  "mockorange":["deer-resistant","wet-tolerant"],
+  "nandina":["deer-resistant","drought-tolerant"],
+  "ninebark":["deer-resistant","pollinator-friendly"],
+  "pieris":["deer-resistant"],
+  "privet":["deer-resistant","drought-tolerant"],
+  "quince":["deer-resistant","drought-tolerant"],
+  "rhododendron":["pollinator-friendly"],
+  "sand cherry":["pollinator-friendly"],
+  "spirea":["deer-resistant","pollinator-friendly"],
+  "sweetspire":["deer-resistant","wet-tolerant","pollinator-friendly"],
+  "viburnum":["deer-resistant","pollinator-friendly","attracts-birds"],
+  "weigela":["deer-resistant","pollinator-friendly"],
+  "wisteria":["pollinator-friendly"],
+  "yew":["deer-resistant","drought-tolerant","attracts-birds"],
+  "yucca":["drought-tolerant"],
+  "echinacea":["deer-resistant","drought-tolerant","pollinator-friendly","attracts-birds"],
+  "coneflower":["deer-resistant","drought-tolerant","pollinator-friendly","attracts-birds"],
+  "rudbeckia":["drought-tolerant","pollinator-friendly","attracts-birds"],
+  "black-eyed susan":["drought-tolerant","pollinator-friendly","attracts-birds"],
+  "liatris":["deer-resistant","drought-tolerant","pollinator-friendly","attracts-birds"],
+  "blazing star":["deer-resistant","drought-tolerant","pollinator-friendly","attracts-birds"],
+  "amsonia":["deer-resistant","drought-tolerant"],
+  "blue star":["deer-resistant","drought-tolerant"],
+  "karl foerster":["deer-resistant","drought-tolerant"],
+  "calamagrostis":["deer-resistant","drought-tolerant"],
+  "reed grass":["deer-resistant","drought-tolerant"],
+  "sedum":["deer-resistant","drought-tolerant","pollinator-friendly"],
+  "stonecrop":["deer-resistant","drought-tolerant","pollinator-friendly"],
+  "calamintha":["deer-resistant","pollinator-friendly"],
+  "calamint":["deer-resistant","pollinator-friendly"],
+  "gaura":["drought-tolerant","pollinator-friendly"],
+  "whirling butterflies":["drought-tolerant","pollinator-friendly"],
+  "hellebore":["deer-resistant"],
+  "carex":["deer-resistant","wet-tolerant"],
+  "sedge":["deer-resistant","wet-tolerant"],
+  "hardy geranium":["deer-resistant","drought-tolerant"],
+  "rozanne":["deer-resistant","drought-tolerant"],
+  "allium":["deer-resistant","pollinator-friendly"],
+  "tulip":["pollinator-friendly"],
+  "shasta daisy":["drought-tolerant","pollinator-friendly","attracts-birds"],
+  "leucanthemum":["drought-tolerant","pollinator-friendly"],
+  "hibiscus":["pollinator-friendly","attracts-birds"],
+  "holy grail":["pollinator-friendly","attracts-birds"]
+};
+
+// Normalize plant name for trait lookup
+function normalizePlantKey(name){
+  return String(name||'').toLowerCase()
+    .replace(/[',.*']/g,'').replace(/&/g,'and')
+    .replace(/\s+/g,' ').trim()
+    .replace(/\s*(shrub|tree|perennial|hybrid|cultivar)$/,'')
+    .trim();
+}
+
+// Get traits for a plant — tries multiple key variants
+function getKnownTraits(commonName, sciName){
+  const keys = [
+    normalizePlantKey(commonName),
+    normalizePlantKey(sciName||''),
+    normalizePlantKey((commonName||'').split(' ').slice(0,2).join(' ')),
+    normalizePlantKey((commonName||'').split(' ')[0])
+  ];
+  for(const k of keys){
+    if(k && BROCHURE_TRAITS[k]) return BROCHURE_TRAITS[k];
+  }
+  return [];
+}
+
+const TRAIT_CONFIG = {
+  'deer-resistant':     {label:'Deer resistant', color:'#2f6842', icon:'🦌'},
+  'pollinator-friendly':{label:'Pollinator',      color:'#c8a060', icon:'🐝'},
+  'drought-tolerant':   {label:'Drought tolerant',color:'#996235', icon:'☀'},
+  'wet-tolerant':       {label:'Wet tolerant',    color:'#4a78b0', icon:'💧'},
+  'attracts-birds':     {label:'Birds',           color:'#6a9850', icon:'🐦'},
+  'native':             {label:'Native',          color:'#2f6842', icon:'🌿'},
+};
+
 // ── Configuration (set your keys here) ───────────────────────────────────────
 const CONFIG={
   PERENUAL_KEY:'',  // key lives on the server — see foxfield-plants-worker.js
@@ -874,8 +1204,8 @@ const ZIP_DB={
 "327":"9b",
 "328":"9b",
 "329":"9b",
-"330":"9b",
-"331":"9b",
+"330":"10b",
+"331":"10b",
 "332":"10b",
 "333":"10b",
 "334":"10b",
@@ -1777,7 +2107,6 @@ function applyText(){
   $('#prev').textContent=I18N[lang].back;
   $('#next').textContent=step===7?I18N[lang].finish:I18N[lang].next;
   $('#notesStatus').textContent=notesFilled()?I18N[lang].started:I18N[lang].notStarted;
-  if($('#rolePill'))$('#rolePill').textContent=(document.body.dataset.role==='consultant'?I18N[lang].roleConsultant:I18N[lang].roleHomeowner);
   $$('.dictate-btn:not(.compact)').forEach(btn=>{const s=btn.querySelector('span');if(s&&!btn.classList.contains('on'))s.textContent=I18N[lang].startDictation;});
 }
 function go(i){
@@ -1786,7 +2115,9 @@ function go(i){
   // On mobile: scroll window to top so sticky header + mobilebar appear,
   // then step content renders immediately below
   window.scrollTo({top:0,behavior:'smooth'});
-  if(step===7){ // Step 8: trigger plant fetch + show setup if no key
+  // C1: Fire step completion event
+  if(window.plausible) window.plausible('Step Complete',{props:{step:i+1,name:(I18N[lang]?.steps?.[i]?.[0]||'Step '+(i+1))}});
+  if(step===7){ renderPipeline(); // Step 8: trigger plant fetch + show setup if no key
     const ps=document.getElementById('plantSuggest');
     const pss=document.getElementById('plantSuggestSetup');
     if(CONFIG.PERENUAL_KEY){ fetchPlantSuggestions(); if(ps)ps.style.display=''; if(pss)pss.style.display='none'; }
@@ -1839,7 +2170,10 @@ function updateReview(){
 function brief(){
   let d=formData(),z=zdata();
   const _briefDate=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
-  return `Foxfield Plant Consultant — Landscape Discovery Brief
+  const _wlBiz=(document.getElementById('wlBizName')?.value||'').trim();
+  const _wlLic=(document.getElementById('wlLicNum')?.value||'').trim();
+  const _wlHeader=_wlBiz?`${_wlBiz}${_wlLic?' · License: '+_wlLic:''}\n${'─'.repeat(46)}\n`:'';
+  return `${_wlHeader}Foxfield Plant Consultant — Landscape Discovery Brief
 Prepared: ${_briefDate}
 
 Client: ${d.name||'—'}
@@ -1930,20 +2264,34 @@ function renderPhotos(){
 }
 function setTheme(mode){
   document.body.dataset.theme=mode;
-  ['darkBtn','entryDarkBtn'].forEach(id=>$('#'+id)?.classList.toggle('active',mode==='dark'));
-  ['lightBtn','entryLightBtn'].forEach(id=>$('#'+id)?.classList.toggle('active',mode==='light'));
+  const btn=$('#themeBtn');
+  if(btn){ btn.textContent=mode==='dark'?'☽':'☀'; btn.title=mode==='dark'?'Switch to light mode':'Switch to dark mode'; }
+  // entry screen toggles (still exist)
+  ['entryDarkBtn'].forEach(id=>$('#'+id)?.classList.toggle('active',mode==='dark'));
+  ['entryLightBtn'].forEach(id=>$('#'+id)?.classList.toggle('active',mode==='light'));
 }
-$('#darkBtn').onclick=()=>setTheme('dark');$('#lightBtn').onclick=()=>setTheme('light');
+$('#themeBtn').onclick=()=>setTheme(document.body.dataset.theme==='dark'?'light':'dark');
 $('#entryDarkBtn').onclick=()=>setTheme('dark');$('#entryLightBtn').onclick=()=>setTheme('light');
 $('#homeBtn').onclick=goHome;$('#notesHomeBtn').onclick=goHome;
 $('#consultantToolsBtn').onclick=openNotes;
 function setLang(next){
   lang=next;
-  $$('[data-lang]').forEach(x=>x.classList.toggle('active',x.dataset.lang===lang));
+  // update dropdown display
+  const cur=$('#langCurrent');if(cur)cur.textContent=next.toUpperCase();
+  $$('#langMenu li').forEach(li=>li.classList.toggle('active',li.dataset.lang===lang));
+  // entry screen lang buttons
   $$('[data-entry-lang]').forEach(x=>x.classList.toggle('active',x.dataset.entryLang===lang));
   build();
 }
-$$('[data-lang]').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+// Globe dropdown open/close
+(function(){
+  const drop=$('#langDrop'),trigger=$('#langTrigger');
+  if(!drop||!trigger)return;
+  trigger.addEventListener('click',e=>{e.stopPropagation();drop.classList.toggle('open');trigger.setAttribute('aria-expanded',drop.classList.contains('open'));});
+  document.addEventListener('click',()=>{drop.classList.remove('open');trigger.setAttribute('aria-expanded','false');});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){drop.classList.remove('open');trigger.setAttribute('aria-expanded','false');}});
+  $$('#langMenu li').forEach(li=>li.addEventListener('click',e=>{e.stopPropagation();setLang(li.dataset.lang);drop.classList.remove('open');trigger.setAttribute('aria-expanded','false');}));
+})();
 $$('[data-entry-lang]').forEach(b=>b.onclick=()=>setLang(b.dataset.entryLang));
 $$('[data-role-select]').forEach(b=>b.onclick=()=>{
   document.body.dataset.role=b.dataset.roleSelect;
@@ -2112,9 +2460,9 @@ if(_ssub) _ssub.onclick = () => {
 // ── Layer 2: Perenual plant suggestions ───────────────────────────────────────
 let _plantCache = {};
 
-async function fetchPlantSuggestions(){
+async function fetchPlantSuggestions(lightFilter, waterFilter){
   const zn = parseInt(zdata().z);
-  const cacheKey = 'plants_z' + zn;
+  const cacheKey = 'plants_z' + zn + (lightFilter||'') + (waterFilter||'');
   if(_plantCache[cacheKey]){ renderPlantSuggestions(_plantCache[cacheKey]); return; }
 
   // Prefer Worker proxy (key hidden server-side), fall back to direct call if key is set
@@ -2122,7 +2470,7 @@ async function fetchPlantSuggestions(){
   if(CONFIG.WORKER_URL){
     url = `${CONFIG.WORKER_URL.replace(/\/$/, '')}/plants?zone=${zn}&per=20`;
   } else if(CONFIG.PERENUAL_KEY){
-    url = `https://perenual.com/api/v2/species-list?key=${CONFIG.PERENUAL_KEY}&hardiness_min=${zn}&hardiness_max=${zn}&per_page=20&cycle=perennial`;
+    url = `https://perenual.com/api/v2/species-list?key=${CONFIG.PERENUAL_KEY}&hardiness_min=${zn}&hardiness_max=${zn}&per_page=20&cycle=perennial${lightFilter?'&sunlight='+lightFilter:''}${waterFilter?'&watering='+waterFilter:''}`;
   } else {
     // No key or worker — show setup card
     const setup=document.getElementById('plantSuggestSetup');
@@ -2146,13 +2494,35 @@ function renderPlantSuggestions(plants){
   wrap.style.display='';
   const grid = wrap.querySelector('.plant-suggest-grid');
   if(!grid) return;
-  grid.innerHTML = plants.map(p=>`
-    <div class="plant-chip">
+  grid.innerHTML = plants.map((p,idx)=>{
+    const sci = (p.scientific_name||[])[0]||'';
+    const traits = getKnownTraits(p.common_name, sci);
+    const traitBadges = traits.slice(0,3).map(t=>{
+      const cfg = TRAIT_CONFIG[t]||{label:t,color:'#6a9850',icon:'✦'};
+      return `<span class="plant-trait-badge" style="background:${cfg.color}20;color:${cfg.color};border-color:${cfg.color}40">${cfg.icon} ${cfg.label}</span>`;
+    }).join('');
+    return `
+    <div class="plant-chip" data-chip-idx="${idx}" data-common="${p.common_name}" data-sci="${sci}">
       <img src="${p.default_image.thumbnail}" alt="${p.common_name}" loading="lazy"
            onerror="this.parentNode.style.display='none'">
       <span class="plant-chip-name">${p.common_name}</span>
-      <span class="plant-chip-sci">${(p.scientific_name||[])[0]||''}</span>
-    </div>`).join('');
+      <span class="plant-chip-sci">${sci}</span>
+      <div class="plant-chip-traits">${traitBadges}</div>
+      <span class="plant-chip-native" id="native-${idx}"></span>
+    </div>`;
+  }).join('');
+
+  // A4: async native check for each chip
+  if(CONFIG.WORKER_URL || CONFIG.PERENUAL_KEY){
+    plants.forEach((p,idx)=>{
+      const sci = (p.scientific_name||[])[0]||'';
+      checkNative(p.common_name).then(isNative=>{
+        if(!isNative) return;
+        const el = document.getElementById('native-'+idx);
+        if(el) el.innerHTML = '<span class="plant-trait-badge native-badge">🌿 Native</span>';
+      }).catch(()=>{});
+    });
+  }
 }
 
 // ── Layer 3: USDA PLANTS native validation ────────────────────────────────────
@@ -2185,6 +2555,257 @@ document.getElementById('savePerenualKey')?.addEventListener('click',()=>{
 
 // Auto-fetch on ZIP input
 document.getElementById('zip')?.addEventListener('change', ()=>setTimeout(fetchPlantSuggestions,400));
+
+
+
+
+// ── B3: Consultant Pipeline ───────────────────────────────────────────────────
+function loadPipeline(){ try{ return JSON.parse(localStorage.getItem('foxfield_pipeline')||'[]'); }catch(){ return []; } }
+function savePipeline(arr){ localStorage.setItem('foxfield_pipeline', JSON.stringify(arr)); }
+
+function renderPipeline(){
+  const card  = document.getElementById('pipelineCard');
+  const list  = document.getElementById('pipelineList');
+  const count = document.getElementById('pipelineCount');
+  if(!card||!list) return;
+  // Only show in consultant mode
+  if(document.body.dataset.role !== 'consultant'){ card.style.display='none'; return; }
+  card.style.display='';
+  const items = loadPipeline();
+  if(count) count.textContent = items.length + ' project' + (items.length===1?'':'s');
+  if(!items.length){
+    list.innerHTML='<p class="hint" style="text-align:center;padding:12px">No saved projects yet. Complete a brief and save it.</p>';
+    return;
+  }
+  list.innerHTML = items.map((item,i)=>`
+    <div class="pipeline-item">
+      <div>
+        <div class="pipeline-item-name">${item.name||'Unnamed client'}</div>
+        <div class="pipeline-item-meta">${item.address||''}${item.address&&item.date?' · ':''} ${item.date||''}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
+        <span class="pipeline-item-zone">Zone ${item.zone||'—'}</span>
+        <button class="pipeline-item-del" data-del="${i}" title="Remove">×</button>
+      </div>
+    </div>`).join('');
+  list.querySelectorAll('[data-del]').forEach(btn=>{
+    btn.onclick=()=>{
+      const arr=loadPipeline(); arr.splice(+btn.dataset.del,1); savePipeline(arr); renderPipeline();
+    };
+  });
+}
+
+document.getElementById('saveToPipeline')?.addEventListener('click',()=>{
+  const d=formData(), z=zdata();
+  if(!d.name&&!d.address){ toast('Fill in at least client name or address first.'); return; }
+  const arr=loadPipeline();
+  arr.unshift({name:d.name||'—', address:d.address||'', zone:z.z, date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}), brief:brief()});
+  savePipeline(arr.slice(0,20)); // keep max 20
+  renderPipeline();
+  toast('Saved to pipeline ✓');
+});
+
+// Pipeline renders via step===7 check in go()
+
+// ── B2: Plant browse filter wiring ───────────────────────────────────────────
+function updateBrowseZoneLabel(){
+  const lbl = document.getElementById('plantBrowseZone');
+  if(lbl) lbl.textContent = 'Zone ' + zdata().z + ' · Select light & water to filter';
+}
+document.getElementById('browseRefreshBtn')?.addEventListener('click', ()=>{
+  const light = document.getElementById('browseLight')?.value||'';
+  const water = document.getElementById('browseWater')?.value||'';
+  fetchPlantSuggestions(light, water);
+});
+// Update browse label when zone changes
+const _origZip = document.getElementById('zip');
+if(_origZip) _origZip.addEventListener('change', updateBrowseZoneLabel);
+
+// ── B1: Nursery SKU / plant scanner (ported from Wayfinder) ──────────────────
+let _scanner = null, _scanActive = false, _scanLock = false;
+
+function setScanStatus(msg, type=''){
+  const el = document.getElementById('scanStatus');
+  if(!el) return;
+  el.textContent = msg;
+  el.className = 'hint' + (type ? ' '+type : '');
+}
+
+function showSkuResult(name, detail){
+  const el = document.getElementById('skuResult');
+  if(!el) return;
+  el.style.display = '';
+  const z = zdata();
+  el.innerHTML = `<h4>${name}</h4>
+    <p>Planning zone: <strong>Zone ${z.z}</strong> · ${z.frost} frost</p>
+    <p>${detail||'Check zone compatibility before purchasing.'}</p>`;
+}
+
+async function startScanner(){
+  if(!window.Html5Qrcode){ setScanStatus('Scanner library not loaded.','err'); return; }
+  if(_scanActive){ setScanStatus('Scanner already running.'); return; }
+  const shell = document.getElementById('scannerShell');
+  const btn   = document.getElementById('startScannerBtn');
+  if(shell) shell.style.display='';
+  if(btn)   btn.textContent='● Scanning...';
+  setScanStatus('Requesting camera…');
+  try {
+    const cameras = await Html5Qrcode.getCameras();
+    if(!cameras?.length) throw new Error('No cameras found.');
+    const cam = cameras.find(c=>/back|rear|environment/i.test(c.label||'')) || cameras[cameras.length-1];
+    _scanner = new Html5Qrcode('reader');
+    await _scanner.start(
+      cam.id,
+      { fps:10, qrbox:{width:280,height:100}, disableFlip:false },
+      async decoded => {
+        if(_scanLock) return;
+        _scanLock = true;
+        setScanStatus('Found: '+decoded,'ok');
+        showSkuResult(decoded, 'Scanned from nursery tag.');
+        await stopScanner(true);
+        setTimeout(()=>{ _scanLock=false; },900);
+      },
+      ()=>{}
+    );
+    _scanActive = true;
+    setScanStatus('Scanner live — point at plant tag barcode.','ok');
+  } catch(e){
+    await stopScanner(true);
+    setScanStatus('Could not start: '+e.message,'err');
+  }
+}
+
+async function stopScanner(silent=false){
+  const shell = document.getElementById('scannerShell');
+  const btn   = document.getElementById('startScannerBtn');
+  try{ if(_scanner&&_scanActive) await _scanner.stop(); }catch(_){}
+  try{ if(_scanner) await _scanner.clear(); }catch(_){}
+  _scanner=null; _scanActive=false;
+  if(shell) shell.style.display='none';
+  if(btn)   btn.textContent='📷 Start scanner';
+  if(!silent) setScanStatus('Scanner stopped.');
+}
+
+document.getElementById('startScannerBtn')?.addEventListener('click', startScanner);
+document.getElementById('stopScannerBtn')?.addEventListener('click', ()=>stopScanner(false));
+document.getElementById('findSkuBtn')?.addEventListener('click', ()=>{
+  const val=(document.getElementById('scanSkuInput')?.value||'').trim();
+  if(!val){ setScanStatus('Enter a plant name or SKU.','err'); return; }
+  setScanStatus('Found: '+val,'ok');
+  showSkuResult(val, 'Look up cultivar compatibility with Zone '+zdata().z+'.');
+});
+document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
+  if(e.key==='Enter') document.getElementById('findSkuBtn')?.click();
+});
+
+// ── D1: White-label contractor branding ───────────────────────────────────────
+(function(){
+  const _wlKey = 'foxfield_wl_brand';
+  let _wlLogoData = ''; // base64 or URL
+
+  function wlLoad(){
+    try{
+      const saved = localStorage.getItem(_wlKey);
+      if(!saved) return;
+      const b = JSON.parse(saved);
+      if(b.biz) document.getElementById('wlBizName').value = b.biz;
+      if(b.lic) document.getElementById('wlLicNum').value = b.lic;
+      if(b.logo){ _wlLogoData = b.logo; wlShowLogo(b.logo); }
+      if(b.logoUrl) document.getElementById('wlLogoUrl').value = b.logoUrl;
+      wlUpdatePrintHeader();
+      if(b.biz||b.logo) wlShowSavedBadge();
+    } catch(e){}
+  }
+
+  function wlSave(){
+    const biz = (document.getElementById('wlBizName')?.value||'').trim();
+    const lic = (document.getElementById('wlLicNum')?.value||'').trim();
+    const logoUrl = (document.getElementById('wlLogoUrl')?.value||'').trim();
+    if(logoUrl && !_wlLogoData) _wlLogoData = logoUrl;
+    localStorage.setItem(_wlKey, JSON.stringify({biz, lic, logo:_wlLogoData, logoUrl}));
+    wlUpdatePrintHeader();
+    wlShowSavedBadge();
+    toast('Branding saved');
+  }
+
+  function wlClear(){
+    _wlLogoData = '';
+    ['wlBizName','wlLicNum','wlLogoUrl'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+    wlShowLogo('');
+    localStorage.removeItem(_wlKey);
+    wlUpdatePrintHeader();
+    const badge = document.getElementById('wlSavedBadge');
+    if(badge) badge.style.display = 'none';
+    toast('Branding cleared');
+  }
+
+  function wlShowLogo(src){
+    const prev = document.getElementById('wlLogoPreview');
+    const ph = document.getElementById('wlLogoPlaceholder');
+    if(src){ prev.src=src; prev.classList.add('show'); ph.classList.add('hide'); }
+    else { prev.src=''; prev.classList.remove('show'); ph.classList.remove('hide'); }
+  }
+
+  function wlShowSavedBadge(){
+    const badge = document.getElementById('wlSavedBadge');
+    if(badge){ badge.style.display='inline-flex'; clearTimeout(badge._t); badge._t=setTimeout(()=>badge.style.display='none',3000); }
+  }
+
+  function wlUpdatePrintHeader(){
+    const biz = (document.getElementById('wlBizName')?.value||'').trim();
+    const lic = (document.getElementById('wlLicNum')?.value||'').trim();
+    const hdr = document.getElementById('wlPrintHeader');
+    const pLogo = document.getElementById('wlPrintLogo');
+    const pBiz = document.getElementById('wlPrintBiz');
+    const pLic = document.getElementById('wlPrintLic');
+    if(!hdr) return;
+    if(biz || _wlLogoData){
+      hdr.style.display = 'block';
+      if(pLogo){ if(_wlLogoData){pLogo.src=_wlLogoData;pLogo.style.display='block';}else{pLogo.style.display='none';} }
+      if(pBiz) pBiz.textContent = biz || '';
+      if(pLic) pLic.textContent = lic ? 'License: ' + lic : '';
+    } else {
+      hdr.style.display = 'none';
+    }
+  }
+
+  // Upload handler
+  document.getElementById('wlUploadBtn')?.addEventListener('click', ()=>document.getElementById('wlLogoFile')?.click());
+  document.getElementById('wlLogoFile')?.addEventListener('change', function(){
+    const file = this.files?.[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      _wlLogoData = e.target.result;
+      wlShowLogo(_wlLogoData);
+      document.getElementById('wlLogoUrl').value = '';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // URL handler — preview on blur/enter
+  document.getElementById('wlLogoUrl')?.addEventListener('change', function(){
+    const url = this.value.trim();
+    if(url){ _wlLogoData = url; wlShowLogo(url); }
+  });
+
+  document.getElementById('wlSaveBtn')?.addEventListener('click', wlSave);
+  document.getElementById('wlClearBtn')?.addEventListener('click', wlClear);
+
+  // Load saved values on page init
+  wlLoad();
+})();
+
+
+document.querySelectorAll('.bloom-swatch').forEach(sw => {
+  sw.addEventListener('click', () => {
+    sw.classList.toggle('sel');
+    const selected = [...document.querySelectorAll('.bloom-swatch.sel')]
+      .map(s => s.dataset.color.replace(/&amp;/g,'&'));
+    const input = document.getElementById('colorsField');
+    if(input) input.value = selected.join(', ');
+  });
+});
 
 </script>
 </body>
