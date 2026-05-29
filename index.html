@@ -696,7 +696,8 @@ const DIR_INFO={
 const DIR_ANGLE={N:0,NE:45,E:90,SE:135,S:180,SW:225,W:270,NW:315};
 // ── Configuration (set your keys here) ───────────────────────────────────────
 const CONFIG={
-  PERENUAL_KEY:'sk-wAr16a18e3136381e17699', // perenual.com — free tier 100 req/day
+  PERENUAL_KEY:'',  // key lives on the server — see foxfield-plants-worker.js
+  WORKER_URL:'https://super-star-3d60.cgzorro.workers.dev', // Cloudflare plant proxy
   FORMSPREE_ID:'xlgvzoqy',  // formspree.io/f/xlgvzoqy → cgzorro@gmail.com
 };
 
@@ -2112,20 +2113,31 @@ if(_ssub) _ssub.onclick = () => {
 let _plantCache = {};
 
 async function fetchPlantSuggestions(){
-  if(!CONFIG.PERENUAL_KEY){ return; }
-  const z = zdata();
-  const zn = parseInt(z.z);
-  const cacheKey = z.z;
+  const zn = parseInt(zdata().z);
+  const cacheKey = 'plants_z' + zn;
   if(_plantCache[cacheKey]){ renderPlantSuggestions(_plantCache[cacheKey]); return; }
-  const url = `https://perenual.com/api/v2/species-list?key=${CONFIG.PERENUAL_KEY}&hardiness_min=${zn}&hardiness_max=${zn}&per_page=20&cycle=perennial`;
+
+  // Prefer Worker proxy (key hidden server-side), fall back to direct call if key is set
+  let url;
+  if(CONFIG.WORKER_URL){
+    url = `${CONFIG.WORKER_URL.replace(/\/$/, '')}/plants?zone=${zn}&per=20`;
+  } else if(CONFIG.PERENUAL_KEY){
+    url = `https://perenual.com/api/v2/species-list?key=${CONFIG.PERENUAL_KEY}&hardiness_min=${zn}&hardiness_max=${zn}&per_page=20&cycle=perennial`;
+  } else {
+    // No key or worker — show setup card
+    const setup=document.getElementById('plantSuggestSetup');
+    if(setup) setup.style.display='';
+    return;
+  }
+
   try {
     const resp = await fetch(url);
-    if(!resp.ok) throw new Error('Perenual ' + resp.status);
+    if(!resp.ok) throw new Error('HTTP ' + resp.status);
     const data = await resp.json();
     const plants = (data.data||[]).filter(p=>p.default_image?.thumbnail).slice(0,12);
     _plantCache[cacheKey] = plants;
     renderPlantSuggestions(plants);
-  } catch(e){ console.warn('Perenual:', e.message); }
+  } catch(e){ console.warn('Plant fetch:', e.message); }
 }
 
 function renderPlantSuggestions(plants){
