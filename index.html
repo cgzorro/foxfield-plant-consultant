@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Foxfield Plant Consultant v32 — Zone-Based Intake</title>
+<title>Foxfield Plant Consultant v34 — Zone-Based Intake</title>
 <meta name="description" content="Foxfield bilingual plant consultation intake with site intelligence, photo previews, map reference, and consultant field notes." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -344,7 +344,7 @@
           <p data-i18n="homeownerCopy">Prepare for your consultation with address, goals, preferences, budget, and up to five site photos.</p>
           <small data-i18n="homeownerAction">Prepare my profile &#8594;</small>
         </button>
-        <button class="entry-card" type="button" onclick="document.body.dataset.role='consultant';document.getElementById('entry').style.display='none';document.getElementById('app').style.display='grid';document.getElementById('consultantNotes').style.display='none';document.querySelector('.workspace').style.display='grid';if(typeof applyText==='function')applyText();if(typeof toast==='function'&&typeof I18N!=='undefined')toast(I18N[lang]?.consultantMode||'Consultant Mode');">
+        <button class="entry-card" type="button" onclick="document.body.dataset.role='consultant';document.getElementById('entry').style.display='none';document.getElementById('app').style.display='grid';document.getElementById('consultantNotes').style.display='none';document.querySelector('.workspace').style.display='grid';if(typeof applyText==='function')applyText();if(typeof toast==='function'&&typeof I18N!=='undefined')toast(I18N[lang]?.consultantMode||'Consultant Mode');setTimeout(()=>{if(typeof window._maybeShowConsultantOnboard==='function')window._maybeShowConsultantOnboard();},400)">>
           <div class="emoji"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)" aria-hidden="true"><path d="M18 32V14"/><path d="M18 26c-6-2-10-6-12-14 6 1 10 5 12 14z"/><path d="M18 20c5-2 9-7 10-14-6 2-9 7-10 14z"/><path d="M18 32c-7-1-13-4-17-10 7-1 13 2 17 10z"/></svg></div><h2 data-i18n="consultantTitle">Consultant</h2>
           <p data-i18n="consultantCopy">Run the full workflow onsite, including field notes, dictation, checklist, and discovery brief prep.</p>
           <small data-i18n="consultantAction">Open consultant workspace &#8594;</small>
@@ -388,7 +388,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v32 · 2026-05-29</div>
+  <div class="rail-version">v34 · 2026-05-29</div>
 </aside>
 <main class="main">
   <header class="top">
@@ -433,7 +433,7 @@
           <div class="field"><label data-i18n="name">Name</label><input name="name" autocomplete="name"></div>
           <div class="field"><label>Email</label><input name="email" type="email" autocomplete="email"></div>
           <div class="field"><label data-i18n="phone">Phone</label><input name="phone"></div>
-          <div class="field"><label data-i18n="zip">ZIP</label><input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" placeholder="66212"></div>
+          <div class="field"><label data-i18n="zip">ZIP <span style="color:var(--accent2)" title="Required">*</span></label><input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" placeholder="66212" required pattern="[0-9]{5}" maxlength="5" title="5-digit ZIP code required for USDA zone lookup"></div>
         </div>
         <div class="field" style="margin-top:16px"><label data-i18n="address">Project Address</label><span class="hint" data-i18n="addressHint">Used for map reference and future geocode / USDA lookup.</span><input id="address" name="address" placeholder="123 Main St, Overland Park, KS"></div>
         <div class="grid two" style="margin-top:16px">
@@ -604,7 +604,12 @@
         <div class="brief-action-row">
           <button class="btn primary" type="button" id="copyBrief" onclick="if(typeof updateReview==='function')updateReview();navigator.clipboard.writeText(document.getElementById('summary').value).then(()=>{if(typeof toast==='function')toast('Copied to clipboard');});">&#10695; <span data-i18n="copyBrief">Copy brief</span></button>
           <button class="btn" type="button" id="printBrief" onclick="if(typeof updateReview==='function')updateReview();setTimeout(()=>window.print(),150);">&#9113; Print / Save PDF</button>
+          <button class="btn primary" type="button" id="sendBriefBtn" style="background:var(--good);border-color:var(--good)">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M1 7h12M8 3l5 4-5 4"/></svg>
+            Send to consultant
+          </button>
         </div>
+        <p id="briefSentMsg" style="display:none;font-size:12px;color:var(--good);margin-top:8px;font-weight:700">&#10003; Brief sent — consultant notified.</p>
 
 
 
@@ -848,6 +853,47 @@
 </div>
 <div class="toast" id="toast"></div>
 <!-- ── Contractor Handoff Modal ── -->
+<!-- ── Consultant Onboarding Modal ─────────────────────────────────────── -->
+<div class="modal-overlay" id="consultantOnboardModal">
+  <div class="modal" style="max-width:520px;width:92%">
+    <div class="modal-head">
+      <div>
+        <h2 style="font:500 24px/1.1 var(--serif);margin:0 0 4px">Welcome, Consultant</h2>
+        <p style="color:var(--muted);font-size:13px;margin:0">Tell us about your practice — takes 60 seconds. Helps us build the right tools for you.</p>
+      </div>
+    </div>
+    <div class="modal-body" style="display:grid;gap:14px;padding:22px 0 0">
+      <div class="field"><label>Your name</label><input id="ob_name" type="text" placeholder="Chris Fox" autocomplete="name"></div>
+      <div class="field"><label>Business name <span style="color:var(--soft);font-weight:400">(optional)</span></label><input id="ob_biz" type="text" placeholder="Foxfield Landscape Studio"></div>
+      <div class="field"><label>License / cert <span style="color:var(--soft);font-weight:400">(optional)</span></label><input id="ob_lic" type="text" placeholder="KS-LCA-00123"></div>
+      <div class="field"><label>Primary service area ZIP</label><input id="ob_zip" type="tel" inputmode="numeric" maxlength="5" placeholder="66212"></div>
+      <div class="field">
+        <label>Specialty</label>
+        <div class="choices" style="grid-template-columns:repeat(2,1fr);gap:8px">
+          <label class="choice"><input type="radio" name="ob_spec" value="Residential design">Residential design<small>Homes &amp; gardens</small></label>
+          <label class="choice"><input type="radio" name="ob_spec" value="Native planting">Native planting<small>Ecology first</small></label>
+          <label class="choice"><input type="radio" name="ob_spec" value="Commercial">Commercial<small>Offices &amp; HOA</small></label>
+          <label class="choice"><input type="radio" name="ob_spec" value="Restoration">Restoration<small>Habitat repair</small></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Clients per month</label>
+        <div class="choices" style="grid-template-columns:repeat(3,1fr);gap:8px">
+          <label class="choice"><input type="radio" name="ob_vol" value="1–5">1–5</label>
+          <label class="choice"><input type="radio" name="ob_vol" value="6–15">6–15</label>
+          <label class="choice"><input type="radio" name="ob_vol" value="16+">16+</label>
+        </div>
+      </div>
+      <div class="field"><label>Email <span style="color:var(--accent2)" title="Required">*</span></label><input id="ob_email" type="email" placeholder="you@example.com" autocomplete="email"></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+      <button class="btn primary" type="button" id="ob_submit">Save &amp; open workspace</button>
+      <button class="btn ghost" type="button" id="ob_skip">Skip for now</button>
+    </div>
+    <p class="secure" style="margin-top:12px">Used to pre-fill your branded brief and improve Foxfield. Never sold.</p>
+  </div>
+</div>
+
 <div class="modal-overlay" id="handoffModal" role="dialog" aria-modal="true" aria-labelledby="handoff-title">
   <div class="modal-box">
     <div class="modal-head">
@@ -1040,6 +1086,8 @@ const CONFIG={
   PERENUAL_KEY:'',  // key lives on the server — see foxfield-plants-worker.js
   WORKER_URL:'https://super-star-3d60.cgzorro.workers.dev', // Cloudflare plant proxy
   FORMSPREE_ID:'xlgvzoqy',  // formspree.io/f/xlgvzoqy → cgzorro@gmail.com
+  // Airtable — credentials stored in Cloudflare Worker, never in client
+  // Worker endpoints: /airtable/consultant  /airtable/homeowner
 };
 
 // ZIP prefix → [zone, state] — generated from USDA hardiness data
@@ -2122,6 +2170,15 @@ function applyText(){
 }
 function go(i){
   if(i===8){openNotes();return;}
+  // Gate: ZIP required before leaving Step 1
+  if(i>0 && step===0){
+    const zip=$('#zip').value.trim();
+    if(!/^\d{5}$/.test(zip)){
+      $('#zip').focus();
+      toast('Please enter a 5-digit ZIP — needed for your USDA zone.');
+      return;
+    }
+  }
   step=Math.max(0,Math.min(7,i));updateAll();
   // On mobile: scroll window to top so sticky header + mobilebar appear,
   // then step content renders immediately below
@@ -2802,6 +2859,81 @@ document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
 
   // Load saved values on page init
   wlLoad();
+})();
+
+// ── Consultant onboarding modal ───────────────────────────────────────────────
+(function(){
+  const SEEN_KEY = 'foxfield_consultant_seen';
+  const PROFILE_KEY = 'foxfield_consultant_profile';
+
+  function saveToAirtable(table, fields){
+    if(!CONFIG.WORKER_URL) return;
+    fetch(CONFIG.WORKER_URL+'/airtable/'+table,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({fields})
+    }).catch(()=>{});
+  }
+
+  function closeOnboard(){
+    document.getElementById('consultantOnboardModal')?.classList.remove('open');
+  }
+
+  function submitOnboard(){
+    const name  = (document.getElementById('ob_name')?.value||'').trim();
+    const biz   = (document.getElementById('ob_biz')?.value||'').trim();
+    const lic   = (document.getElementById('ob_lic')?.value||'').trim();
+    const zip   = (document.getElementById('ob_zip')?.value||'').trim();
+    const email = (document.getElementById('ob_email')?.value||'').trim();
+    const spec  = document.querySelector('input[name="ob_spec"]:checked')?.value||'';
+    const vol   = document.querySelector('input[name="ob_vol"]:checked')?.value||'';
+    if(!email){ document.getElementById('ob_email').focus(); toast('Email required so we can deliver briefs'); return; }
+    localStorage.setItem(PROFILE_KEY, JSON.stringify({name,biz,lic,zip,email,spec,vol,ts:new Date().toISOString()}));
+    localStorage.setItem(SEEN_KEY,'1');
+    // Pre-fill white-label branding
+    if(biz && document.getElementById('wlBizName')) document.getElementById('wlBizName').value=biz;
+    if(lic && document.getElementById('wlLicNum'))  document.getElementById('wlLicNum').value=lic;
+    if(typeof wlSave==='function') wlSave();
+    // Airtable
+    saveToAirtable('Consultants',{Name:name,Business:biz,License:lic,ZIP:zip,Email:email,Specialty:spec,ClientsPerMonth:vol,Source:'App onboarding',Date:new Date().toISOString().split('T')[0]});
+    // Formspree backup
+    if(CONFIG.FORMSPREE_ID) fetch(`https://formspree.io/f/${CONFIG.FORMSPREE_ID}`,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({_subject:'New Consultant — '+(name||'unknown'),name,biz,email,zip,spec,vol})}).catch(()=>{});
+    closeOnboard();
+    toast('Welcome'+(name?' '+name.split(' ')[0]:'')+' — workspace ready');
+  }
+
+  document.getElementById('ob_submit')?.addEventListener('click', submitOnboard);
+  document.getElementById('ob_skip')?.addEventListener('click', ()=>{ localStorage.setItem(SEEN_KEY,'1'); closeOnboard(); });
+
+  // Called when consultant role is selected
+  window._maybeShowConsultantOnboard = function(){
+    if(!localStorage.getItem(SEEN_KEY)){
+      document.getElementById('consultantOnboardModal')?.classList.add('open');
+    }
+  };
+})();
+
+// ── Brief submission ──────────────────────────────────────────────────────────
+(function(){
+  function sendBrief(){
+    const d=typeof formData==='function'?formData():{};
+    const z=typeof zdata==='function'?zdata():{};
+    const btn=document.getElementById('sendBriefBtn');
+    const msg=document.getElementById('briefSentMsg');
+    if(btn){btn.disabled=true;btn.innerHTML='Sending…';}
+    const fields={Name:d.name||'—',Email:d.email||'—',Phone:d.phone||'—',Address:d.address||'—',ZIP:d.zip||'—',Zone:z.z||'—',Goals:d.goals||'—',Style:d.style||'—',Colors:d.colors||'—',Avoid:d.avoid||'—',Budget:d.budget||'—',Timeline:d.timeline||'—',Challenges:d.challenges||'—',Outcome:d.outcome||'—',Photos:(typeof photos!=='undefined'?photos.length:0)+' of 5',Role:document.body.dataset.role||'homeowner',Date:new Date().toISOString().split('T')[0],Source:'App brief'};
+    const briefText=typeof brief==='function'?brief():'';
+    const p1=CONFIG.WORKER_URL?fetch(CONFIG.WORKER_URL+'/airtable/Homeowners',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields})}).catch(()=>{}):Promise.resolve();
+    const p2=CONFIG.FORMSPREE_ID?fetch(`https://formspree.io/f/${CONFIG.FORMSPREE_ID}`,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({_subject:'New Brief — '+(d.name||'Client')+' · Zone '+(z.z||'—'),...fields,briefText})}).catch(()=>{}):Promise.resolve();
+    Promise.all([p1,p2]).then(()=>{
+      if(btn){btn.innerHTML='✓ Sent';btn.style.opacity='.65';}
+      if(msg)msg.style.display='block';
+      toast('Brief sent — consultant notified');
+    });
+  }
+  document.getElementById('sendBriefBtn')?.addEventListener('click',()=>{
+    if(typeof updateReview==='function')updateReview();
+    sendBrief();
+  });
 })();
 
 
