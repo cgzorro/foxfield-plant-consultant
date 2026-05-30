@@ -16,13 +16,15 @@
 .rail{position:sticky;top:0;height:100vh;padding:26px 18px;border-right:1px solid var(--line);background:linear-gradient(180deg,var(--bg2),rgba(7,19,15,.96));display:flex;flex-direction:column;gap:22px;overflow:auto}.brand{text-align:center;padding-bottom:16px;border-bottom:1px solid var(--line)}.markbox{width:96px;height:82px;margin:0 auto 14px;display:grid;place-items:center}.foxmark-img{display:block;width:90px;height:auto;object-fit:contain}.foxmark-img.lightmark{display:none}[data-theme=light] .foxmark-img.darkmark{display:none}[data-theme=light] .foxmark-img.lightmark{display:block}.brand-name{font:500 27px/1 var(--serif);letter-spacing:.19em;margin:0}.brand-sub{margin:10px 0 0;color:var(--accent);font-size:11px;letter-spacing:.18em;text-transform:uppercase}.rail-tag{margin-top:auto;text-align:center;color:var(--muted);font-size:13px;line-height:1.55}.rail-leaves{height:118px;opacity:.48;margin:auto auto 10px;color:var(--accent)}
 .steps{display:grid;gap:8px}.stepnav{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;width:100%;border:1px solid transparent;background:transparent;color:var(--muted);padding:10px;border-radius:14px;text-align:left}.stepnav:hover{border-color:var(--line);background:rgba(255,255,255,.03)}.stepnav.active{background:linear-gradient(90deg,rgba(197,138,66,.32),rgba(197,138,66,.12));border-color:rgba(197,138,66,.35);color:var(--ink)}.bubble{width:34px;height:34px;border-radius:999px;border:1px solid var(--line2);display:grid;place-items:center;font:600 16px var(--serif);color:var(--accent3)}.stepnav.active .bubble{border-color:var(--accent2);color:var(--ink)}.st{font-weight:600;font-size:14px}.ss{display:block;margin-top:3px;font-size:11px;color:var(--soft)}.done{color:var(--good);opacity:0}.stepnav.done .done{opacity:1}
 .main{min-width:0}.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 32px;border-bottom:1px solid var(--line);background:rgba(7,19,15,.92)}[data-theme=light] .top{background:rgba(244,239,227,.95)}.top h1{font:500 clamp(22px,2.6vw,36px)/1.15 var(--serif);margin:0;text-wrap:balance}
-.top p{margin:6px 0 0;color:var(--accent);font-size:14px;text-wrap:balance}.tools{display:flex;align-items:center;gap:8px}.icon-btn{border:1px solid var(--line2);background:var(--card);color:var(--muted);border-radius:999px;padding:8px 13px;font-weight:700;font-size:13px;line-height:1;transition:border-color .15s,color .15s,background .15s}.icon-btn:hover{border-color:var(--accent2);color:var(--ink)}.icon-btn.active{border-color:var(--accent2);background:rgba(197,138,66,.13);color:var(--accent2)}.theme-btn{padding:9px 12px;min-width:40px;display:inline-flex;align-items:center;justify-content:center;font-variant-emoji:text}
+.top p{margin:6px 0 0;color:var(--accent);font-size:14px;text-wrap:balance}.tools{display:flex;align-items:center;gap:8px}.icon-btn{border:1px solid var(--line2);background:var(--card);color:var(--muted);border-radius:999px;padding:8px 13px;font-weight:700;font-size:13px;line-height:1;transition:border-color .15s,color .15s,background .15s}.icon-btn:hover{border-color:var(--accent2);color:var(--ink)}.icon-btn.active{border-color:var(--accent2);background:rgba(197,138,66,.13);color:var(--accent2)}.theme-btn{padding:8px;min-width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-variant-emoji:text;border-color:transparent!important;background:transparent!important}.theme-btn:hover{background:rgba(143,162,107,.12)!important;border-color:transparent!important}
 /* ── Language dropdown ── */
 .lang-drop{position:relative;z-index:9999}
-.lang-trigger{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;font-size:12px;font-weight:700;letter-spacing:.04em}
-.lang-globe{width:14px;height:14px;flex-shrink:0;opacity:.8}
-.lang-current{letter-spacing:.06em}
-.lang-caret{font-size:10px;color:var(--muted);transition:transform .18s var(--ease);display:inline-block}
+.lang-trigger{display:inline-flex;align-items:center;gap:3px;padding:8px;font-size:12px;font-weight:700;letter-spacing:.04em;border-color:transparent!important;background:transparent!important}
+.lang-trigger:hover{background:rgba(143,162,107,.12)!important;border-color:transparent!important}
+.lang-globe{width:22px;height:22px;flex-shrink:0}
+.lang-caret{font-size:9px;color:var(--muted);transition:transform .18s var(--ease),opacity .18s;display:inline-block;opacity:0}
+.lang-trigger:hover .lang-caret,.lang-drop.open .lang-caret{opacity:1}
+.lang-drop.open .lang-caret{transform:rotate(180deg)}
 .lang-drop.open .lang-caret{transform:rotate(180deg)}
 .lang-drop.open .lang-trigger{border-color:var(--accent2);color:var(--ink)}
 .lang-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:148px;background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:6px;margin:0;list-style:none;box-shadow:0 12px 32px rgba(0,0,0,.28);opacity:0;transform:translateY(-6px) scale(.97);pointer-events:none;transition:opacity .16s var(--ease),transform .16s var(--ease);z-index:9999}
@@ -350,7 +352,7 @@
         <button class="icon-btn theme-btn" type="button" id="entryThemeBtn" title="Switch to light mode" aria-label="Toggle light/dark theme" onclick="setTheme(document.body.dataset.theme==='dark'?'light':'dark');"></button>
         <div class="lang-drop" id="entryLangDrop">
           <button class="icon-btn lang-trigger" type="button" id="entryLangTrigger" aria-haspopup="listbox" aria-expanded="false">
-            <svg class="lang-globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><ellipse cx="8" cy="8" rx="2.6" ry="6.5"/><line x1="1.5" y1="6" x2="14.5" y2="6"/><line x1="1.5" y1="10" x2="14.5" y2="10"/></svg><span class="lang-current" id="entryLangCurrent">EN</span><span class="lang-caret">&#8964;</span>
+            <svg class="lang-globe" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="22" height="22"><circle cx="9" cy="8.5" r="6.2" stroke-width="1.4"/><ellipse cx="9" cy="8.5" rx="2.6" ry="6.2" stroke-width="0.8" opacity="0.65"/><ellipse cx="9" cy="8.5" rx="6.2" ry="1.8" stroke-width="0.8" opacity="0.65"/><ellipse cx="9" cy="5.8" rx="5.5" ry="1.1" stroke-width="0.55" opacity="0.4"/><ellipse cx="9" cy="11.2" rx="5.5" ry="1.1" stroke-width="0.55" opacity="0.4"/><line x1="7.8" y1="2.3" x2="10.2" y2="14.7" stroke-width="1.1" opacity="0.55"/><line x1="8.2" y1="15.5" x2="9.8" y2="15.5" stroke-width="1.5"/></svg><span class="lang-caret">&#8964;</span>
           </button>
           <ul class="lang-menu" id="entryLangMenu" role="listbox" aria-label="Select language">
             <li role="option" data-entry-lang="en" class="active">EN <span>English</span></li>
@@ -413,7 +415,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v59 · 2026-05-30</div>
+  <div class="rail-version">v63 · 2026-05-30</div>
 </aside>
 <main class="main">
   <header class="top">
@@ -432,7 +434,7 @@
       <button class="icon-btn theme-btn" type="button" id="themeBtn" title="Switch to light mode" aria-label="Toggle light/dark theme" onclick="setTheme(document.body.dataset.theme==='dark'?'light':'dark');"></button>
       <div class="lang-drop" id="langDrop">
         <button class="icon-btn lang-trigger" type="button" id="langTrigger" aria-haspopup="listbox" aria-expanded="false">
-          <svg class="lang-globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><ellipse cx="8" cy="8" rx="2.6" ry="6.5"/><line x1="1.5" y1="6" x2="14.5" y2="6"/><line x1="1.5" y1="10" x2="14.5" y2="10"/></svg><span class="lang-current" id="langCurrent">EN</span><span class="lang-caret">&#8964;</span>
+          <svg class="lang-globe" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="22" height="22"><circle cx="9" cy="8.5" r="6.2" stroke-width="1.4"/><ellipse cx="9" cy="8.5" rx="2.6" ry="6.2" stroke-width="0.8" opacity="0.65"/><ellipse cx="9" cy="8.5" rx="6.2" ry="1.8" stroke-width="0.8" opacity="0.65"/><ellipse cx="9" cy="5.8" rx="5.5" ry="1.1" stroke-width="0.55" opacity="0.4"/><ellipse cx="9" cy="11.2" rx="5.5" ry="1.1" stroke-width="0.55" opacity="0.4"/><line x1="7.8" y1="2.3" x2="10.2" y2="14.7" stroke-width="1.1" opacity="0.55"/><line x1="8.2" y1="15.5" x2="9.8" y2="15.5" stroke-width="1.5"/></svg><span class="lang-caret">&#8964;</span>
         </button>
         <ul class="lang-menu" id="langMenu" role="listbox" aria-label="Select language">
           <li role="option" data-lang="en" class="active">EN <span>English</span></li>
@@ -2421,16 +2423,16 @@ function renderPhotos(){
 function setTheme(mode){
   document.body.dataset.theme = mode;
   // Sun SVG = currently dark, click to go light
-  const sunSVG = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><line x1="9" y1="1" x2="9" y2="3"/><line x1="9" y1="15" x2="9" y2="17"/><line x1="1" y1="9" x2="3" y2="9"/><line x1="15" y1="9" x2="17" y2="9"/><line x1="3.2" y1="3.2" x2="4.6" y2="4.6"/><line x1="13.4" y1="13.4" x2="14.8" y2="14.8"/><line x1="14.8" y1="3.2" x2="13.4" y2="4.6"/><line x1="4.6" y1="13.4" x2="3.2" y2="14.8"/></svg>';
+  const sunSVG = '<svg width="22" height="22" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><line x1="9" y1="1" x2="9" y2="3"/><line x1="9" y1="15" x2="9" y2="17"/><line x1="1" y1="9" x2="3" y2="9"/><line x1="15" y1="9" x2="17" y2="9"/><line x1="3.2" y1="3.2" x2="4.6" y2="4.6"/><line x1="13.4" y1="13.4" x2="14.8" y2="14.8"/><line x1="14.8" y1="3.2" x2="13.4" y2="4.6"/><line x1="4.6" y1="13.4" x2="3.2" y2="14.8"/></svg>';
   // Moon SVG = currently light, click to go dark
-  const moonSVG = '<svg width="16" height="18" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 11.5A7 7 0 0 1 4.5 2a7 7 0 1 0 9.5 9.5z"/></svg>';
+  const moonSVG = '<svg width="20" height="22" viewBox="0 0 16 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 11.5A7 7 0 0 1 4.5 2a7 7 0 1 0 9.5 9.5z"/></svg>';
   const icon = mode === 'dark' ? sunSVG : moonSVG;
   const tip  = mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
   document.querySelectorAll('.theme-btn').forEach(b=>{ b.innerHTML=icon; b.title=tip; });
 }
 function setLang(next){
   lang = next;
-  document.querySelectorAll('.lang-current').forEach(el=>el.textContent=next.toUpperCase());
+  document.querySelectorAll('.lang-current').forEach(el=>{ if(el) el.textContent=next.toUpperCase(); });
   document.querySelectorAll('#langMenu li').forEach(li=>li.classList.toggle('active', li.dataset.lang===next));
   document.querySelectorAll('#entryLangMenu li').forEach(li=>li.classList.toggle('active', li.dataset.entryLang===next));
   build();
