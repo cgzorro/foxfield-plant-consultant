@@ -118,6 +118,18 @@
 .referral-card>p{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 14px}
 .referral-card .choices{margin-bottom:14px}
 .brief-action-row{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+/* Role visibility */
+.homeownerOnly{display:flex}
+body[data-role=consultant] .homeownerOnly{display:none!important}
+/* Homeowner notify card */
+.homeowner-notify-card{margin-top:18px;border:1px solid var(--line2);border-radius:16px;background:rgba(143,162,107,.06);padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.hn-icon{width:40px;height:40px;border-radius:12px;background:rgba(197,138,66,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hn-text{}
+.hn-text strong{display:block;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.hn-text span{font-size:12px;color:var(--muted);line-height:1.5}
+.hn-form{display:flex;gap:8px;flex-wrap:wrap}
+.hn-input{flex:1;min-width:180px;padding:10px 13px;font-size:13px;border-radius:12px}
+.hn-btn{flex-shrink:0;padding:10px 16px;font-size:13px}
 
 /* ── Zone strip (step 8 review header) ── */
 .zone-strip{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
@@ -530,9 +542,11 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 .top-foxmark.lightmark{display:none}
 [data-theme=light] .top-foxmark.darkmark{display:none}
 [data-theme=light] .top-foxmark.lightmark{display:block}
-.top-brand-name{font:500 18px/1 var(--serif);letter-spacing:.16em;color:var(--ink)}
+.top-brand-name{font:500 18px/1 var(--serif);letter-spacing:.16em;color:var(--ink);display:block}
+.top-brand-product{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(143,162,107,.75);display:block;margin-top:3px}
+[data-theme=light] .top-brand-product{color:rgba(47,104,66,.6)}
 @media(max-width:1120px){.top-brand-mobile{display:flex}}
-@media(max-width:760px){.top-brand-mobile{order:-1;flex:1;min-width:0;width:auto}.top-brand-name{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media(max-width:760px){.top-brand-mobile{order:-1;flex:1;min-width:0;width:auto}.top-brand-name{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.top-brand-product{font-size:8px}}
 /* ── Entry QR band — dead center bottom ── */
 .entry-qr-band{
   padding:40px 0 44px;
@@ -782,7 +796,10 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
     <div class="top-brand-mobile">
       <img class="foxmark-img darkmark top-foxmark" src="data:image/png;base64,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" alt="Foxfield">
       <img class="foxmark-img lightmark top-foxmark" src="data:image/png;base64,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" alt="Foxfield">
-      <span class="top-brand-name">FOXFIELD</span>
+      <div>
+        <span class="top-brand-name">FOXFIELD</span>
+        <span class="top-brand-product">Plant Consultant</span>
+      </div>
     </div>
     <div id="topTitleDiv"><h1 id="pageTitle">Plant Consultant</h1><p id="pageSub">Plan with purpose. Plant with confidence.</p></div>
     <div class="tools">
@@ -1015,16 +1032,58 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
         </div>
 
         <!-- ── Action row ── -->
-        <div class="brief-action-row">
-          <button class="btn primary" type="button" id="copyBrief" onclick="if(!/^\d{5}$/.test((document.getElementById('zip')?.value||'').trim())){if(typeof toast==='function')toast('ZIP code required before copying brief.');return;}if(window._requireConsultantProfile){window._requireConsultantProfile(()=>{if(typeof updateReview==='function')updateReview();navigator.clipboard.writeText(document.getElementById('summary').value).then(()=>{if(typeof toast==='function')toast('Copied to clipboard');});});}else{if(typeof updateReview==='function')updateReview();navigator.clipboard.writeText(document.getElementById('summary').value).then(()=>{if(typeof toast==='function')toast('Copied to clipboard');});}">&#10695; <span data-i18n="copyBrief">Copy brief</span></button>
-          <button class="btn" type="button" id="printBrief" onclick="if(!/^\d{5}$/.test((document.getElementById('zip')?.value||'').trim())){if(typeof toast==='function')toast('ZIP code required before printing.');return;}updateReview();openPaidBrief();setTimeout(()=>window.print(),400);">&#9113; Print / PDF</button>
-          <button class="btn primary" type="button" id="sendBriefBtn" style="background:var(--good);border-color:var(--good)">
+        <div class="brief-action-row" id="briefActionRow">
+          <!-- Save brief — homeowner only -->
+          <button class="btn homeownerOnly" type="button" id="saveBriefBtn" onclick="
+            if(!/^\d{5}$/.test((document.getElementById('zip')?.value||'').trim())){toast('ZIP code required.');return;}
+            updateReview();
+            const blob=new Blob([document.getElementById('summary').value],{type:'text/plain'});
+            const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+            a.download='foxfield-brief-'+(document.querySelector('[name=name]')?.value||'homeowner').replace(/\s+/g,'-').toLowerCase()+'.txt';
+            a.click();toast('Brief saved.');
+          ">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6.5 1v8M3.5 6l3 3 3-3"/><path d="M1 10v1a1 1 0 001 1h9a1 1 0 001-1v-1"/></svg>
+            Save brief
+          </button>
+          <!-- Copy — both roles -->
+          <button class="btn" type="button" id="copyBrief" onclick="if(!/^\d{5}$/.test((document.getElementById('zip')?.value||'').trim())){toast('ZIP code required.');return;}updateReview();navigator.clipboard.writeText(document.getElementById('summary').value).then(()=>toast('Copied to clipboard'));">&#10695; Copy</button>
+          <!-- Print — both roles, opens modal -->
+          <button class="btn" type="button" id="printBrief" onclick="if(!/^\d{5}$/.test((document.getElementById('zip')?.value||'').trim())){toast('ZIP code required.');return;}updateReview();openPaidBrief();setTimeout(printBriefPaper,400);">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="1" y="4" width="11" height="7" rx="1.5"/><path d="M3 4V2a1 1 0 011-1h5a1 1 0 011 1v2"/><rect x="3" y="7" width="7" height="4" rx="1"/></svg>
+            Print
+          </button>
+          <!-- Send to client — consultant only -->
+          <button class="btn consultantOnly" type="button" id="sendBriefBtn" style="background:var(--good);border-color:var(--good)">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M1 7h12M8 3l5 4-5 4"/></svg>
-            <span id="sendBriefLabel">Send to consultant</span>
+            <span id="sendBriefLabel">Send brief to client</span>
           </button>
         </div>
-        <p id="briefSentMsg" style="display:none;font-size:12px;color:var(--good);margin-top:8px;font-weight:700">&#10003; Brief sent — consultant notified.</p>
+        <p id="briefSentMsg" style="display:none;font-size:12px;color:var(--good);margin-top:8px;font-weight:700">&#10003; Brief sent to client.</p>
         <textarea class="summary" id="summary" readonly style="display:none"></textarea>
+
+        <!-- ── Homeowner notify card — consultant marketplace coming ── -->
+        <div class="homeowner-notify-card homeownerOnly" id="homeownerNotifyCard">
+          <div class="hn-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent2)"><circle cx="11" cy="11" r="9"/><path d="M11 7v4l3 3"/></svg>
+          </div>
+          <div class="hn-text">
+            <strong>Consultant matching coming soon</strong>
+            <span>We're building a network of verified landscape consultants. Get notified when one is available in your area.</span>
+          </div>
+          <div class="hn-form">
+            <input type="email" id="notifyEmail" class="hn-input" placeholder="your@email.com" autocomplete="email">
+            <button class="btn primary hn-btn" type="button" onclick="
+              const em=document.getElementById('notifyEmail').value.trim();
+              if(!em||!em.includes('@')){toast('Enter a valid email.');return;}
+              const zip=(document.getElementById('zip')?.value||'').trim();
+              if(window.CONFIG?.FORMSPREE_ID){
+                fetch('https://formspree.io/f/'+CONFIG.FORMSPREE_ID,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({_subject:'Consultant Waitlist — '+zip,email:em,zip:zip,source:'homeowner-waitlist'})}).catch(()=>{});
+              }
+              document.getElementById('notifyEmail').value='';
+              document.getElementById('homeownerNotifyCard').innerHTML='<div style=\'text-align:center;padding:8px 0;font-size:13px;color:var(--good)\'>✓ You\'re on the list — we\'ll reach out when consultants are available in '+zip+'.</div>';
+            ">Notify me</button>
+          </div>
+        </div>
 
         <div class="divider"></div>
 
@@ -2728,16 +2787,11 @@ function updateReview(){
   if(clientName) parts.unshift(clientName);
   if(_procurementList.length) parts.push(`${_procurementList.length} plants selected`);
   if(ctaSub) ctaSub.textContent = parts.join(' · ');
-  // Update send button label based on role
+  // Update send button label — consultant sends to client
   const _sendLabel = document.getElementById('sendBriefLabel');
   const _sentMsg = document.getElementById('briefSentMsg');
-  if(document.body.dataset.role === 'consultant'){
-    if(_sendLabel) _sendLabel.textContent = 'Send brief to client';
-    if(_sentMsg) _sentMsg.textContent = '✓ Brief sent to client.';
-  } else {
-    if(_sendLabel) _sendLabel.textContent = 'Send to consultant';
-    if(_sentMsg) _sentMsg.textContent = '✓ Brief sent — consultant notified.';
-  }
+  if(_sendLabel) _sendLabel.textContent = 'Send brief to client';
+  if(_sentMsg) _sentMsg.textContent = '✓ Brief sent to client.';
   renderBriefPreview();
 }
 
