@@ -2787,7 +2787,6 @@ function openPaidBrief(){
       <div class="pb-bloom-grid">
         ${MONTH_ABBR.map((mo,i)=>{
           const v=bloomMatrix[i];
-          const cls=v===0?'':'v===maxBloom&&v>0?\'pb-bloom-dot peak\'':'pb-bloom-dot has-bloom\'';
           const dotCls=v===0?'pb-bloom-dot':v===maxBloom?'pb-bloom-dot peak':'pb-bloom-dot has-bloom';
           return `<div class="pb-bloom-col"><div class="pb-bloom-month">${mo}</div><div class="${dotCls}" title="${v} plant${v===1?'':'s'} blooming"></div></div>`;
         }).join('')}
