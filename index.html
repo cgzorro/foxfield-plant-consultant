@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Foxfield Plant Consultant v47 — Zone-Based Intake</title>
+<title>Foxfield Plant Consultant v48 — Zone-Based Intake</title>
 <meta name="description" content="Foxfield bilingual plant consultation intake with site intelligence, photo previews, map reference, and consultant field notes." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,11 +224,29 @@
 .bloom-label{font-size:10px;font-weight:800;letter-spacing:.02em;text-shadow:0 1px 4px rgba(0,0,0,.6);pointer-events:none;text-align:center;line-height:1.25;padding:0 4px 7px;width:100%}
 
 /* ── A1/A3: Plant trait badges ── */
-.plant-chip{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
-.plant-chip img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--line2);display:block;flex-shrink:0}
+.plant-chip{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;position:relative}
+.plant-chip img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--line2);display:block;flex-shrink:0;transition:border-color .15s}
+.plant-chip.selected img{border-color:var(--accent2);box-shadow:0 0 0 3px rgba(197,138,66,.25)}
 .plant-chip-name{font-size:11px;font-weight:700;color:var(--ink);line-height:1.2}
 .plant-chip-sci{font-size:10px;color:var(--soft);font-style:italic;line-height:1.2}
 .plant-chip-traits{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
+.plant-add-btn{position:absolute;top:0;right:0;width:22px;height:22px;border-radius:50%;background:var(--accent2);border:none;color:#fff;font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;font-weight:700}
+.plant-chip:hover .plant-add-btn{opacity:1}
+.plant-chip.selected .plant-add-btn{opacity:1;background:var(--good);content:'✓'}
+/* Procurement list */
+.procurement-panel{border:1px solid var(--line2);border-radius:16px;background:rgba(143,162,107,.06);padding:16px;margin-top:16px}
+.procurement-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.procurement-head strong{font-size:13px;font-weight:800;color:var(--ink)}
+.procurement-count{font-size:11px;color:var(--accent2);font-weight:700;background:rgba(197,138,66,.15);border-radius:999px;padding:2px 8px}
+.procurement-list{display:flex;flex-direction:column;gap:8px}
+.procurement-item{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.procurement-item img{width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.procurement-item-info{flex:1;min-width:0}
+.procurement-item-name{font-size:12px;font-weight:700;color:var(--ink)}
+.procurement-item-sci{font-size:11px;color:var(--soft);font-style:italic}
+.procurement-remove{background:none;border:none;color:var(--soft);cursor:pointer;font-size:16px;padding:2px 6px;border-radius:6px;transition:color .12s}
+.procurement-remove:hover{color:var(--danger,#c84040)}
+.procurement-empty{font-size:12px;color:var(--soft);text-align:center;padding:12px 0}
 .plant-trait-badge{display:inline-flex;align-items:center;gap:2px;padding:2px 6px;border-radius:99px;font-size:9px;font-weight:700;border:1px solid;line-height:1.4;white-space:nowrap}
 .native-badge{background:rgba(47,104,66,.12)!important;color:#2f6842!important;border-color:rgba(47,104,66,.3)!important}
 .plant-chip-native{min-height:16px;display:flex;justify-content:center}
@@ -388,7 +406,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v47 · 2026-05-29</div>
+  <div class="rail-version">v48 · 2026-05-29</div>
 </aside>
 <main class="main">
   <header class="top">
@@ -658,7 +676,17 @@
             <span class="chip plant-suggest-badge">Live data</span>
           </div>
           <div class="plant-suggest-grid"></div>
-          <p class="secure" style="margin-top:8px">Suggestions are filtered by hardiness zone. Add your Perenual API key in CONFIG to enable.</p>
+          <p class="secure" style="margin-top:8px">Suggestions are filtered by hardiness zone.</p>
+          <!-- Procurement list — consultant only -->
+          <div class="procurement-panel consultantOnly" id="procurementPanel" style="margin-top:16px">
+            <div class="procurement-head">
+              <strong>&#127807; Plant procurement list</strong>
+              <span class="procurement-count" id="procurementCount">0 selected</span>
+            </div>
+            <div class="procurement-list" id="procurementList">
+              <p class="procurement-empty">Tap + on any plant above to add it to your list.</p>
+            </div>
+          </div>
         </div>
 
         <!-- Plant suggestions powered by Cloudflare Worker proxy -->
@@ -2285,6 +2313,9 @@ Install: ${d.install||'—'}
 Photos selected: ${photos.length} of 5
 Contractor needs: ${d.pros||'—'}
 
+Proposed Plant Palette
+${_procurementList.length ? _procurementList.map((p,i)=>`${i+1}. ${p.name} (${p.sci})`).join('\n') : '—'}
+
 Consultant Field Notes
 ${notesRecap()}
 
@@ -2583,12 +2614,67 @@ async function fetchPlantSuggestions(lightFilter, waterFilter, typeFilter){
   } catch(e){ console.warn('Plant fetch:', e.message); }
 }
 
+// ── Plant procurement list ────────────────────────────────────────────────────
+let _procurementList = JSON.parse(sessionStorage.getItem('foxfield_procurement')||'[]');
+
+function saveProcurement(){
+  sessionStorage.setItem('foxfield_procurement', JSON.stringify(_procurementList));
+}
+
+function renderProcurement(){
+  const list = document.getElementById('procurementList');
+  const count = document.getElementById('procurementCount');
+  if(!list) return;
+  if(count) count.textContent = _procurementList.length + ' selected';
+  if(!_procurementList.length){
+    list.innerHTML = '<p class="procurement-empty">Tap + on any plant above to add it to your list.</p>';
+  } else {
+    list.innerHTML = _procurementList.map((p,i)=>`
+      <div class="procurement-item">
+        <img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'">
+        <div class="procurement-item-info">
+          <div class="procurement-item-name">${p.name}</div>
+          <div class="procurement-item-sci">${p.sci}</div>
+        </div>
+        <button class="procurement-remove" type="button" onclick="removeProcurement(${i})" title="Remove">&#10005;</button>
+      </div>`).join('');
+  }
+  // Sync chip selected state
+  document.querySelectorAll('.plant-chip').forEach(chip=>{
+    const inList = _procurementList.some(p=>p.name===chip.dataset.common);
+    chip.classList.toggle('selected', inList);
+    const btn = chip.querySelector('.plant-add-btn');
+    if(btn) btn.textContent = inList ? '✓' : '+';
+  });
+}
+
+function addProcurement(name, sci, img){
+  if(_procurementList.some(p=>p.name===name)) return removeProcurementByName(name);
+  _procurementList.push({name, sci, img});
+  saveProcurement();
+  renderProcurement();
+  toast(name + ' added to list');
+}
+
+function removeProcurement(idx){
+  _procurementList.splice(idx,1);
+  saveProcurement();
+  renderProcurement();
+}
+
+function removeProcurementByName(name){
+  _procurementList = _procurementList.filter(p=>p.name!==name);
+  saveProcurement();
+  renderProcurement();
+}
+
 function renderPlantSuggestions(plants){
   const wrap = document.getElementById('plantSuggest');
   if(!wrap||!plants?.length) return;
   wrap.style.display='';
   const grid = wrap.querySelector('.plant-suggest-grid');
   if(!grid) return;
+  const isConsultant = document.body.dataset.role === 'consultant';
   grid.innerHTML = plants.map((p,idx)=>{
     const sci = (p.scientific_name||[])[0]||'';
     const traits = getKnownTraits(p.common_name, sci);
@@ -2596,8 +2682,11 @@ function renderPlantSuggestions(plants){
       const cfg = TRAIT_CONFIG[t]||{label:t,color:'#6a9850',icon:'✦'};
       return `<span class="plant-trait-badge" style="background:${cfg.color}20;color:${cfg.color};border-color:${cfg.color}40">${cfg.icon} ${cfg.label}</span>`;
     }).join('');
+    const inList = _procurementList.some(pl=>pl.name===p.common_name);
+    const addBtn = isConsultant ? `<button class="plant-add-btn" type="button" title="Add to procurement list" onclick="addProcurement('${p.common_name.replace(/'/g,"\\'")}','${sci.replace(/'/g,"\\'")}','${p.default_image.thumbnail}')">${inList?'✓':'+'}</button>` : '';
     return `
-    <div class="plant-chip" data-chip-idx="${idx}" data-common="${p.common_name}" data-sci="${sci}">
+    <div class="plant-chip${inList?' selected':''}" data-chip-idx="${idx}" data-common="${p.common_name}" data-sci="${sci}">
+      ${addBtn}
       <img src="${p.default_image.thumbnail}" alt="${p.common_name}" loading="lazy"
            onerror="this.parentNode.style.display='none'">
       <span class="plant-chip-name">${p.common_name}</span>
@@ -2607,7 +2696,9 @@ function renderPlantSuggestions(plants){
     </div>`;
   }).join('');
 
-  // A4: async native check for each chip
+  renderProcurement();
+
+  // A4: async native check
   if(CONFIG.WORKER_URL || CONFIG.PERENUAL_KEY){
     plants.forEach((p,idx)=>{
       const sci = (p.scientific_name||[])[0]||'';
@@ -2989,7 +3080,7 @@ document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
   function _doSendBrief(d, z){
     const msg=document.getElementById('briefSentMsg');
     if(btn){btn.disabled=true;btn.innerHTML='Sending…';}
-    const fields={Name:d.name||'—',Email:d.email||'—',Phone:d.phone||'—',Address:d.address||'—',ZIP:d.zip||'—',Zone:z.z||'—',Goals:d.goals||'—',Style:d.style||'—',Colors:d.colors||'—',Avoid:d.avoid||'—',Budget:d.budget||'—',Timeline:d.timeline||'—',Challenges:d.challenges||'—',Outcome:d.outcome||'—',Photos:(typeof photos!=='undefined'?photos.length:0)+' of 5',Role:document.body.dataset.role||'homeowner',Date:new Date().toISOString().split('T')[0],Source:'App brief'};
+    const fields={Name:d.name||'—',Email:d.email||'—',Phone:d.phone||'—',Address:d.address||'—',ZIP:d.zip||'—',Zone:z.z||'—',Goals:d.goals||'—',Style:d.style||'—',Colors:d.colors||'—',Avoid:d.avoid||'—',Budget:d.budget||'—',Timeline:d.timeline||'—',Challenges:d.challenges||'—',Outcome:d.outcome||'—',Photos:(typeof photos!=='undefined'?photos.length:0)+' of 5',PlantList:_procurementList.length?_procurementList.map(p=>p.name+'  ('+p.sci+')').join(', '):'—',Role:document.body.dataset.role||'homeowner',Date:new Date().toISOString().split('T')[0],Source:'App brief'};
     const briefText=typeof brief==='function'?brief():'';
     const p1=CONFIG.WORKER_URL?fetch(CONFIG.WORKER_URL+'/airtable/Homeowners',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields})}).catch(()=>{}):Promise.resolve();
     const p2=CONFIG.FORMSPREE_ID?fetch(`https://formspree.io/f/${CONFIG.FORMSPREE_ID}`,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({_subject:'New Brief — '+(d.name||'Client')+' · Zone '+(z.z||'—'),...fields,briefText})}).catch(()=>{}):Promise.resolve();
