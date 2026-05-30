@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Foxfield Plant Consultant v46 — Zone-Based Intake</title>
+<title>Foxfield Plant Consultant v47 — Zone-Based Intake</title>
 <meta name="description" content="Foxfield bilingual plant consultation intake with site intelligence, photo previews, map reference, and consultant field notes." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -388,7 +388,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v46 · 2026-05-29</div>
+  <div class="rail-version">v47 · 2026-05-29</div>
 </aside>
 <main class="main">
   <header class="top">
@@ -524,8 +524,8 @@
         <div class="stephead"><div><h2 data-i18n="s4t">Style &amp; Preferences</h2><p data-i18n="s4p">Design direction, color mood, and what to avoid.</p></div><span class="badge">Step 5 of 8</span></div>
         <div class="field" style="margin-bottom:18px">
           <label data-i18n="styleLabel">Design character</label>
-          <span class="hint" data-i18n="styleHint">Pick the aesthetic that feels closest to your vision.</span>
-          <div class="choices" data-name="style" data-choice="style"></div>
+          <span class="hint" data-i18n="styleHint">Choose all that apply.</span>
+          <div class="choices multi" data-name="style" data-choice="style" id="styleChoices"></div>
         </div>
         <div class="field bloom-picker-field" style="margin-bottom:16px">
           <div class="note-field-head">
@@ -634,6 +634,15 @@
               <option value="minimum">Low water</option>
               <option value="average">Average</option>
               <option value="frequent">Frequent</option>
+            </select>
+            <select id="browseType" class="browse-select">
+              <option value="">All types</option>
+              <option value="herbaceous_perennial">Perennials</option>
+              <option value="shrub">Shrubs</option>
+              <option value="tree">Trees</option>
+              <option value="grass">Grasses</option>
+              <option value="vine">Vines</option>
+              <option value="bulb">Bulbs</option>
             </select>
             <button class="btn primary" type="button" id="browseRefreshBtn" style="font-size:12px;padding:8px 14px">&#8635; Refresh</button>
           </div>
@@ -2137,6 +2146,18 @@ function buildChoices(){
     else c.classList.toggle('active',i.checked);
     updateAll();
   },0));
+  // Exclusive: "Open to guidance" deselects all others and vice versa
+  setTimeout(()=>{
+    document.querySelectorAll('#styleChoices input').forEach(cb=>{
+      cb.addEventListener('change',()=>{
+        const all=[...document.querySelectorAll('#styleChoices input')];
+        const open=all.find(x=>x.value.toLowerCase().includes('guidance'));
+        if(!open)return;
+        if(cb===open&&cb.checked) all.forEach(x=>{if(x!==open){x.checked=false;x.closest('.choice')?.classList.remove('active');}});
+        else if(cb!==open&&cb.checked){open.checked=false;open.closest('.choice')?.classList.remove('active');}
+      });
+    });
+  },50);
 }
 function setDirection(d){dir=d;buildDirs();updateAll();}
 function directionLabel(d=dir){
@@ -2533,19 +2554,23 @@ if(_ssub) _ssub.onclick = () => {
 // ── Layer 2: Perenual plant suggestions ───────────────────────────────────────
 let _plantCache = {};
 
-async function fetchPlantSuggestions(lightFilter, waterFilter){
+async function fetchPlantSuggestions(lightFilter, waterFilter, typeFilter){
   const zn = parseInt(zdata().z);
-  const cacheKey = 'plants_z' + zn + (lightFilter||'') + (waterFilter||'');
+  const cacheKey = 'plants_z'+zn+(lightFilter||'')+(waterFilter||'')+(typeFilter||'');
   if(_plantCache[cacheKey]){ renderPlantSuggestions(_plantCache[cacheKey]); return; }
 
-  // Prefer Worker proxy (key hidden server-side), fall back to direct call if key is set
   let url;
   if(CONFIG.WORKER_URL){
     url = `${CONFIG.WORKER_URL.replace(/\/$/, '')}/plants?zone=${zn}&per=20`;
+    if(lightFilter) url += `&light=${encodeURIComponent(lightFilter)}`;
+    if(waterFilter) url += `&water=${encodeURIComponent(waterFilter)}`;
+    if(typeFilter)  url += `&type=${encodeURIComponent(typeFilter)}`;
   } else if(CONFIG.PERENUAL_KEY){
-    url = `https://perenual.com/api/v2/species-list?key=${CONFIG.PERENUAL_KEY}&hardiness_min=${zn}&hardiness_max=${zn}&per_page=20&cycle=perennial${lightFilter?'&sunlight='+lightFilter:''}${waterFilter?'&watering='+waterFilter:''}`;
+    url = `https://perenual.com/api/v2/species-list?key=${CONFIG.PERENUAL_KEY}&hardiness_min=${zn}&hardiness_max=${zn}&per_page=20&cycle=perennial`;
+    if(lightFilter) url += `&sunlight=${encodeURIComponent(lightFilter)}`;
+    if(waterFilter) url += `&watering=${encodeURIComponent(waterFilter)}`;
   } else {
-    return; // Worker not configured — silent, no UI shown
+    return;
   }
 
   try {
@@ -2671,7 +2696,8 @@ function updateBrowseZoneLabel(){
 document.getElementById('browseRefreshBtn')?.addEventListener('click', ()=>{
   const light = document.getElementById('browseLight')?.value||'';
   const water = document.getElementById('browseWater')?.value||'';
-  fetchPlantSuggestions(light, water);
+  const type  = document.getElementById('browseType')?.value||'';
+  fetchPlantSuggestions(light, water, type);
 });
 // Update browse label when zone changes
 const _origZip = document.getElementById('zip');
