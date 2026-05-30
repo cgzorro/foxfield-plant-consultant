@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Foxfield Plant Consultant v48 — Zone-Based Intake</title>
+<title>Foxfield Plant Consultant v49 — Zone-Based Intake</title>
 <meta name="description" content="Foxfield bilingual plant consultation intake with site intelligence, photo previews, map reference, and consultant field notes." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -249,6 +249,7 @@
 .procurement-empty{font-size:12px;color:var(--soft);text-align:center;padding:12px 0}
 .plant-trait-badge{display:inline-flex;align-items:center;gap:2px;padding:2px 6px;border-radius:99px;font-size:9px;font-weight:700;border:1px solid;line-height:1.4;white-space:nowrap}
 .native-badge{background:rgba(47,104,66,.12)!important;color:#2f6842!important;border-color:rgba(47,104,66,.3)!important}
+.nearby-badge{background:rgba(52,100,180,.12)!important;color:#2456a4!important;border-color:rgba(52,100,180,.3)!important}
 .plant-chip-native{min-height:16px;display:flex;justify-content:center}
 
 /* ── Feedback survey ── */
@@ -406,7 +407,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v48 · 2026-05-29</div>
+  <div class="rail-version">v49 · 2026-05-29</div>
 </aside>
 <main class="main">
   <header class="top">
@@ -2693,12 +2694,13 @@ function renderPlantSuggestions(plants){
       <span class="plant-chip-sci">${sci}</span>
       <div class="plant-chip-traits">${traitBadges}</div>
       <span class="plant-chip-native" id="native-${idx}"></span>
+      <span class="plant-chip-nearby" id="nearby-${idx}"></span>
     </div>`;
   }).join('');
 
   renderProcurement();
 
-  // A4: async native check
+  // A4: async native + iNaturalist nearby check
   if(CONFIG.WORKER_URL || CONFIG.PERENUAL_KEY){
     plants.forEach((p,idx)=>{
       const sci = (p.scientific_name||[])[0]||'';
@@ -2707,6 +2709,8 @@ function renderPlantSuggestions(plants){
         const el = document.getElementById('native-'+idx);
         if(el) el.innerHTML = '<span class="plant-trait-badge native-badge">🌿 Native</span>';
       }).catch(()=>{});
+      // iNaturalist — only check if we have a ZIP for coordinates
+      checkNearby(sci||p.common_name, idx);
     });
   }
 }
@@ -2724,8 +2728,44 @@ async function checkNative(commonName){
   } catch(e){ return null; }
 }
 
-// Restore saved Perenual key on load
-// Auto-fetch on ZIP input
+// ── Layer 4: iNaturalist "Seen nearby" validation ─────────────────────────────
+// Convert ZIP to approximate lat/lon using ZIP_DB zone data + known state centroids
+const _STATE_COORDS = {
+  AL:[32.8,-86.8],AK:[64.2,-153.4],AZ:[34.3,-111.1],AR:[34.8,-92.2],CA:[37.2,-119.4],
+  CO:[39.0,-105.5],CT:[41.6,-72.7],DE:[39.0,-75.5],FL:[28.7,-82.4],GA:[32.7,-83.2],
+  HI:[20.9,-157.0],ID:[44.4,-114.6],IL:[40.0,-89.2],IN:[40.3,-86.1],IA:[42.1,-93.5],
+  KS:[38.5,-98.4],KY:[37.5,-85.3],LA:[31.1,-91.9],ME:[45.4,-69.2],MD:[39.0,-76.8],
+  MA:[42.3,-71.8],MI:[44.3,-85.4],MN:[46.4,-93.1],MS:[32.7,-89.7],MO:[38.5,-92.5],
+  MT:[47.0,-110.0],NE:[41.5,-99.9],NV:[39.3,-116.6],NH:[43.7,-71.6],NJ:[40.1,-74.6],
+  NM:[34.5,-106.1],NY:[42.9,-75.5],NC:[35.5,-79.4],ND:[47.5,-100.5],OH:[40.3,-82.8],
+  OK:[35.6,-96.9],OR:[44.1,-120.5],PA:[40.9,-77.8],RI:[41.7,-71.5],SC:[33.9,-80.9],
+  SD:[44.4,-100.2],TN:[35.8,-86.3],TX:[31.1,-97.6],UT:[39.4,-111.1],VT:[44.1,-72.7],
+  VA:[37.8,-79.4],WA:[47.4,-120.5],WV:[38.6,-80.6],WI:[44.3,-90.1],WY:[43.0,-107.6]
+};
+
+function zipToLatLon(){
+  const zip = ($('#zip')?.value||'').trim();
+  const entry = zip.length>=3 ? ZIP_DB[zip.slice(0,3)] || ZIP_DB[zip.slice(0,5)] : null;
+  if(!entry) return null;
+  const state = entry[1];
+  return _STATE_COORDS[state] || null;
+}
+
+async function checkNearby(taxonName, idx){
+  try {
+    const coords = zipToLatLon();
+    if(!coords) return;
+    const [lat, lon] = coords;
+    const url = `https://api.inaturalist.org/v1/observations?taxon_name=${encodeURIComponent(taxonName)}&lat=${lat}&lng=${lon}&radius=80&per_page=1&quality_grade=research&order_by=observed_on`;
+    const resp = await fetch(url, {headers:{'Accept':'application/json'}});
+    if(!resp.ok) return;
+    const data = await resp.json();
+    if((data.total_results||0) > 0){
+      const el = document.getElementById('nearby-'+idx);
+      if(el) el.innerHTML = `<span class="plant-trait-badge nearby-badge" title="${data.total_results} observations within 50mi">📍 Seen nearby</span>`;
+    }
+  } catch(e){}
+}
 document.getElementById('zip')?.addEventListener('change', ()=>setTimeout(fetchPlantSuggestions,400));
 
 
