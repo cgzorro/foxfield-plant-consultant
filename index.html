@@ -27,7 +27,7 @@
 .lang-drop.open .lang-caret{transform:rotate(180deg)}
 .lang-drop.open .lang-caret{transform:rotate(180deg)}
 .lang-drop.open .lang-trigger{border-color:var(--accent2);color:var(--ink)}
-.lang-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:148px;background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:6px;margin:0;list-style:none;box-shadow:0 12px 32px rgba(0,0,0,.28);opacity:0;transform:translateY(-6px) scale(.97);pointer-events:none;transition:opacity .16s var(--ease),transform .16s var(--ease);z-index:9999}
+.lang-menu{position:absolute;top:calc(100% + 8px);right:0;left:auto;min-width:148px;background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:6px;margin:0;list-style:none;box-shadow:0 12px 32px rgba(0,0,0,.28);opacity:0;transform:translateY(-6px) scale(.97);pointer-events:none;transition:opacity .16s var(--ease),transform .16s var(--ease);z-index:10000}
 .lang-drop.open .lang-menu{opacity:1;transform:none;pointer-events:auto}
 .lang-menu li{display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:10px;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--muted);cursor:pointer;transition:background .12s,color .12s}
 .lang-menu li span{font-weight:500;letter-spacing:0;font-size:12px;color:var(--soft)}
@@ -75,7 +75,7 @@
   .orientation-card{padding-right:0}
   .zone-card-inline{border-top:1px solid var(--line);padding-top:22px}
   .notes-shell{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.side{display:block}.app{grid-template-columns:1fr}.rail{position:relative;height:auto}.top{position:relative}}
-@media(max-width:560px){.entry{padding:10px}.entry-inner{border-radius:24px}.entry-top{padding:16px 18px 14px;flex-direction:column;align-items:flex-start;gap:14px}.entry-brand{width:100%;display:flex;align-items:center;gap:14px}.entry-brand img{width:52px}.entry-brand h1{font-size:clamp(26px,9vw,42px);letter-spacing:.12em}.entry-tools{margin-left:0;gap:8px}.entry-cards{grid-template-columns:1fr}.compass-only{width:190px;height:190px}.compass-choice{width:42px;height:42px;font-size:13px}.compass-choice[data-dir="N"]{top:-20px}.compass-choice[data-dir="E"]{right:-20px}.compass-choice[data-dir="S"]{bottom:-20px}.compass-choice[data-dir="W"]{left:-20px}}
+@media(max-width:560px){.entry{padding:10px}.entry-inner{border-radius:24px}.entry-top{padding:14px 16px;flex-direction:row;align-items:center;flex-wrap:nowrap;gap:8px}.entry-brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px}.entry-brand img{width:44px}.entry-brand h1{font-size:clamp(22px,8vw,36px);letter-spacing:.1em}.entry-tools{flex-shrink:0;gap:4px;margin-left:0}.entry-cards{grid-template-columns:1fr}.compass-only{width:190px;height:190px}.compass-choice{width:42px;height:42px;font-size:13px}.compass-choice[data-dir="N"]{top:-20px}.compass-choice[data-dir="E"]{right:-20px}.compass-choice[data-dir="S"]{bottom:-20px}.compass-choice[data-dir="W"]{left:-20px}}
 /* ── Referral card ── */
 .referral-card{border:1px solid var(--line2);border-radius:18px;background:rgba(197,138,66,.06);padding:20px;margin:4px 0 16px}
 .referral-card h3{font:500 20px/1.2 var(--serif);margin:0 0 7px;color:var(--ink)}
@@ -415,7 +415,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v63 · 2026-05-30</div>
+  <div class="rail-version">v64 · 2026-05-30</div>
 </aside>
 <main class="main">
   <header class="top">
