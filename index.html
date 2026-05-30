@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Foxfield Plant Consultant v40 — Zone-Based Intake</title>
+<title>Foxfield Plant Consultant v43 — Zone-Based Intake</title>
 <meta name="description" content="Foxfield bilingual plant consultation intake with site intelligence, photo previews, map reference, and consultant field notes." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -388,7 +388,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v40 · 2026-05-29</div>
+  <div class="rail-version">v43 · 2026-05-29</div>
 </aside>
 <main class="main">
   <header class="top">
@@ -430,8 +430,8 @@
       <section class="step active" data-step="0">
         <div class="stephead"><div><h2 data-i18n="s0t">Property Details</h2><p data-i18n="s0p">Start with the basics so the profile can be tied to a real site.</p></div><span class="badge">Step 1 of 8</span></div>
         <div class="grid two">
-          <div class="field"><label data-i18n="name">Name</label><input name="name" autocomplete="name"></div>
-          <div class="field"><label>Email</label><input name="email" type="email" autocomplete="email"></div>
+          <div class="field"><label data-i18n="name">Name <span style="color:var(--accent2)" title="Required">*</span></label><input id="name" name="name" autocomplete="name" required></div>
+          <div class="field"><label>Email <span style="color:var(--accent2)" title="Required">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label data-i18n="phone">Phone</label><input name="phone"></div>
           <div class="field"><label data-i18n="zip">ZIP <span style="color:var(--accent2)" title="Required">*</span></label><input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" placeholder="66212" required pattern="[0-9]{5}" maxlength="5" title="5-digit ZIP code required for USDA zone lookup"></div>
         </div>
@@ -602,8 +602,8 @@
         </div>
         <textarea class="summary" id="summary" readonly></textarea>
         <div class="brief-action-row">
-          <button class="btn primary" type="button" id="copyBrief" onclick="if(typeof updateReview==='function')updateReview();navigator.clipboard.writeText(document.getElementById('summary').value).then(()=>{if(typeof toast==='function')toast('Copied to clipboard');});">&#10695; <span data-i18n="copyBrief">Copy brief</span></button>
-          <button class="btn" type="button" id="printBrief" onclick="if(typeof updateReview==='function')updateReview();setTimeout(()=>window.print(),150);">&#9113; Print / Save PDF</button>
+          <button class="btn primary" type="button" id="copyBrief" onclick="if(!/^\d{5}$/.test((document.getElementById('zip')?.value||'').trim())){if(typeof toast==='function')toast('ZIP code required before copying brief.');return;}if(window._requireConsultantProfile){window._requireConsultantProfile(()=>{if(typeof updateReview==='function')updateReview();navigator.clipboard.writeText(document.getElementById('summary').value).then(()=>{if(typeof toast==='function')toast('Copied to clipboard');});});}else{if(typeof updateReview==='function')updateReview();navigator.clipboard.writeText(document.getElementById('summary').value).then(()=>{if(typeof toast==='function')toast('Copied to clipboard');});}">&#10695; <span data-i18n="copyBrief">Copy brief</span></button>
+          <button class="btn" type="button" id="printBrief" onclick="if(!/^\d{5}$/.test((document.getElementById('zip')?.value||'').trim())){if(typeof toast==='function')toast('ZIP code required before printing.');return;}if(window._requireConsultantProfile){window._requireConsultantProfile(()=>{if(typeof updateReview==='function')updateReview();setTimeout(()=>window.print(),150);});}else{if(typeof updateReview==='function')updateReview();setTimeout(()=>window.print(),150);}">&#9113; Print / Save PDF</button>
           <button class="btn primary" type="button" id="sendBriefBtn" style="background:var(--good);border-color:var(--good)">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M1 7h12M8 3l5 4-5 4"/></svg>
             Send to consultant
@@ -2170,12 +2170,13 @@ function applyText(){
 }
 function go(i){
   if(i===8){openNotes();return;}
-  // Gate: ZIP required before leaving Step 1
-  if(i>0 && step===0){
-    const zip=$('#zip').value.trim();
+  // Gate: ZIP required before leaving Step 1 — blocks any jump past step 0
+  if(i>0 && step===0 || i>0 && !/^\d{5}$/.test(($('#zip').value||'').trim())){
+    const zip=($('#zip').value||'').trim();
     if(!/^\d{5}$/.test(zip)){
-      $('#zip').focus();
-      toast('Please enter a 5-digit ZIP — needed for your USDA zone.');
+      if(step===0) $('#zip').focus();
+      else { if(typeof go==='function') go(0); setTimeout(()=>$('#zip').focus(),200); }
+      toast('ZIP code required — needed for your USDA growing zone.');
       return;
     }
   }
@@ -2914,10 +2915,55 @@ document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
 
 // ── Brief submission ──────────────────────────────────────────────────────────
 (function(){
+  function consultantProfileComplete(){
+    if(document.body.dataset.role !== 'consultant') return true;
+    try {
+      const p = JSON.parse(localStorage.getItem('foxfield_consultant_profile')||'{}');
+      return !!(p.email && p.name);
+    } catch(e){ return false; }
+  }
+
+  function homeownerInfoComplete(){
+    if(document.body.dataset.role !== 'homeowner') return true;
+    const name = (document.getElementById('name')?.value||'').trim();
+    const email = (document.getElementById('email')?.value||'').trim();
+    return !!(name && email);
+  }
+
+  function requireProfile(cb){
+    if(!homeownerInfoComplete()){
+      toast('Please enter your name and email before generating a brief.');
+      if(typeof go==='function')go(0);
+      setTimeout(()=>document.getElementById('name')?.focus(),300);
+      return;
+    }
+    if(!consultantProfileComplete()){
+      document.getElementById('consultantOnboardModal')?.classList.add('open');
+      toast('Please complete your consultant profile first.');
+      return;
+    }
+    cb();
+  }
+
+  function requireConsultantProfile(cb){ requireProfile(cb); }
+
   function sendBrief(){
     const d=typeof formData==='function'?formData():{};
     const z=typeof zdata==='function'?zdata():{};
-    const btn=document.getElementById('sendBriefBtn');
+    // ZIP gate
+    if(!/^\d{5}$/.test((d.zip||'').trim())){
+      toast('ZIP code required before sending brief.');
+      if(typeof go==='function')go(0);
+      setTimeout(()=>document.getElementById('zip')?.focus(),300);
+      return;
+    }
+    // Consultant profile gate
+    requireConsultantProfile(()=>{
+      _doSendBrief(d, z);
+    });
+  }
+
+  function _doSendBrief(d, z){
     const msg=document.getElementById('briefSentMsg');
     if(btn){btn.disabled=true;btn.innerHTML='Sending…';}
     const fields={Name:d.name||'—',Email:d.email||'—',Phone:d.phone||'—',Address:d.address||'—',ZIP:d.zip||'—',Zone:z.z||'—',Goals:d.goals||'—',Style:d.style||'—',Colors:d.colors||'—',Avoid:d.avoid||'—',Budget:d.budget||'—',Timeline:d.timeline||'—',Challenges:d.challenges||'—',Outcome:d.outcome||'—',Photos:(typeof photos!=='undefined'?photos.length:0)+' of 5',Role:document.body.dataset.role||'homeowner',Date:new Date().toISOString().split('T')[0],Source:'App brief'};
@@ -2930,6 +2976,8 @@ document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
       toast('Brief sent — consultant notified');
     });
   }
+  // Expose profile gate globally so inline onclick buttons can use it
+  window._requireConsultantProfile = requireConsultantProfile;
   document.getElementById('sendBriefBtn')?.addEventListener('click',()=>{
     if(typeof updateReview==='function')updateReview();
     sendBrief();
