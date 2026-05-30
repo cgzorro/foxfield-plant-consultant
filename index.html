@@ -452,6 +452,56 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 .nearby-badge{background:rgba(52,100,180,.12)!important;color:#2456a4!important;border-color:rgba(52,100,180,.3)!important}
 .plant-chip-native{min-height:16px;display:flex;justify-content:center}
 
+/* ── D2: Stripe payment modal ── */
+.stripe-modal-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);display:none;place-items:center;padding:16px}
+.stripe-modal-overlay.open{display:grid}
+.stripe-modal-box{width:min(480px,100%);border:1px solid var(--line2);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden;animation:rise .22s var(--ease);margin:auto}
+.stripe-modal-head{padding:22px 24px 16px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.stripe-modal-head h2{font:500 22px/1.15 var(--serif);margin:0;color:var(--ink)}
+.stripe-modal-body{padding:22px 24px}
+.stripe-plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.stripe-plan{border:1px solid var(--line);border-radius:16px;background:var(--field);padding:16px;cursor:pointer;transition:.15s;text-align:center}
+.stripe-plan:hover{border-color:var(--accent2);background:rgba(197,138,66,.07)}
+.stripe-plan.selected{border-color:var(--accent2);background:rgba(197,138,66,.12)}
+.stripe-plan-price{font:700 26px/1 var(--serif);color:var(--ink);margin:6px 0 3px}
+.stripe-plan-price sup{font-size:14px;vertical-align:super}
+.stripe-plan-period{font-size:11px;color:var(--muted);letter-spacing:.06em}
+.stripe-plan-name{font-size:12px;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.stripe-plan-features{list-style:none;padding:0;margin:10px 0 0;font-size:12px;color:var(--muted);text-align:left;display:grid;gap:4px}
+.stripe-plan-features li::before{content:'✓ ';color:var(--good)}
+.stripe-checkout-btn{width:100%;padding:15px;border-radius:14px;background:linear-gradient(90deg,var(--accent2),#8a5529);border:none;color:#fff;font:800 15px var(--sans);cursor:pointer;margin-top:4px;transition:.15s}
+.stripe-checkout-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(197,138,66,.35)}
+.stripe-secure{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--soft);margin-top:10px}
+
+/* ── D2: Bloom calendar in brief ── */
+.pb-bloom{margin-top:14px}
+.pb-bloom-head{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px}
+.pb-bloom-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:3px}
+.pb-bloom-col{display:flex;flex-direction:column;align-items:center;gap:3px}
+.pb-bloom-month{font-size:8px;font-weight:700;color:var(--soft);letter-spacing:.04em}
+.pb-bloom-dot{width:14px;height:14px;border-radius:50%;background:rgba(143,162,107,.15);border:1px solid transparent;position:relative}
+.pb-bloom-dot.has-bloom{background:var(--good);border-color:rgba(134,169,110,.5)}
+.pb-bloom-dot.peak{background:var(--accent2);border-color:rgba(197,138,66,.5);transform:scale(1.15)}
+
+/* ── Terms / Privacy modals ── */
+.legal-modal-overlay{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.65);backdrop-filter:blur(9px);display:none;place-items:center;padding:16px;overflow-y:auto}
+.legal-modal-overlay.open{display:grid}
+.legal-modal-box{width:min(640px,100%);max-height:88vh;overflow-y:auto;border:1px solid var(--line2);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);animation:rise .22s var(--ease);margin:auto}
+.legal-modal-head{padding:22px 26px 16px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:sticky;top:0;background:var(--panel);z-index:2}
+.legal-modal-head h2{font:500 24px/1.15 var(--serif);margin:0;color:var(--ink)}
+.legal-modal-body{padding:24px 26px;font-size:13px;color:var(--muted);line-height:1.7}
+.legal-modal-body h3{font:600 15px/1.3 var(--serif);color:var(--ink);margin:20px 0 6px}
+.legal-modal-body h3:first-child{margin-top:0}
+.legal-modal-body p{margin:0 0 10px}
+.legal-modal-body a{color:var(--accent2)}
+.legal-modal-footer{padding:14px 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--soft)}
+
+/* ── Footer legal links ── */
+.pb-footer-legal{font-size:10px;color:var(--soft);margin-top:5px;display:flex;gap:10px;flex-wrap:wrap}
+.pb-footer-legal a{color:var(--soft);text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;font-size:10px}
+.rail-footer-legal{text-align:center;font-size:10px;color:var(--soft);opacity:.55;margin-top:4px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.rail-footer-legal a{color:var(--soft);text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;font-size:10px;font-family:var(--sans)}
+
 /* ── Feedback survey ── */
 .survey-card{border:1px solid var(--line);border-radius:20px;background:var(--field);margin-top:22px;overflow:hidden}
 .survey-toggle{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;flex-wrap:wrap}
@@ -533,7 +583,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
         <div><h1>FOXFIELD</h1><p data-i18n="brandSub">Plant Consultant</p></div>
       </div>
       <div class="entry-tools">
-        <button class="icon-btn theme-btn" type="button" id="entryThemeBtn" title="Switch to light mode" aria-label="Toggle light/dark theme" onclick="setTheme(document.body.dataset.theme==='dark'?'light':'dark');"></button>
+        <button class="icon-btn theme-btn" type="button" id="entryThemeBtn" title="Switch to light mode" aria-label="Toggle light/dark theme" onclick="setTheme(document.body.dataset.theme==='dark'?'light':'dark');"><svg width="22" height="22" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><line x1="9" y1="1" x2="9" y2="3"/><line x1="9" y1="15" x2="9" y2="17"/><line x1="1" y1="9" x2="3" y2="9"/><line x1="15" y1="9" x2="17" y2="9"/><line x1="3.2" y1="3.2" x2="4.6" y2="4.6"/><line x1="13.4" y1="13.4" x2="14.8" y2="14.8"/><line x1="14.8" y1="3.2" x2="13.4" y2="4.6"/><line x1="4.6" y1="13.4" x2="3.2" y2="14.8"/></svg></button>
         <div class="lang-drop" id="entryLangDrop">
           <button class="icon-btn lang-trigger" type="button" id="entryLangTrigger" aria-haspopup="listbox" aria-expanded="false">
             <svg class="lang-globe" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="22" height="22"><circle cx="9" cy="8.5" r="6.2" stroke-width="1.4"/><ellipse cx="9" cy="8.5" rx="2.6" ry="6.2" stroke-width="0.8" opacity="0.65"/><ellipse cx="9" cy="8.5" rx="6.2" ry="1.8" stroke-width="0.8" opacity="0.65"/><ellipse cx="9" cy="5.8" rx="5.5" ry="1.1" stroke-width="0.55" opacity="0.4"/><ellipse cx="9" cy="11.2" rx="5.5" ry="1.1" stroke-width="0.55" opacity="0.4"/><line x1="7.8" y1="2.3" x2="10.2" y2="14.7" stroke-width="1.1" opacity="0.55"/><line x1="8.2" y1="15.5" x2="9.8" y2="15.5" stroke-width="1.5"/></svg><span class="lang-caret">&#8964;</span>
@@ -599,8 +649,133 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v74 · 2026-05-30</div>
+  <div class="rail-version">v75 · 2026-05-30</div>
+  <div class="rail-footer-legal">
+    <button onclick="openTerms()">Terms</button>
+    <button onclick="openPrivacy()">Privacy</button>
+    <span style="opacity:.6">© Foxfield Consulting LLC</span>
+  </div>
 </aside>
+
+<!-- ── D2: Stripe upgrade modal ───────────────────────────────────── -->
+<div class="stripe-modal-overlay" id="stripeModal">
+  <div class="stripe-modal-box">
+    <div class="stripe-modal-head">
+      <div>
+        <h2>Upgrade to Foxfield Pro</h2>
+        <p style="margin:4px 0 0;font-size:13px;color:var(--muted)">Unlock the full consultant toolkit</p>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('stripeModal').classList.remove('open')">&times;</button>
+    </div>
+    <div class="stripe-modal-body">
+      <div class="stripe-plan-grid">
+        <div class="stripe-plan selected" id="planMonthly" onclick="selectPlan('monthly')">
+          <div class="stripe-plan-name">Monthly</div>
+          <div class="stripe-plan-price"><sup>$</sup>29</div>
+          <div class="stripe-plan-period">per month</div>
+          <ul class="stripe-plan-features">
+            <li>Unlimited briefs</li>
+            <li>White-label branding</li>
+            <li>Bloom calendar</li>
+            <li>Airtable sync</li>
+          </ul>
+        </div>
+        <div class="stripe-plan" id="planAnnual" onclick="selectPlan('annual')">
+          <div class="stripe-plan-name">Annual <span style="background:var(--good);color:#fff;font-size:9px;padding:2px 5px;border-radius:4px;margin-left:3px">Save 30%</span></div>
+          <div class="stripe-plan-price"><sup>$</sup>19</div>
+          <div class="stripe-plan-period">per month · billed yearly</div>
+          <ul class="stripe-plan-features">
+            <li>Everything in Monthly</li>
+            <li>Priority support</li>
+            <li>Early feature access</li>
+            <li>Team seat (coming soon)</li>
+          </ul>
+        </div>
+      </div>
+      <button class="stripe-checkout-btn" id="stripeCheckoutBtn" onclick="launchStripeCheckout()">
+        Continue to Checkout →
+      </button>
+      <div class="stripe-secure">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="8" height="6" rx="1"/><path d="M4 5V3.5a2 2 0 014 0V5"/></svg>
+        Secure checkout powered by Stripe · Cancel anytime
+      </div>
+      <p style="font-size:11px;color:var(--soft);text-align:center;margin:10px 0 0">
+        By upgrading you agree to our
+        <a href="#" onclick="openTerms();return false" style="color:var(--accent2)">Terms</a> and
+        <a href="#" onclick="openPrivacy();return false" style="color:var(--accent2)">Privacy Policy</a>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ── Terms of Service modal ─────────────────────────────────────── -->
+<div class="legal-modal-overlay" id="termsModal">
+  <div class="legal-modal-box">
+    <div class="legal-modal-head">
+      <h2>Terms of Service</h2>
+      <button class="modal-close" onclick="document.getElementById('termsModal').classList.remove('open')">&times;</button>
+    </div>
+    <div class="legal-modal-body">
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing or using Foxfield Plant Consultant (the "Service"), operated by <strong>Foxfield Consulting LLC</strong>, you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.</p>
+      <h3>2. Description of Service</h3>
+      <p>Foxfield Plant Consultant is a landscape planning tool that helps homeowners and landscape consultants prepare site discovery briefs, plant palettes, and client documentation. It is provided as-is for professional planning assistance and does not constitute licensed landscape architecture or engineering advice.</p>
+      <h3>3. User Accounts &amp; Subscriptions</h3>
+      <p>Consultant features require a paid subscription processed through Stripe. You are responsible for maintaining the confidentiality of your account credentials. Subscriptions auto-renew unless cancelled before the renewal date. Refunds are provided at our discretion within 7 days of purchase.</p>
+      <h3>4. Permitted Use</h3>
+      <p>You may use the Service for lawful professional and personal landscape planning purposes. You may not reverse-engineer, resell, or redistribute the Service without written consent from Foxfield Consulting LLC.</p>
+      <h3>5. Plant Recommendations Disclaimer</h3>
+      <p>Plant suggestions are generated algorithmically based on USDA zone data and user inputs. Foxfield Consulting LLC makes no warranty that suggested plants will thrive in your specific microclimate. Always consult a licensed horticulturalist for critical planting decisions.</p>
+      <h3>6. Intellectual Property</h3>
+      <p>The Foxfield name, fox mark, and application design are property of Foxfield Consulting LLC. User-submitted content (project briefs, notes, photos) remains your property; you grant us a limited license to process it to deliver the Service.</p>
+      <h3>7. Limitation of Liability</h3>
+      <p>To the maximum extent permitted by law, Foxfield Consulting LLC shall not be liable for indirect, incidental, or consequential damages arising from use of the Service.</p>
+      <h3>8. Governing Law</h3>
+      <p>These Terms are governed by the laws of the State of Missouri, USA. Disputes shall be resolved in the courts of Jackson County, Missouri.</p>
+      <h3>9. Contact</h3>
+      <p>Foxfield Consulting LLC · <a href="mailto:hello@foxfield.studio">hello@foxfield.studio</a> · Kansas City, MO</p>
+    </div>
+    <div class="legal-modal-footer">
+      <span>Foxfield Consulting LLC · Last updated May 2026</span>
+      <button class="btn" onclick="document.getElementById('termsModal').classList.remove('open')" style="padding:8px 16px;font-size:12px">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Privacy Policy modal ───────────────────────────────────────── -->
+<div class="legal-modal-overlay" id="privacyModal">
+  <div class="legal-modal-box">
+    <div class="legal-modal-head">
+      <h2>Privacy Policy</h2>
+      <button class="modal-close" onclick="document.getElementById('privacyModal').classList.remove('open')">&times;</button>
+    </div>
+    <div class="legal-modal-body">
+      <h3>1. Who We Are</h3>
+      <p>Foxfield Consulting LLC ("we", "us", "Foxfield") operates app.foxfield.studio. We take privacy seriously. This policy describes what data we collect and how we use it.</p>
+      <h3>2. Data We Collect</h3>
+      <p><strong>You provide:</strong> Name, email, phone, project address/ZIP, site photos, and landscape notes you enter into the intake form. For consultant accounts: business name, license number, and payment information (processed by Stripe — we never see full card numbers).</p>
+      <p><strong>We automatically collect:</strong> Page-view analytics via Plausible (privacy-friendly, no cookies, no cross-site tracking). ZIP codes are used to fetch USDA zone and NOAA climate data from public APIs.</p>
+      <h3>3. How We Use Your Data</h3>
+      <p>We use your data to generate plant consultation briefs, sync records to your Airtable base (consultant feature), send brief emails via Formspree, and improve the Service. We do not sell your data to third parties.</p>
+      <h3>4. Data Storage</h3>
+      <p>Project data is stored in your browser (localStorage/sessionStorage) and in your connected Airtable base. We do not operate a central database of homeowner project records.</p>
+      <h3>5. Third-Party Services</h3>
+      <p>We use: <strong>Stripe</strong> for payments; <strong>Plausible</strong> for analytics; <strong>Formspree</strong> for email delivery; <strong>Perenual API</strong> for plant images; <strong>NOAA/USDA APIs</strong> for climate data.</p>
+      <h3>6. Your Rights</h3>
+      <p>You may request deletion of any personally identifiable data by emailing <a href="mailto:hello@foxfield.studio">hello@foxfield.studio</a>. Project data in your browser can be cleared via your browser settings.</p>
+      <h3>7. Cookies</h3>
+      <p>We do not use tracking cookies. The Service uses browser localStorage solely to persist your session and consultant profile.</p>
+      <h3>8. Changes</h3>
+      <p>We will post updates to this page. Continued use after changes constitutes acceptance of the updated policy.</p>
+      <h3>9. Contact</h3>
+      <p>Foxfield Consulting LLC · <a href="mailto:hello@foxfield.studio">hello@foxfield.studio</a> · Kansas City, MO</p>
+    </div>
+    <div class="legal-modal-footer">
+      <span>Foxfield Consulting LLC · Last updated May 2026</span>
+      <button class="btn" onclick="document.getElementById('privacyModal').classList.remove('open')" style="padding:8px 16px;font-size:12px">Close</button>
+    </div>
+  </div>
+</div>
 <main class="main">
   <header class="top">
     <!-- Mobile brand — only visible when rail is hidden -->
@@ -615,7 +790,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
       <button class="icon-btn" type="button" id="homeBtn" title="Home" onclick="if(typeof goHome==='function')goHome();">
         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7.5L8.5 2 15 7.5V15a1 1 0 01-1 1H11v-4H6v4H3a1 1 0 01-1-1z"/></svg>
       </button>
-      <button class="icon-btn theme-btn" type="button" id="themeBtn" title="Switch to light mode" aria-label="Toggle light/dark theme" onclick="setTheme(document.body.dataset.theme==='dark'?'light':'dark');"></button>
+      <button class="icon-btn theme-btn" type="button" id="themeBtn" title="Switch to light mode" aria-label="Toggle light/dark theme" onclick="setTheme(document.body.dataset.theme==='dark'?'light':'dark');"><svg width="22" height="22" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><line x1="9" y1="1" x2="9" y2="3"/><line x1="9" y1="15" x2="9" y2="17"/><line x1="1" y1="9" x2="3" y2="9"/><line x1="15" y1="9" x2="17" y2="9"/><line x1="3.2" y1="3.2" x2="4.6" y2="4.6"/><line x1="13.4" y1="13.4" x2="14.8" y2="14.8"/><line x1="14.8" y1="3.2" x2="13.4" y2="4.6"/><line x1="4.6" y1="13.4" x2="3.2" y2="14.8"/></svg></button>
       <div class="lang-drop" id="langDrop">
         <button class="icon-btn lang-trigger" type="button" id="langTrigger" aria-haspopup="listbox" aria-expanded="false">
           <svg class="lang-globe" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="22" height="22"><circle cx="9" cy="8.5" r="6.2" stroke-width="1.4"/><ellipse cx="9" cy="8.5" rx="2.6" ry="6.2" stroke-width="0.8" opacity="0.65"/><ellipse cx="9" cy="8.5" rx="6.2" ry="1.8" stroke-width="0.8" opacity="0.65"/><ellipse cx="9" cy="5.8" rx="5.5" ry="1.1" stroke-width="0.55" opacity="0.4"/><ellipse cx="9" cy="11.2" rx="5.5" ry="1.1" stroke-width="0.55" opacity="0.4"/><line x1="7.8" y1="2.3" x2="10.2" y2="14.7" stroke-width="1.1" opacity="0.55"/><line x1="8.2" y1="15.5" x2="9.8" y2="15.5" stroke-width="1.5"/></svg><span class="lang-caret">&#8964;</span>
@@ -2574,6 +2749,51 @@ function openPaidBrief(){
   }
 
   // ── Plant palette ──
+  const BLOOM_CAL = {
+    // common name (lowercase) → months that bloom (0=Jan, 11=Dec)
+    'crabapple':[3,4],'dogwood':[3,4],'redbud':[3,4],'serviceberry':[3,4],'magnolia':[2,3],'forsythia':[2,3],
+    'lilac':[3,4],'azalea':[3,4],'rhododendron':[3,4],'weigela':[4,5],'abelia':[5,6,7,8],'butterfly bush':[5,6,7,8,9],
+    'catmint':[4,5,6,7,8],'nepeta':[4,5,6,7,8],'caryopteris':[7,8,9],'chokeberry':[4,5],'clethra':[6,7,8],
+    'crape myrtle':[6,7,8,9],'crapemyrtle':[6,7,8,9],'hypericum':[5,6,7],'mockorange':[5,6],'ninebark':[4,5,6],
+    'quince':[2,3],'spirea':[3,4,5],'viburnum':[4,5],'wisteria':[4,5],'echinacea':[5,6,7,8],'coneflower':[5,6,7,8],
+    'rudbeckia':[6,7,8,9],'black-eyed susan':[6,7,8,9],'liatris':[6,7,8],'blazing star':[6,7,8],
+    'amsonia':[3,4],'blue star':[3,4],'sedum':[8,9,10],'stonecrop':[8,9,10],'calamintha':[6,7,8,9],
+    'calamint':[6,7,8,9],'gaura':[5,6,7,8,9],'hellebore':[1,2,3],'hardy geranium':[4,5,6,7],
+    'rozanne':[4,5,6,7,8,9],'allium':[4,5],'tulip':[3,4],'shasta daisy':[5,6,7],'hibiscus':[7,8,9],
+    'althea':[6,7,8,9],'sand cherry':[3,4],'deutzia':[4,5],'pieris':[2,3,4],'mahonia':[1,2,3],
+    'cherry':[3,4],'ornamental cherry':[3,4],
+  };
+  function bloomMonthsFor(name){
+    const k=name.toLowerCase().replace(/[',*]/g,'').trim();
+    if(BLOOM_CAL[k]) return BLOOM_CAL[k];
+    for(const [pat,months] of Object.entries(BLOOM_CAL)){
+      if(k.includes(pat)||pat.includes(k.split(' ')[0])) return months;
+    }
+    return [];
+  }
+  const MONTH_ABBR=['J','F','M','A','M','J','J','A','S','O','N','D'];
+  // Build aggregate bloom calendar across all selected plants
+  const bloomMatrix = Array(12).fill(0); // count of plants blooming each month
+  if(_procurementList.length){
+    _procurementList.forEach(p=>{
+      const months=bloomMonthsFor(p.name);
+      months.forEach(m=>bloomMatrix[m]++);
+    });
+  }
+  const maxBloom=Math.max(...bloomMatrix,1);
+  const bloomCalHtml = _procurementList.length ? `
+    <div class="pb-bloom">
+      <div class="pb-bloom-head">Bloom Calendar · combined palette</div>
+      <div class="pb-bloom-grid">
+        ${MONTH_ABBR.map((mo,i)=>{
+          const v=bloomMatrix[i];
+          const cls=v===0?'':'v===maxBloom&&v>0?\'pb-bloom-dot peak\'':'pb-bloom-dot has-bloom\'';
+          const dotCls=v===0?'pb-bloom-dot':v===maxBloom?'pb-bloom-dot peak':'pb-bloom-dot has-bloom';
+          return `<div class="pb-bloom-col"><div class="pb-bloom-month">${mo}</div><div class="${dotCls}" title="${v} plant${v===1?'':'s'} blooming"></div></div>`;
+        }).join('')}
+      </div>
+    </div>` : '';
+
   const plantsHtml=_procurementList.length
     ? _procurementList.map(p=>`
         <div class="pb-plant">
@@ -2732,6 +2952,7 @@ function openPaidBrief(){
       Proposed Plant Palette · ${_procurementList.length} selected
     </div>
     <div class="pb-plants">${plantsHtml}</div>
+    ${bloomCalHtml}
   </div>
 
   <!-- Style & Budget -->
@@ -2771,7 +2992,12 @@ function openPaidBrief(){
     <div class="pb-footer-left">
       <strong>${isConsultant&&_wlBiz?_wlBiz:'Foxfield Plant Consultant'}</strong>
       ${isConsultant&&_wlBiz?'Powered by Foxfield Plant Consultant · ':''}foxfield.studio<br>
-      NOAA 1991–2020 Climate Normals · USDA Hardiness Zone ${z.z} · ${z.dbs[0]}
+      NOAA 1991–2020 Climate Normals · USDA Hardiness Zone ${z.z} · ${z.dbs[0]}<br>
+      <div class="pb-footer-legal">
+        <span>© Foxfield Consulting LLC</span>
+        <button onclick="openTerms()">Terms</button>
+        <button onclick="openPrivacy()">Privacy</button>
+      </div>
     </div>
     <div class="pb-footer-qr">
       <div class="pb-footer-qr-label">Powered by<br>Foxfield</div>
@@ -3821,6 +4047,59 @@ document.querySelectorAll('.bloom-swatch').forEach(sw => {
     const input = document.getElementById('colorsField');
     if(input) input.value = selected.join(', ');
   });
+});
+
+// ── D2: Stripe payment helpers ────────────────────────────────────────────────
+// Replace STRIPE_PRICE_IDS with your actual Stripe price IDs
+const STRIPE_CONFIG = {
+  publishableKey: '', // set your pk_live_... or pk_test_...
+  prices: {
+    monthly: '', // price_xxxxx
+    annual:  '', // price_xxxxx
+  },
+  successUrl: 'https://app.foxfield.studio/?upgraded=1',
+  cancelUrl:  'https://app.foxfield.studio/',
+};
+let _selectedPlan = 'monthly';
+
+function openStripeModal(){
+  document.getElementById('stripeModal').classList.add('open');
+}
+function selectPlan(plan){
+  _selectedPlan = plan;
+  document.getElementById('planMonthly').classList.toggle('selected', plan==='monthly');
+  document.getElementById('planAnnual').classList.toggle('selected', plan==='annual');
+}
+async function launchStripeCheckout(){
+  const btn = document.getElementById('stripeCheckoutBtn');
+  if(!STRIPE_CONFIG.publishableKey){
+    toast('Stripe not configured — contact hello@foxfield.studio');
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Redirecting…';
+  try {
+    const stripe = Stripe(STRIPE_CONFIG.publishableKey);
+    await stripe.redirectToCheckout({
+      lineItems:[{price: STRIPE_CONFIG.prices[_selectedPlan], quantity:1}],
+      mode:'subscription',
+      successUrl: STRIPE_CONFIG.successUrl,
+      cancelUrl:  STRIPE_CONFIG.cancelUrl,
+    });
+  } catch(e){
+    toast('Checkout error — please try again');
+    btn.disabled=false; btn.textContent='Continue to Checkout →';
+  }
+}
+
+// ── Terms / Privacy modal openers ─────────────────────────────────────────────
+function openTerms()   { document.getElementById('termsModal').classList.add('open');   }
+function openPrivacy() { document.getElementById('privacyModal').classList.add('open'); }
+
+// Close legal / stripe modals on overlay click
+['termsModal','privacyModal','stripeModal'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('click', e=>{ if(e.target===el) el.classList.remove('open'); });
 });
 
 </script>
