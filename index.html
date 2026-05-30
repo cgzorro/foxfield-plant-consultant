@@ -69,13 +69,13 @@
 [data-theme=light] .dictate-btn{background:#eef2df}
 /* Responsive */
 @media(max-width:1120px){.app{grid-template-columns:1fr}.rail{display:none}.top{padding:14px 16px}.top p{display:none}.workspace{grid-template-columns:1fr;padding:16px}.side{grid-row:1}.mobilebar{display:flex;position:sticky;top:77px;z-index:20;background:var(--bg2);border-bottom:1px solid var(--line);padding:10px 16px;overflow:auto;gap:8px}.mobilebar button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:9px 13px;font-size:13px}.mobilebar button.active{background:var(--accent);color:var(--bg)}}
-@media(max-width:760px){.compass-only{width:210px;height:210px}.compass-choice{width:46px;height:46px}.two,.notes-shell{grid-template-columns:1fr}.side{display:none!important}.workspace{grid-template-columns:1fr!important;padding:12px}.panel{padding:18px;border-radius:20px}.review-row{grid-template-columns:1fr}.stephead{display:block}.badge{display:inline-flex;margin-top:12px}.brand-name,.top h1{font-size:22px}.top{display:flex!important;flex-direction:row!important;align-items:center!important;flex-wrap:nowrap!important;justify-content:space-between!important;gap:8px!important;padding:12px 14px!important}.top h1{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tools{display:flex!important;flex-shrink:0;flex-wrap:nowrap!important;gap:4px}.icon-btn,.lang-drop{flex:0 0 auto}.mobilebar{top:61px!important;padding:8px 10px!important;gap:8px!important}.mobilebar button{flex:0 0 auto;font-size:14px;padding:10px 12px}}
+@media(max-width:760px){.compass-only{width:210px;height:210px}.compass-choice{width:46px;height:46px}.two,.notes-shell{grid-template-columns:1fr}.side{display:none!important}.workspace{grid-template-columns:1fr!important;padding:12px}.panel{padding:18px;border-radius:20px}.review-row{grid-template-columns:1fr}.stephead{display:block}.badge{display:inline-flex;margin-top:12px}.brand-name,.top h1{font-size:22px}.top{display:flex!important;flex-direction:row!important;align-items:center!important;flex-wrap:nowrap!important;justify-content:space-between!important;gap:8px!important;padding:12px 14px!important}.top>div:not(.tools){flex:1;min-width:0}.top h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:20px!important}.top p{display:none!important}.tools{display:flex!important;flex-shrink:0!important;flex-wrap:nowrap!important;gap:4px!important;align-items:center}.icon-btn,.lang-drop{flex:0 0 auto}.mobilebar{top:61px!important;padding:8px 10px!important;gap:8px!important}.mobilebar button{flex:0 0 auto;font-size:14px;padding:10px 12px}}
 @media(max-width:900px){.entry{padding:14px}.entry-top{flex-wrap:wrap}.entry-tools{margin-left:auto}.entry-cards{grid-template-columns:1fr}
   .site-intel-layout{grid-template-columns:1fr;gap:16px}
   .orientation-card{padding-right:0}
   .zone-card-inline{border-top:1px solid var(--line);padding-top:22px}
   .notes-shell{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.side{display:block}.app{grid-template-columns:1fr}.rail{position:relative;height:auto}.top{position:relative}}
-@media(max-width:560px){.entry{padding:10px}.entry-inner{border-radius:24px}.entry-top{padding:14px 16px;flex-direction:row;align-items:center;flex-wrap:nowrap;gap:8px}.entry-brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px}.entry-brand img{width:44px}.entry-brand h1{font-size:clamp(22px,8vw,36px);letter-spacing:.1em}.entry-tools{flex-shrink:0;gap:4px;margin-left:0}.entry-cards{grid-template-columns:1fr}.compass-only{width:190px;height:190px}.compass-choice{width:42px;height:42px;font-size:13px}.compass-choice[data-dir="N"]{top:-20px}.compass-choice[data-dir="E"]{right:-20px}.compass-choice[data-dir="S"]{bottom:-20px}.compass-choice[data-dir="W"]{left:-20px}}
+@media(max-width:560px){.entry{padding:10px}.entry-inner{border-radius:24px}.entry-top{padding:14px 16px;flex-direction:row;align-items:center;flex-wrap:nowrap;gap:8px}.entry-brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px}.entry-brand img{width:44px;flex-shrink:0}.entry-brand h1{font-size:clamp(20px,7vw,32px);letter-spacing:.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.entry-brand p{display:none}.entry-tools{flex-shrink:0;gap:4px;margin-left:0}.entry-cards{grid-template-columns:1fr}.compass-only{width:190px;height:190px}.compass-choice{width:42px;height:42px;font-size:13px}.compass-choice[data-dir="N"]{top:-20px}.compass-choice[data-dir="E"]{right:-20px}.compass-choice[data-dir="S"]{bottom:-20px}.compass-choice[data-dir="W"]{left:-20px}}
 /* ── Referral card ── */
 .referral-card{border:1px solid var(--line2);border-radius:18px;background:rgba(197,138,66,.06);padding:20px;margin:4px 0 16px}
 .referral-card h3{font:500 20px/1.2 var(--serif);margin:0 0 7px;color:var(--ink)}
@@ -92,9 +92,9 @@
 .zb-icon{font-size:13px}
 
 /* ── Contractor handoff modal ── */
-.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);backdrop-filter:blur(7px);display:none;place-items:start;padding:16px;overflow-y:auto}
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);backdrop-filter:blur(7px);display:none;place-items:center;padding:16px;overflow-y:auto}
 .modal-overlay.open{display:grid}
-.modal-box{width:min(580px,100%);border:1px solid var(--line2);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden;animation:rise .22s var(--ease);margin:auto}
+.modal-box{width:min(580px,100%);border:1px solid var(--line2);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden;animation:rise .22s var(--ease);margin:auto;max-height:90vh;overflow-y:auto}
 .modal-head{padding:20px 22px 16px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .modal-head h2{font:500 24px/1.15 var(--serif);margin:0;color:var(--ink)}
 .modal-close{width:32px;height:32px;border:1px solid var(--line);border-radius:999px;background:var(--card2);color:var(--muted);display:grid;place-items:center;font-size:18px;flex-shrink:0;cursor:pointer}
@@ -415,7 +415,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v65 · 2026-05-30</div>
+  <div class="rail-version">v66 · 2026-05-30</div>
 </aside>
 <main class="main">
   <header class="top">
