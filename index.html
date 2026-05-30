@@ -415,7 +415,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v68 · 2026-05-30</div>
+  <div class="rail-version">v69 · 2026-05-30</div>
 </aside>
 <main class="main">
   <header class="top">
@@ -2266,7 +2266,7 @@ function go(i){
   if(step===1){ // Step 2: Site Intelligence — fetch climate data
     fetchClimate();
   }
-  if(step===7){ renderPipeline(); // Step 8: trigger plant fetch via Worker
+  if(step===7){ renderPipeline(); fetchClimate(); // Step 8: ensure climate data is fresh
     const ps=document.getElementById('plantSuggest');
     fetchPlantSuggestions(); if(ps)ps.style.display='';
     const lbl=document.getElementById('plantSuggestZone'); if(lbl)lbl.textContent='Zone '+zdata().z+' · powered by Perenual';
@@ -2315,6 +2315,9 @@ function updateReview(){
 }
 function brief(){
   let d=formData(),z=zdata();
+  const month = new Date().getMonth()+1;
+  const climKey = z.z+'_'+(z.state||'XX')+'_'+month;
+  const clim = _climateCache[climKey];
   const _briefDate=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
   const _wlBiz=(document.getElementById('wlBizName')?.value||'').trim();
   const _wlLic=(document.getElementById('wlLicNum')?.value||'').trim();
@@ -2330,9 +2333,9 @@ ZIP: ${d.zip||'—'}
 
 Site Intelligence
 Estimated zone: ${z.z} — ${z.meta}
-Growing window: ${_climateCache[z.z+'_'+(new Date().getMonth()+1)]?.lastFrost||'—'} → ${_climateCache[z.z+'_'+(new Date().getMonth()+1)]?.firstFrost||'—'} (${_climateCache[z.z+'_'+(new Date().getMonth()+1)]?.seasonDays||'—'} days)
-Current month avg rainfall: ${_climateCache[z.z+'_'+(new Date().getMonth()+1)]?.currentMonth?.inches||'—'}" (${_climateCache[z.z+'_'+(new Date().getMonth()+1)]?.currentMonth?.name||'—'})
-Annual avg rainfall: ${_climateCache[z.z+'_'+(new Date().getMonth()+1)]?.annualRainInches||'—'}"
+Growing window: ${clim?.lastFrost||'—'} → ${clim?.firstFrost||'—'} (${clim?.seasonDays||'—'} days)
+Current month avg rainfall: ${clim?.currentMonth?.inches||'—'}" (${clim?.currentMonth?.name||'—'})
+Annual avg rainfall: ${clim?.annualRainInches||'—'}"
 Front orientation: ${directionLabel()}
 Regional references: ${z.dbs.join(', ')}
 Orientation guidance: ${dir?((DIR_INFO[dir][lang]||DIR_INFO[dir].en)[1]):'—'}
