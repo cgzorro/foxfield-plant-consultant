@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Foxfield Plant Consultant v34 — Zone-Based Intake</title>
+<title>Foxfield Plant Consultant v40 — Zone-Based Intake</title>
 <meta name="description" content="Foxfield bilingual plant consultation intake with site intelligence, photo previews, map reference, and consultant field notes." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,9 +90,9 @@
 .zb-icon{font-size:13px}
 
 /* ── Contractor handoff modal ── */
-.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);backdrop-filter:blur(7px);display:none;place-items:center;padding:16px}
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);backdrop-filter:blur(7px);display:none;place-items:start;padding:16px;overflow-y:auto}
 .modal-overlay.open{display:grid}
-.modal-box{width:min(580px,100%);border:1px solid var(--line2);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden;animation:rise .22s var(--ease)}
+.modal-box{width:min(580px,100%);border:1px solid var(--line2);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden;animation:rise .22s var(--ease);margin:auto}
 .modal-head{padding:20px 22px 16px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .modal-head h2{font:500 24px/1.15 var(--serif);margin:0;color:var(--ink)}
 .modal-close{width:32px;height:32px;border:1px solid var(--line);border-radius:999px;background:var(--card2);color:var(--muted);display:grid;place-items:center;font-size:18px;flex-shrink:0;cursor:pointer}
@@ -342,12 +342,12 @@
         <button class="entry-card" type="button" onclick="document.body.dataset.role='homeowner';document.getElementById('entry').style.display='none';document.getElementById('app').style.display='grid';document.getElementById('consultantNotes').style.display='none';document.querySelector('.workspace').style.display='grid';if(typeof applyText==='function')applyText();">
           <div class="emoji"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent2)" aria-hidden="true"><path d="M4 16L18 4l14 12v16a2 2 0 01-2 2H22v-9h-8v9H6a2 2 0 01-2-2z"/></svg></div><h2 data-i18n="homeownerTitle">Homeowner</h2>
           <p data-i18n="homeownerCopy">Prepare for your consultation with address, goals, preferences, budget, and up to five site photos.</p>
-          <small data-i18n="homeownerAction">Prepare my profile &#8594;</small>
+          <small data-i18n="homeownerAction">Prepare my profile</small>
         </button>
-        <button class="entry-card" type="button" onclick="document.body.dataset.role='consultant';document.getElementById('entry').style.display='none';document.getElementById('app').style.display='grid';document.getElementById('consultantNotes').style.display='none';document.querySelector('.workspace').style.display='grid';if(typeof applyText==='function')applyText();if(typeof toast==='function'&&typeof I18N!=='undefined')toast(I18N[lang]?.consultantMode||'Consultant Mode');setTimeout(()=>{if(typeof window._maybeShowConsultantOnboard==='function')window._maybeShowConsultantOnboard();},400)">>
-          <div class="emoji"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)" aria-hidden="true"><path d="M18 32V14"/><path d="M18 26c-6-2-10-6-12-14 6 1 10 5 12 14z"/><path d="M18 20c5-2 9-7 10-14-6 2-9 7-10 14z"/><path d="M18 32c-7-1-13-4-17-10 7-1 13 2 17 10z"/></svg></div><h2 data-i18n="consultantTitle">Consultant</h2>
+        <button class="entry-card" type="button" onclick="document.body.dataset.role='consultant';document.getElementById('entry').style.display='none';document.getElementById('app').style.display='grid';document.getElementById('consultantNotes').style.display='none';document.querySelector('.workspace').style.display='grid';if(typeof applyText==='function')applyText();if(typeof toast==='function'&&typeof I18N!=='undefined')toast(I18N[lang]?.consultantMode||'Consultant Mode');setTimeout(()=>{if(typeof window._maybeShowConsultantOnboard==='function')window._maybeShowConsultantOnboard();},400)">
+          <div class="emoji"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent2)" aria-hidden="true"><rect x="2" y="4" width="32" height="28" rx="2"/><rect x="6" y="8" width="10" height="8" rx="1" stroke-width="1.5"/><circle cx="26" cy="12" r="4" stroke-width="1.5"/><circle cx="11" cy="24" r="3.5" stroke-width="1.5"/><circle cx="23" cy="24" r="3" stroke-width="1.5"/><line x1="2" y1="20" x2="34" y2="20" stroke-width="1" opacity=".35"/></svg></div><h2 data-i18n="consultantTitle">Consultant</h2>
           <p data-i18n="consultantCopy">Run the full workflow onsite, including field notes, dictation, checklist, and discovery brief prep.</p>
-          <small data-i18n="consultantAction">Open consultant workspace &#8594;</small>
+          <small data-i18n="consultantAction">Open consultant workspace</small>
         </button>
       </div>
     <!-- QR Share — dead center bottom -->
@@ -388,7 +388,7 @@
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v34 · 2026-05-29</div>
+  <div class="rail-version">v40 · 2026-05-29</div>
 </aside>
 <main class="main">
   <header class="top">
@@ -855,7 +855,7 @@
 <!-- ── Contractor Handoff Modal ── -->
 <!-- ── Consultant Onboarding Modal ─────────────────────────────────────── -->
 <div class="modal-overlay" id="consultantOnboardModal">
-  <div class="modal" style="max-width:520px;width:92%">
+  <div class="modal" style="max-width:520px;width:92%;max-height:90vh;overflow-y:auto;border:1px solid var(--line2);border-radius:24px;background:var(--panel);padding:28px;box-shadow:var(--shadow);margin:auto">
     <div class="modal-head">
       <div>
         <h2 style="font:500 24px/1.1 var(--serif);margin:0 0 4px">Welcome, Consultant</h2>
