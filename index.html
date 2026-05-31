@@ -338,7 +338,7 @@ body[data-role=consultant] .homeownerOnly{display:none!important}
 .pb-footer{background:var(--field);padding:16px 36px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line)}
 .pb-footer-left{font-size:11px;color:var(--soft);line-height:1.6}
 .pb-footer-left strong{display:block;font-size:12px;color:var(--ink);font-weight:600;margin-bottom:2px}
-.pb-footer-qr{display:flex;align-items:center;gap:10px;opacity:.6}
+.pb-footer-qr{display:flex;align-items:center;gap:12px;opacity:.7}
 .pb-footer-qr-label{font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.4}
 @media(max-width:560px){.pb-header{padding:22px 20px 18px}.pb-header-top{flex-direction:column;gap:10px}.pb-doc-meta{text-align:left}.pb-section{padding:18px 20px}.pb-grid{grid-template-columns:1fr}.pb-climate{grid-template-columns:repeat(3,1fr)}.pb-plants{grid-template-columns:repeat(2,1fr)}.pb-logistics{grid-template-columns:1fr}.pb-footer{padding:14px 20px}}
 /* ── Print modes ── */
@@ -2887,7 +2887,8 @@ function openPaidBrief(){
 
   // ── Get the real QR from the entry screen ──
   const qrSrc=document.querySelector('.entry-qr-img')?.src||'';
-  const qrHtml=qrSrc?`<img src="${qrSrc}" alt="Foxfield QR" style="width:44px;height:44px;border-radius:4px">`:'';
+  const qrCorner=qrSrc?`<img src="${qrSrc}" alt="Foxfield QR" style="width:44px;height:44px;border-radius:4px">`:'' ;
+  const qrFooter=qrSrc?`<img src="${qrSrc}" alt="Foxfield QR — app.foxfield.studio" style="width:96px;height:96px;border-radius:6px">`:'';
 
   // ── Color swatches ──
   const colorMap={'Purple':'#7a5c9e','Lavender':'#9b8fc0','Blue':'#5b7fa6','White':'#f0f0f0',
@@ -2934,7 +2935,7 @@ function openPaidBrief(){
     </div>
     <div class="pb-qr-corner">
       <div class="pb-qr-corner-label">Powered by<br>Foxfield</div>
-      ${qrHtml}
+      ${qrCorner}
     </div>
   </div>
 
@@ -3069,7 +3070,7 @@ function openPaidBrief(){
     </div>
     <div class="pb-footer-qr">
       <div class="pb-footer-qr-label">Powered by<br>Foxfield</div>
-      ${qrHtml}
+      ${qrFooter}
     </div>
   </div>
 
