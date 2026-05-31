@@ -2721,6 +2721,14 @@ function applyText(){
 }
 function go(i){
   if(i===8){openNotes();return;}
+  // If Field Notes is open, return to the planner first so the step is actually visible.
+  const _notes=document.getElementById('consultantNotes');
+  if(_notes && _notes.style.display!=='none'){
+    _notes.style.display='none';
+    const _ws=document.querySelector('.workspace'); if(_ws) _ws.style.display='grid';
+    $('#pageTitle').textContent=I18N[lang].title;
+    $('#pageSub').textContent=I18N[lang].sub;
+  }
   step=Math.max(0,Math.min(7,i));updateAll();
   // Scroll window to top first
   window.scrollTo({top:0,behavior:'instant'});
@@ -2762,7 +2770,7 @@ function formData(){
 }
 function updateAll(){
   buildSteps();
-  $$('.step').forEach((s,i)=>s.classList.toggle('active',i===step));
+  $$('.step').forEach(s=>s.classList.toggle('active',+s.dataset.step===step));
   $('#prev').style.visibility=step===0?'hidden':'visible';
   $('#next').textContent=step===7?I18N[lang].finish:I18N[lang].next;
   let z=zdata();
