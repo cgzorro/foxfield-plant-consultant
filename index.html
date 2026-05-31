@@ -350,12 +350,12 @@ body[data-role=consultant] .homeownerOnly{display:none!important}
 /* ── Print modes ── */
 /* Save PDF — preserves dark header, full color */
 @media print{
-  body > *:not(#paidBriefModal){ display:none!important }
+  body *{ visibility:hidden!important }
+  #paidBriefModal, #paidBriefModal *{ visibility:visible!important }
+  #paidBriefModal{ position:absolute!important;left:0!important;top:0!important;width:100%!important;height:auto!important;display:block!important;background:none!important;padding:0!important;margin:0!important;overflow:visible!important;place-items:initial!important }
   .paid-brief-toolbar{ display:none!important }
-  .modal-overlay{ position:static!important;background:none!important;display:block!important;padding:0!important }
-  .paid-brief-box{ max-height:none!important;overflow:visible!important;border:none!important;box-shadow:none!important;border-radius:0!important }
-  .paid-brief-body{ border-radius:0!important }
-  /* Digital PDF default — keep dark header */
+  .paid-brief-box{ max-height:none!important;overflow:visible!important;border:none!important;box-shadow:none!important;border-radius:0!important;width:100%!important;max-width:none!important;margin:0!important }
+  .paid-brief-body{ border-radius:0!important;overflow:visible!important }
   .pb-header{ -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important }
   .pb-season-grow{ -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important }
   .pb-type-badge{ -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important }
@@ -1417,6 +1417,10 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
         </div>
       </div>
       <div class="field"><label>Email <span style="color:var(--accent2)" title="Required">*</span></label><input id="ob_email" type="email" placeholder="you@example.com" autocomplete="email"></div>
+      <label class="ob-attest" style="display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.5;color:var(--muted);cursor:pointer;padding:12px 14px;border:1px solid var(--line2);border-radius:12px;background:rgba(0,0,0,.12)">
+        <input type="checkbox" id="ob_attest" style="margin-top:2px;flex:none;width:16px;height:16px;accent-color:var(--accent2)">
+        <span>I confirm the business name and any license or certification number I provide are accurate and mine to use, and that I'm responsible for how this brief is presented to clients. Foxfield does not verify credentials.</span>
+      </label>
     </div>
     <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
       <button class="btn primary" type="button" id="ob_submit">Save &amp; open workspace</button>
@@ -3966,7 +3970,8 @@ document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
     const spec  = document.querySelector('input[name="ob_spec"]:checked')?.value||'';
     const vol   = document.querySelector('input[name="ob_vol"]:checked')?.value||'';
     if(!email){ document.getElementById('ob_email').focus(); toast('Email required so we can deliver briefs'); return; }
-    localStorage.setItem(PROFILE_KEY, JSON.stringify({name,biz,lic,zip,email,spec,vol,ts:new Date().toISOString()}));
+    if(!document.getElementById('ob_attest')?.checked){ toast('Please confirm your info is accurate to continue'); document.getElementById('ob_attest')?.focus(); return; }
+    localStorage.setItem(PROFILE_KEY, JSON.stringify({name,biz,lic,zip,email,spec,vol,attest:true,ts:new Date().toISOString()}));
     localStorage.setItem(SEEN_KEY,'1');
     // Pre-fill white-label branding
     if(biz && document.getElementById('wlBizName')) document.getElementById('wlBizName').value=biz;
