@@ -82,6 +82,9 @@
 .checklist{display:grid;gap:9px}.checkline{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:13px}.checkline input{width:auto;margin-top:3px}.toast{position:fixed;right:22px;bottom:22px;background:var(--card);border:1px solid var(--line2);border-radius:999px;padding:12px 15px;color:var(--ink);box-shadow:var(--shadow);opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s var(--ease);z-index:100}.toast.show{opacity:1;transform:none}.mobilebar{display:none}.secure{font-size:12px;color:var(--soft);margin-top:10px}.divider{height:1px;background:var(--line);margin:22px 0}
 .note-field-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}.note-field-head label{margin:0}.dictate-btn{border:1px solid var(--line2);background:var(--card2);color:var(--ink);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.dictate-btn.on{background:rgba(197,138,66,.2);border-color:var(--accent2);color:var(--accent3)}.dictate-btn.compact{padding:6px 9px;font-size:11px;opacity:.82}.dictate-btn.compact span{display:none}.dictate-btn.compact:after{content:"Dictate"}.dictate-btn.compact.on:after{content:"Stop"}.notes-shell{grid-template-columns:minmax(0,1fr) 340px}.note-card{border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.018);padding:18px}.note-card textarea{min-height:160px}.onsite-note{border:1px solid var(--line);border-radius:18px;background:rgba(143,162,107,.09);padding:16px;color:var(--muted);line-height:1.6;text-wrap:balance}.right-note-panel{display:grid;gap:10px;align-content:start}.right-note-panel .btn{justify-content:center;width:100%}
 .rail-version{text-align:center;font-size:10px;letter-spacing:.08em;color:var(--soft);opacity:.5;margin-top:6px}@media print{.rail-version{display:none}}
+.rail-qr{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 0 10px;border-top:1px solid var(--line)}
+.rail-qr img{width:80px;height:80px;border-radius:8px;border:1px solid rgba(255,255,255,.08)}
+.rail-qr-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);opacity:.6;text-align:center}
 .consultantOnly{display:block}body[data-role=homeowner] .consultantOnly{display:none}
 /* Entry */
 .entry{min-height:100vh;padding:32px;display:grid;place-items:center;background:var(--bg);color:var(--ink)}.entry-inner{width:min(1040px,100%);border:1px solid var(--line);border-radius:32px;background:linear-gradient(180deg,var(--panel),rgba(255,255,255,.018));box-shadow:var(--shadow);overflow:visible}.entry-top{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:28px 30px;border-bottom:1px solid var(--line);overflow:visible;position:relative;z-index:100}.entry-brand{display:flex;gap:18px;align-items:center;min-width:0;flex:1}.entry-brand img{width:72px;height:auto;display:block;flex:0 0 auto}.entry-brand h1{font:500 clamp(30px,4vw,54px)/1 var(--serif);margin:0;letter-spacing:.1em}.entry-brand p{margin:8px 0 0;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-size:12px}.entry-tools{display:flex;gap:10px;align-items:center;flex-shrink:0}.entry-body{padding:40px 32px 32px}.entry-kicker{color:var(--accent2);text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:12px}.entry-title{font:500 clamp(32px,5vw,58px)/1.06 var(--serif);margin:10px 0 12px;text-wrap:balance}.entry-copy{color:var(--muted);max-width:720px;line-height:1.7;margin:0 0 32px}.entry-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.entry-card{border:1px solid var(--line);background:var(--field);border-radius:24px;padding:28px 26px;text-align:left;color:var(--ink);transition:.2s var(--ease)}.entry-card:hover{border-color:var(--accent2);transform:translateY(-2px);background:rgba(197,138,66,.10)}.entry-card .emoji{font-size:32px;margin-bottom:14px}.entry-card h2{font:500 30px/1.1 var(--serif);margin:0 0 10px}.entry-card p{color:var(--muted);line-height:1.55;margin:0 0 18px}.entry-card small{color:var(--accent);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
@@ -667,6 +670,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
   <div class="rail-version">v75 · 2026-05-30</div>
+  <div class="rail-qr" id="railQr"></div>
   <div class="rail-footer-legal">
     <button onclick="openTerms()">Terms</button>
     <button onclick="openPrivacy()">Privacy</button>
@@ -4164,7 +4168,17 @@ async function launchStripeCheckout(){
   }
 }
 
-// ── Terms / Privacy modal openers ─────────────────────────────────────────────
+// ── Rail QR — copy from entry screen QR ──────────────────────────────────────
+window.addEventListener('load',()=>{
+  const src = document.querySelector('.entry-qr-img')?.src;
+  const railQr = document.getElementById('railQr');
+  if(src && railQr) railQr.innerHTML = `
+    <img src="${src}" alt="app.foxfield.studio" title="Scan to open Foxfield Plant Consultant">
+    <span class="rail-qr-label">app.foxfield.studio</span>
+  `;
+});
+
+
 function openTerms()   { document.getElementById('termsModal').classList.add('open');   }
 function openPrivacy() { document.getElementById('privacyModal').classList.add('open'); }
 
