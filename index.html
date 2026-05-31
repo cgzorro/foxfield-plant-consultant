@@ -1021,7 +1021,68 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
       <!-- Step 8: Review & Confirm -->
       <section class="step" data-step="7">
-        <div class="stephead"><div><h2 data-i18n="s7t">Review &amp; Confirm</h2><p data-i18n="s7p">Your discovery brief is ready.</p></div><span class="badge">Step 8 of 8</span></div>
+        <div class="stephead"><div><h2 data-i18n="s7t">Plant Palette</h2><p data-i18n="s7p">Build the plant palette for this site — these flow into the discovery brief.</p></div><span class="badge">Step 8 of 9</span></div>
+        <!-- ── B2: Plant Browse ──────────────────────────────────────────── -->
+        <div class="plant-browse-card" id="plantBrowseCard">
+          <div class="plant-browse-head">
+            <span class="plant-suggest-icon">&#128269;</span>
+            <div>
+              <strong>Browse zone-matched plants</strong>
+              <span class="plant-suggest-sub" id="plantBrowseZone">Filter by your conditions</span>
+            </div>
+          </div>
+          <div class="plant-browse-filters">
+            <select id="browseLight" class="browse-select">
+              <option value="">Any light</option>
+              <option value="full_sun">Full sun</option>
+              <option value="part_shade">Part shade</option>
+              <option value="full_shade">Full shade</option>
+            </select>
+            <select id="browseWater" class="browse-select">
+              <option value="">Any water</option>
+              <option value="minimum">Low water</option>
+              <option value="average">Average</option>
+              <option value="frequent">Frequent</option>
+            </select>
+            <select id="browseType" class="browse-select">
+              <option value="">All types</option>
+              <option value="herbaceous_perennial">Perennials</option>
+              <option value="shrub">Shrubs</option>
+              <option value="tree">Trees</option>
+              <option value="grass">Grasses</option>
+              <option value="vine">Vines</option>
+              <option value="bulb">Bulbs</option>
+            </select>
+            <button class="btn primary" type="button" id="browseRefreshBtn" style="font-size:12px;padding:8px 14px">&#8635; Refresh</button>
+          </div>
+        </div>
+        <!-- ── Plant Suggestions ───────────────────────────────── -->
+        <div id="plantSuggest" class="plant-suggest-card" style="display:none">
+          <div class="plant-suggest-header">
+            <span class="plant-suggest-icon">&#127807;</span>
+            <div>
+              <strong>Zone-matched plant suggestions</strong>
+              <span class="plant-suggest-sub" id="plantSuggestZone">Powered by Perenual</span>
+            </div>
+            <span class="chip plant-suggest-badge">Live data</span>
+          </div>
+          <div class="plant-suggest-grid"></div>
+          <p class="secure" style="margin-top:8px">Suggestions are filtered by hardiness zone.</p>
+          <div class="procurement-panel consultantOnly" id="procurementPanel" style="margin-top:16px">
+            <div class="procurement-head">
+              <strong>&#127807; Plant procurement list</strong>
+              <span class="procurement-count" id="procurementCount">0 selected</span>
+            </div>
+            <div class="procurement-list" id="procurementList">
+              <p class="procurement-empty">Tap + on any plant above to add it to your list.</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="step" data-step="8">
+        <div class="stephead"><div><h2 data-i18n="s8t">Review &amp; Confirm</h2><p data-i18n="s8p">Your discovery brief is ready.</p></div><span class="badge">Step 9 of 9</span></div>
         <div class="zone-strip" id="zone-strip"></div>
         <div class="review" id="review" style="display:none"></div>
 
@@ -1103,63 +1164,6 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
           <button class="btn" type="button" id="prosIntro">&#8599; <span data-i18n="prosButton">Prepare contractor handoff</span></button>
         </div>
 
-        <!-- ── B2: Plant Browse ──────────────────────────────────────────── -->
-        <div class="plant-browse-card" id="plantBrowseCard">
-          <div class="plant-browse-head">
-            <span class="plant-suggest-icon">&#128269;</span>
-            <div>
-              <strong>Browse zone-matched plants</strong>
-              <span class="plant-suggest-sub" id="plantBrowseZone">Filter by your conditions</span>
-            </div>
-          </div>
-          <div class="plant-browse-filters">
-            <select id="browseLight" class="browse-select">
-              <option value="">Any light</option>
-              <option value="full_sun">Full sun</option>
-              <option value="part_shade">Part shade</option>
-              <option value="full_shade">Full shade</option>
-            </select>
-            <select id="browseWater" class="browse-select">
-              <option value="">Any water</option>
-              <option value="minimum">Low water</option>
-              <option value="average">Average</option>
-              <option value="frequent">Frequent</option>
-            </select>
-            <select id="browseType" class="browse-select">
-              <option value="">All types</option>
-              <option value="herbaceous_perennial">Perennials</option>
-              <option value="shrub">Shrubs</option>
-              <option value="tree">Trees</option>
-              <option value="grass">Grasses</option>
-              <option value="vine">Vines</option>
-              <option value="bulb">Bulbs</option>
-            </select>
-            <button class="btn primary" type="button" id="browseRefreshBtn" style="font-size:12px;padding:8px 14px">&#8635; Refresh</button>
-          </div>
-        </div>
-        <!-- ── Plant Suggestions ───────────────────────────────── -->
-        <div id="plantSuggest" class="plant-suggest-card" style="display:none">
-          <div class="plant-suggest-header">
-            <span class="plant-suggest-icon">&#127807;</span>
-            <div>
-              <strong>Zone-matched plant suggestions</strong>
-              <span class="plant-suggest-sub" id="plantSuggestZone">Powered by Perenual</span>
-            </div>
-            <span class="chip plant-suggest-badge">Live data</span>
-          </div>
-          <div class="plant-suggest-grid"></div>
-          <p class="secure" style="margin-top:8px">Suggestions are filtered by hardiness zone.</p>
-          <div class="procurement-panel consultantOnly" id="procurementPanel" style="margin-top:16px">
-            <div class="procurement-head">
-              <strong>&#127807; Plant procurement list</strong>
-              <span class="procurement-count" id="procurementCount">0 selected</span>
-            </div>
-            <div class="procurement-list" id="procurementList">
-              <p class="procurement-empty">Tap + on any plant above to add it to your list.</p>
-            </div>
-          </div>
-        </div>
-
         <!-- Plant suggestions powered by Cloudflare Worker proxy -->
         <!-- ── Optional feedback survey ─────────────────────────────── -->
         <div class="survey-card" id="surveyCard">
@@ -1234,7 +1238,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
       </div>
       </section>
 
-      <div class="actions"><button class="btn ghost" id="prev" type="button" onclick="if(typeof go==='function')go((typeof step!=='undefined'?step:0)-1);">&larr; Back</button><button class="btn primary" id="next" type="button" onclick="if(typeof step!=='undefined'&&step<7){if(typeof go==='function')go(step+1);}else{if(typeof updateReview==='function')updateReview();if(typeof toast==='function')toast('Brief prepared');}">Save &amp; Continue &rarr;</button></div>
+      <div class="actions"><button class="btn ghost" id="prev" type="button" onclick="if(typeof go==='function')go((typeof step!=='undefined'?step:0)-1);">&larr; Back</button><button class="btn primary" id="next" type="button" onclick="if(typeof step!=='undefined'&&step<8){if(typeof go==='function')go(step+1);}else{if(typeof updateReview==='function')updateReview();if(typeof toast==='function')toast('Brief prepared');}">Save &amp; Continue &rarr;</button></div>
       <p class="secure" data-i18n="secure">Your information stays in this session and is not transmitted.</p>
     </form>
 
@@ -1445,8 +1449,8 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 <script>
 const I18N={
 en:{brandSub:'Plant Consultant',tagline:'Thoughtful landscapes.<br>Rooted in place.',title:'Plant Consultant',sub:'Plan with purpose. Plant with confidence.',
-steps:[['Property Details','Address & contact'],['Site Intelligence','Zone, map & light'],['Existing Landscape','What is there now'],['Goals & Challenges','What to improve'],['Style Preferences','Design direction'],['Budget & Timing','Scope expectations'],['Photos & Context','Up to 5 photos'],['Review & Confirm','Discovery brief']],
-s0t:'Property Details',s0p:'Start with the basics so the profile can be tied to a real site.',s1t:'Site Intelligence',s1p:'Capture orientation and preliminary conditions. Verify on-site before final recommendations.',s2t:'Existing Landscape',s2p:'What is already there, and what should stay or go?',s3t:'Goals & Challenges',s3p:'Tell us what you hope to improve.',s4t:'Style & Preferences',s4p:'Design character, bloom colors, and what to avoid.',styleLabel:'Design character',styleHint:'Choose the aesthetic that best matches your vision.',s5t:'Budget & Timing',s5p:'Set expectations for scope and phasing.',s6t:'Photos & Context',s6p:'Upload up to five photos of the area.',s7t:'Review & Confirm',s7p:'Prepare a consultant-ready discovery brief.',
+steps:[['Property Details','Address & contact'],['Site Intelligence','Zone, map & light'],['Existing Landscape','What is there now'],['Goals & Challenges','What to improve'],['Style Preferences','Design direction'],['Budget & Timing','Scope expectations'],['Photos & Context','Up to 5 photos'],['Plant Palette','Build your plant list'],['Review & Confirm','Discovery brief']],
+s0t:'Property Details',s0p:'Start with the basics so the profile can be tied to a real site.',s1t:'Site Intelligence',s1p:'Capture orientation and preliminary conditions. Verify on-site before final recommendations.',s2t:'Existing Landscape',s2p:'What is already there, and what should stay or go?',s3t:'Goals & Challenges',s3p:'Tell us what you hope to improve.',s4t:'Style & Preferences',s4p:'Design character, bloom colors, and what to avoid.',styleLabel:'Design character',styleHint:'Choose the aesthetic that best matches your vision.',s5t:'Budget & Timing',s5p:'Set expectations for scope and phasing.',s6t:'Photos & Context',s6p:'Upload up to five photos of the area.',s7t:'Plant Palette',s7p:'Build the plant palette for this site — these flow into the discovery brief.',s8t:'Review & Confirm',s8p:'Prepare a consultant-ready discovery brief.',
 name:'Name',phone:'Phone',zip:'ZIP',entryKicker:'Choose your path',entryTitle:'Start with the right workflow.',entryCopy:'Homeowners can prepare a clean project profile. Consultants can use the full planning workspace, field notes, dictation, and visit checklist.',homeownerTitle:'Homeowner',homeownerCopy:'Prepare for your consultation with address, goals, preferences, budget, and up to five site photos.',homeownerAction:'Prepare my profile →',consultantTitle:'Consultant',consultantCopy:'Run the full workflow onsite, including field notes, dictation, checklist, and discovery brief prep.',consultantAction:'Open consultant workspace →',
 address:'Project Address',addressHint:'Used for map reference and future geocode / USDA lookup.',updateMap:'Update map',directions:'Open directions',frontDoor:'Front door orientation',frontHint:'Facing direction when you stand at the front door.',zoneEstimate:'Planning zone estimate',lightZones:'Preliminary light-zone guidance',existing:'Describe the existing area',keepRemove:'Keep / remove / protect',utilities:'Known utilities, drainage, roots, slopes, or access issues',primaryGoals:'Primary goals',challenges:'Challenges',outcome:'Ideal outcome',colors:'Preferred colors',avoid:'Avoid',budget:'Budget range',timeline:'Timeline',installPref:'Installation preference',photoTitle:'Site Photos',photoHelp:'Recommended: overall property, project area, alternate angle, existing issues, and one detail photo.',selectPhotos:'Select photos',copyBrief:'Copy brief',
 secure:'Your information stays in this session and is not transmitted.',summaryTitle:'Site Intelligence Summary',summarySub:'Planning estimate for your property.',frontDoorShort:'Front Orientation',fieldNotesShort:'Field Notes',homeAccess:'Home',roleHomeowner:'Homeowner mode',roleConsultant:'Consultant mode',whyAsk:'Why we ask',whyAskText:'Your answers, photos, and field notes help align the right plants with the right place before design begins.',openNotes:'Open consultant notes',notesExplain:'Use on-site with the client to capture conditions, requests, and next actions.',notesTitle:'Consultant Field Notes',notesSub:'Use this during the site visit for typed or dictated notes.',consultantMode:'Consultant Mode',consultantTools:'Consultant Tools',onsiteCapture:'<b>On-site capture:</b> keep consultant observations separate from client requests. Dictate in the field, then edit before copying the recap into the discovery brief.',liveNotes:'General notes',conditions:'Observed conditions',conditionsHint:'What you see onsite: light, slope, drainage, soil, roots, utilities, existing plants.',requests:'Client requests',requestsHint:'What the client says they want: colors, privacy, maintenance level, plant likes/dislikes.',measurements:'Measurements / counts',nextActions:'Next actions',startDictation:'Start dictation',stopDictation:'Stop dictation',copyNotes:'Copy notes recap',clearNotes:'Clear notes',backPlanner:'Back to planner',visitChecklist:'Visit checklist',chk1:'Confirm sun exposure',chk2:'Check drainage / grade',chk3:'Identify roots or utilities',chk4:'Confirm budget and timing',chk5:'Capture follow-up photos',back:'← Back',next:'Save & Continue →',finish:'Prepare brief',selected:'selected',notStarted:'Not started',started:'In progress',copied:'Copied to clipboard',photoLimit:'Photo limit is 5 for MVP',mapUpdated:'Map reference updated',speechUnsupported:'Speech dictation not supported in this browser',
@@ -1457,8 +1461,8 @@ goals:[['Low maintenance','Reduce upkeep'],['Pollinator habitat','Support bees/b
 style:[['Naturalistic','Loose drifts & meadow layers'],['Formal','Defined structure & symmetry'],['Cottage','Layered abundance & texture'],['Modern','Clean masses & strong form'],['Native-forward','Regional ecology & habitat'],['Open to guidance','Let the consultant lead']],
 install:[['DIY'],['Done-for-me'],['Phased'],['Not sure']]}},
 es:{brandSub:'Consultor de Plantas',tagline:'Paisajes pensados.<br>Arraigados al lugar.',title:'Consultor de Plantas',sub:'Planifique con propósito. Plante con confianza.',
-steps:[['Detalles','Dirección y contacto'],['Sitio','Zona, mapa y luz'],['Paisaje Actual','Lo que existe'],['Metas y Retos','Qué mejorar'],['Preferencias','Dirección de diseño'],['Presupuesto','Alcance y fechas'],['Fotos','Hasta 5 fotos'],['Revisión','Brief de consulta']],
-s0t:'Detalles de la Propiedad',s0p:'Comience con lo básico para vincular el perfil a un sitio real.',s1t:'Inteligencia del Sitio',s1p:'Capture orientación y condiciones preliminares. Verifique en sitio antes de recomendaciones finales.',s2t:'Paisaje Actual',s2p:'Qué existe ahora, y qué debe quedarse o retirarse.',s3t:'Metas y Retos',s3p:'Cuéntenos qué espera mejorar.',s4t:'Estilo y Preferencias',s4p:'Carácter de diseño, paleta de colores y qué evitar.',styleLabel:'Carácter del diseño',styleHint:'Elige el estilo que mejor represente tu visión.',s5t:'Presupuesto y Tiempo',s5p:'Defina expectativas de alcance y fases.',s6t:'Fotos y Contexto',s6p:'Suba hasta cinco fotos del área.',s7t:'Revisar y Confirmar',s7p:'Prepare un brief listo para el consultor.',
+steps:[['Detalles','Dirección y contacto'],['Sitio','Zona, mapa y luz'],['Paisaje Actual','Lo que existe'],['Metas y Retos','Qué mejorar'],['Preferencias','Dirección de diseño'],['Presupuesto','Alcance y fechas'],['Fotos','Hasta 5 fotos'],['Paleta de Plantas','Arme su lista'],['Revisión','Brief de consulta']],
+s0t:'Detalles de la Propiedad',s0p:'Comience con lo básico para vincular el perfil a un sitio real.',s1t:'Inteligencia del Sitio',s1p:'Capture orientación y condiciones preliminares. Verifique en sitio antes de recomendaciones finales.',s2t:'Paisaje Actual',s2p:'Qué existe ahora, y qué debe quedarse o retirarse.',s3t:'Metas y Retos',s3p:'Cuéntenos qué espera mejorar.',s4t:'Estilo y Preferencias',s4p:'Carácter de diseño, paleta de colores y qué evitar.',styleLabel:'Carácter del diseño',styleHint:'Elige el estilo que mejor represente tu visión.',s5t:'Presupuesto y Tiempo',s5p:'Defina expectativas de alcance y fases.',s6t:'Fotos y Contexto',s6p:'Suba hasta cinco fotos del área.',s7t:'Paleta de Plantas',s7p:'Arme la paleta de plantas para este sitio — pasan al brief.',s8t:'Revisar y Confirmar',s8p:'Prepare un brief listo para el consultor.',
 name:'Nombre',phone:'Teléfono',zip:'Código postal',entryKicker:'Elija su camino',entryTitle:'Comience con el flujo correcto.',entryCopy:'Los propietarios pueden preparar un perfil claro del proyecto. Los consultores pueden usar el espacio completo con notas de campo, dictado, lista de visita y brief.',homeownerTitle:'Propietario',homeownerCopy:'Prepare su consulta con dirección, metas, preferencias, presupuesto y hasta cinco fotos del sitio.',homeownerAction:'Preparar mi perfil →',consultantTitle:'Consultor',consultantCopy:'Use el flujo completo en sitio, incluyendo notas de campo, dictado, lista de visita y brief.',consultantAction:'Abrir espacio de consultor →',
 address:'Dirección del proyecto',addressHint:'Se usa para mapa y futura búsqueda geográfica / USDA.',updateMap:'Actualizar mapa',directions:'Abrir direcciones',frontDoor:'Orientación de la entrada',frontHint:'Dirección mirando desde la puerta principal.',zoneEstimate:'Estimación de zona',lightZones:'Guía preliminar de luz',existing:'Describa el área actual',keepRemove:'Conservar / retirar / proteger',utilities:'Servicios, drenaje, raíces, pendientes o acceso',primaryGoals:'Metas principales',challenges:'Retos',outcome:'Resultado ideal',colors:'Colores preferidos',avoid:'Evitar',budget:'Rango de presupuesto',timeline:'Cronograma',installPref:'Preferencia de instalación',photoTitle:'Fotos del sitio',photoHelp:'Recomendado: propiedad general, área del proyecto, otro ángulo, problemas existentes y una foto de detalle.',selectPhotos:'Seleccionar fotos',copyBrief:'Copiar brief',
 secure:'Su información permanece en esta sesión y no se transmite.',summaryTitle:'Resumen del Sitio',summarySub:'Estimación de planificación para su propiedad.',frontDoorShort:'Orientación Frontal',fieldNotesShort:'Notas de Campo',homeAccess:'Inicio',roleHomeowner:'Modo propietario',roleConsultant:'Modo consultor',whyAsk:'Por qué preguntamos',whyAskText:'Sus respuestas, fotos y notas de campo ayudan a alinear las plantas correctas con el lugar correcto antes del diseño.',openNotes:'Abrir notas del consultor',notesExplain:'Use en sitio con el cliente para capturar condiciones, solicitudes y próximos pasos.',notesTitle:'Notas de Campo del Consultor',notesSub:'Use durante la visita para notas escritas o dictadas.',consultantMode:'Modo Consultor',consultantTools:'Herramientas del consultor',onsiteCapture:'<b>Captura en sitio:</b> mantenga las observaciones del consultor separadas de las solicitudes del cliente. Dicte en campo y luego edite antes de copiar el resumen al brief.',liveNotes:'Notas generales',conditions:'Condiciones observadas',conditionsHint:'Lo que ve en sitio: luz, pendiente, drenaje, suelo, raíces, servicios y plantas existentes.',requests:'Solicitudes del cliente',requestsHint:'Lo que el cliente dice que quiere: colores, privacidad, mantenimiento y plantas que le gustan o no.',measurements:'Medidas / cantidades',nextActions:'Próximos pasos',startDictation:'Iniciar dictado',stopDictation:'Detener dictado',copyNotes:'Copiar resumen',clearNotes:'Borrar notas',backPlanner:'Volver al planificador',visitChecklist:'Lista de visita',chk1:'Confirmar exposición solar',chk2:'Revisar drenaje / pendiente',chk3:'Identificar raíces o servicios',chk4:'Confirmar presupuesto y tiempo',chk5:'Tomar fotos de seguimiento',back:'← Atrás',next:'Guardar y continuar →',finish:'Preparar brief',selected:'seleccionadas',notStarted:'Sin iniciar',started:'En progreso',copied:'Copiado',photoLimit:'El límite MVP es 5 fotos',mapUpdated:'Mapa actualizado',speechUnsupported:'El dictado no es compatible con este navegador',
@@ -2660,7 +2664,7 @@ function buildSteps(){
   let arr=I18N[lang].steps;
   $('#steps').innerHTML=arr.map((s,i)=>`<button class="stepnav ${i===step?'active':''} ${i<step?'done':''}" data-stepgo="${i}"><span class="bubble">${i+1}</span><span><span class="st">${s[0]}</span><span class="ss">${s[1]}</span></span><span class="done">✓</span></button>`).join('');
   // Mobile bar — use short labels to fit on screen
-  const shortLabels=['Property','Site','Existing','Goals','Style','Budget','Photos','Review'];
+  const shortLabels=['Property','Site','Existing','Goals','Style','Budget','Photos','Plants','Review'];
   $('#mobileSteps').innerHTML=arr.map((s,i)=>`<button class="${i===step?'active':''}" data-stepgo="${i}">${i+1}. ${shortLabels[i]||s[0]}</button>`).join('');
   $$('[data-stepgo]').forEach(b=>b.onclick=()=>go(+b.dataset.stepgo));
   setTimeout(()=>{const _mb=document.getElementById('mobileSteps');const _active=_mb?.querySelector('button.active');if(_active)_active.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});},80);
@@ -2713,14 +2717,13 @@ function buildDirs(){
 function applyText(){
   $$('[data-i18n]').forEach(e=>{let v=I18N[lang][e.dataset.i18n];if(v!==undefined)e.innerHTML=v});
   $('#pageTitle').textContent=I18N[lang].title;$('#pageSub').textContent=I18N[lang].sub;
-  $$('.badge').forEach(b=>{if(b.dataset.i18n)return;let s=b.closest('.step');if(s)b.textContent=`Step ${+s.dataset.step+1} of 8`;});
+  $$('.badge').forEach(b=>{if(b.dataset.i18n)return;let s=b.closest('.step');if(s)b.textContent=`Step ${+s.dataset.step+1} of 9`;});
   $('#prev').textContent=I18N[lang].back;
-  $('#next').textContent=step===7?I18N[lang].finish:I18N[lang].next;
+  $('#next').textContent=step===8?I18N[lang].finish:I18N[lang].next;
   $('#notesStatus').textContent=notesFilled()?I18N[lang].started:I18N[lang].notStarted;
   $$('.dictate-btn:not(.compact)').forEach(btn=>{const s=btn.querySelector('span');if(s&&!btn.classList.contains('on'))s.textContent=I18N[lang].startDictation;});
 }
 function go(i){
-  if(i===8){openNotes();return;}
   // If Field Notes is open, return to the planner first so the step is actually visible.
   const _notes=document.getElementById('consultantNotes');
   if(_notes && _notes.style.display!=='none'){
@@ -2729,7 +2732,7 @@ function go(i){
     $('#pageTitle').textContent=I18N[lang].title;
     $('#pageSub').textContent=I18N[lang].sub;
   }
-  step=Math.max(0,Math.min(7,i));updateAll();
+  step=Math.max(0,Math.min(8,i));updateAll();
   // Scroll window to top first
   window.scrollTo({top:0,behavior:'instant'});
   // Then scroll the panel to top so step content is immediately visible
@@ -2751,11 +2754,12 @@ function go(i){
   }
   if(window.plausible) window.plausible('Step Complete',{props:{step:i+1,name:(I18N[lang]?.steps?.[i]?.[0]||'Step '+(i+1))}});
   if(step===1){ fetchClimate(); }
-  if(step===7){ renderPipeline(); fetchClimate();
+  if(step===7){ fetchClimate();
     const ps=document.getElementById('plantSuggest');
     fetchPlantSuggestions(); if(ps)ps.style.display='';
     const lbl=document.getElementById('plantSuggestZone'); if(lbl)lbl.textContent='Zone '+zdata().z+' · powered by Perenual';
   }
+  if(step===8){ renderPipeline(); fetchClimate(); }
   // Scroll active mobile step tab into center view
   setTimeout(()=>{
     const a=document.querySelector('#mobileSteps button.active');
@@ -2772,7 +2776,7 @@ function updateAll(){
   buildSteps();
   $$('.step').forEach(s=>s.classList.toggle('active',+s.dataset.step===step));
   $('#prev').style.visibility=step===0?'hidden':'visible';
-  $('#next').textContent=step===7?I18N[lang].finish:I18N[lang].next;
+  $('#next').textContent=step===8?I18N[lang].finish:I18N[lang].next;
   let z=zdata();
   $('#zoneLabel').textContent='Zone '+z.z;$('#zoneMeta').textContent=z.meta;
   $('#sideZone').textContent='Zone '+z.z;$('#sideZoneMeta').textContent=z.meta;
@@ -2812,6 +2816,11 @@ function updateReview(){
 }
 
 function openPaidBrief(){
+  if(document.body.dataset.role==='consultant' && typeof window._consultantProfileComplete==='function' && !window._consultantProfileComplete()){
+    document.getElementById('consultantOnboardModal')?.classList.add('open');
+    if(typeof toast==='function') toast('Complete your free consultant profile to open the brief.');
+    return;
+  }
   const d=formData(), z=zdata();
   const month=new Date().getMonth()+1;
   const clim=_climateCache[z.z+'_'+(z.state||'XX')+'_'+month];
@@ -3214,7 +3223,7 @@ function updateMap(){
 }
 $('#mapBtn').onclick=updateMap;$('#address').onchange=updateMap;$('#directions').href='https://www.google.com/maps/dir/?api=1&destination=Kansas+City,MO';
 $('#next').onclick=()=>{
-  if(step<7){
+  if(step<8){
     go(step+1);
   } else {
     updateReview();
@@ -4055,6 +4064,7 @@ document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
   }
   // Expose profile gate globally so inline onclick buttons can use it
   window._requireConsultantProfile = requireConsultantProfile;
+  window._consultantProfileComplete = consultantProfileComplete;
   document.getElementById('sendBriefBtn')?.addEventListener('click',()=>{
     if(typeof updateReview==='function')updateReview();
     sendBrief();
@@ -4196,6 +4206,42 @@ function openPrivacy() { document.getElementById('privacyModal').classList.add('
   const el = document.getElementById(id);
   if(el) el.addEventListener('click', e=>{ if(e.target===el) el.classList.remove('open'); });
 });
+
+
+/* ── Autosave: intake persistence (survives refresh / interruption) ──── */
+(function(){
+  const KEY='foxfield_intake_autosave_v1';
+  function collect(){
+    const data={fields:{},notes:{},dir:(typeof dir!=='undefined'?dir:'')};
+    document.querySelectorAll('#form input[name],#form textarea[name],#form select[name]').forEach(el=>{
+      if(el.type==='radio'||el.type==='checkbox'){ if(el.checked){(data.fields[el.name]=data.fields[el.name]||[]).push(el.value);} }
+      else if(el.type==='file'){}
+      else { data.fields[el.name]=el.value; }
+    });
+    ['notes1','notes2','notes3','notes4'].forEach(id=>{const e=document.getElementById(id); if(e)data.notes[id]=e.value;});
+    return data;
+  }
+  let _t;
+  function save(){ clearTimeout(_t); _t=setTimeout(()=>{ try{ localStorage.setItem(KEY,JSON.stringify(collect())); }catch(e){} },250); }
+  function restore(){
+    let data; try{ data=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ return; }
+    if(!data) return;
+    Object.entries(data.fields||{}).forEach(([name,val])=>{
+      document.querySelectorAll('#form [name="'+name+'"]').forEach(el=>{
+        if(el.type==='radio'||el.type==='checkbox'){ if(Array.isArray(val)&&val.indexOf(el.value)>-1){ el.checked=true; const ch=el.closest('.choice'); if(ch)ch.classList.add('active'); } }
+        else if(el.type==='file'){}
+        else { el.value=val; }
+      });
+    });
+    Object.entries(data.notes||{}).forEach(([id,v])=>{const e=document.getElementById(id); if(e)e.value=v;});
+    if(data.dir){ try{ window.dir=data.dir; }catch(e){} }
+    try{ if(typeof updateAll==='function') updateAll(); }catch(e){}
+  }
+  document.addEventListener('input',e=>{ const t=e.target; if(t&&((t.closest&&t.closest('#form'))||String(t.id||'').startsWith('notes'))) save(); });
+  document.addEventListener('change',e=>{ const t=e.target; if(t&&((t.closest&&t.closest('#form'))||String(t.id||'').startsWith('notes'))) save(); });
+  window.addEventListener('load',()=>setTimeout(restore,700));
+  window._foxfieldAutosaveClear=function(){ try{ localStorage.removeItem(KEY); }catch(e){} };
+})();
 
 </script>
 </body>
