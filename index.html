@@ -465,6 +465,21 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 .procurement-remove{background:none;border:none;color:var(--soft);cursor:pointer;font-size:16px;padding:2px 6px;border-radius:6px;transition:color .12s}
 .procurement-remove:hover{color:var(--danger,#c84040)}
 .procurement-empty{font-size:12px;color:var(--soft);text-align:center;padding:12px 0}
+.livebloom-card{border:1px solid var(--line2);border-radius:16px;background:rgba(143,162,107,.06);padding:16px;margin-top:16px}
+.livebloom-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.livebloom-head strong{font-size:13px;font-weight:800;color:var(--ink);display:block}
+.livebloom-palette{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:12px;min-height:0}
+.livebloom-pal-label{font-size:11px;color:var(--soft);font-weight:700;margin-right:2px}
+.livebloom-sw{width:18px;height:18px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:inline-block}
+.livebloom-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:96px}
+.livebloom-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px}
+.livebloom-barwrap{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center}
+.livebloom-bar{width:68%;min-height:0;background:linear-gradient(180deg,var(--accent2),var(--accent));border-radius:3px 3px 0 0;transition:height .2s}
+.livebloom-col.gap .livebloom-barwrap{border-bottom:2px dotted var(--line2)}
+.livebloom-month{font-size:9px;color:var(--soft);font-weight:700}
+.livebloom-count{font-size:9px;color:var(--accent2);font-weight:800;height:11px}
+.livebloom-note{font-size:11.5px;color:var(--muted);margin:10px 0 0;font-weight:600}
+.livebloom-empty{font-size:12px;color:var(--soft);text-align:center;padding:8px 0;margin:0}
 .plant-trait-badge{display:inline-flex;align-items:center;gap:2px;padding:2px 6px;border-radius:99px;font-size:9px;font-weight:700;border:1px solid;line-height:1.4;white-space:nowrap}
 .native-badge{background:rgba(47,104,66,.12)!important;color:#2f6842!important;border-color:rgba(47,104,66,.3)!important}
 .nearby-badge{background:rgba(52,100,180,.12)!important;color:#2456a4!important;border-color:rgba(52,100,180,.3)!important}
@@ -948,6 +963,11 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
           </div>
           <textarea name="outcome" id="outcomeField"></textarea>
         </div>
+        <div class="referral-card">
+          <h3 data-i18n="prosTitle">Need help bringing this to life?</h3>
+          <p data-i18n="prosCopy">Select the kinds of vetted local pros this project may need.</p>
+          <div class="choices multi" data-name="pros" data-choice="pros"></div>
+        </div>
       </section>
 
       <!-- Step 5: Style & Preferences -->
@@ -957,24 +977,6 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
           <label data-i18n="styleLabel">Design character</label>
           <span class="hint" data-i18n="styleHint">Choose all that apply.</span>
           <div class="choices multi" data-name="style" data-choice="style" id="styleChoices"></div>
-        </div>
-        <div class="field bloom-picker-field" style="margin-bottom:16px">
-          <div class="note-field-head">
-            <label data-i18n="colors">Bloom color palette</label>
-            <button class="dictate-btn compact" type="button" data-dictate="colorsField" aria-label="Dictate preferred colors"></button>
-          </div>
-          <span class="hint">Select all that apply. These guide plant palette suggestions.</span>
-          <div class="bloom-grid" id="bloomGrid">
-            <button type="button" class="bloom-swatch" data-color="Whites &amp; creams" style="background:linear-gradient(160deg,#f0ece2,#e0dbd0)"><span class="bloom-label" style="color:#3d3428">White &amp; cream</span></button>
-            <button type="button" class="bloom-swatch" data-color="Yellows &amp; golds" style="background:linear-gradient(160deg,#e8c840,#c8900c)"><span class="bloom-label" style="color:#3d2800">Yellow &amp; gold</span></button>
-            <button type="button" class="bloom-swatch" data-color="Pinks &amp; soft reds" style="background:linear-gradient(160deg,#f0a0b8,#c85070)"><span class="bloom-label" style="color:#fff">Pink &amp; rose</span></button>
-            <button type="button" class="bloom-swatch" data-color="Bold reds &amp; burgundy" style="background:linear-gradient(160deg,#c02030,#6a0818)"><span class="bloom-label" style="color:#fff">Red &amp; burgundy</span></button>
-            <button type="button" class="bloom-swatch" data-color="Purples &amp; lavender" style="background:linear-gradient(160deg,#b0a0d0,#5848a0)"><span class="bloom-label" style="color:#fff">Purple &amp; lavender</span></button>
-            <button type="button" class="bloom-swatch" data-color="Blues &amp; violet" style="background:linear-gradient(160deg,#6888c8,#2840a0)"><span class="bloom-label" style="color:#fff">Blue &amp; violet</span></button>
-            <button type="button" class="bloom-swatch" data-color="Warm oranges" style="background:linear-gradient(160deg,#f08040,#c05818)"><span class="bloom-label" style="color:#fff">Orange &amp; copper</span></button>
-            <button type="button" class="bloom-swatch" data-color="Mixed naturalistic" style="background:linear-gradient(160deg,#78a850 0%,#c8a040 50%,#c84860 100%)"><span class="bloom-label" style="color:#fff">Mixed palette</span></button>
-          </div>
-          <input name="colors" id="colorsField" placeholder="Or describe your color preference..." style="margin-top:10px;font-size:13px">
         </div>
         <div class="field">
           <div class="note-field-head">
@@ -1022,6 +1024,25 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
       <!-- Step 8: Review & Confirm -->
       <section class="step" data-step="7">
         <div class="stephead"><div><h2 data-i18n="s7t">Plant Palette</h2><p data-i18n="s7p">Build the plant palette for this site — these flow into the discovery brief.</p></div><span class="badge">Step 8 of 9</span></div>
+        <div class="field bloom-picker-field" style="margin-bottom:16px">
+          <div class="note-field-head">
+            <label data-i18n="colors">Bloom color palette</label>
+            <button class="dictate-btn compact" type="button" data-dictate="colorsField" aria-label="Dictate preferred colors"></button>
+          </div>
+          <span class="hint">Select all that apply. These guide plant palette suggestions.</span>
+          <div class="bloom-grid" id="bloomGrid">
+            <button type="button" class="bloom-swatch" data-color="Whites &amp; creams" style="background:linear-gradient(160deg,#f0ece2,#e0dbd0)"><span class="bloom-label" style="color:#3d3428">White &amp; cream</span></button>
+            <button type="button" class="bloom-swatch" data-color="Yellows &amp; golds" style="background:linear-gradient(160deg,#e8c840,#c8900c)"><span class="bloom-label" style="color:#3d2800">Yellow &amp; gold</span></button>
+            <button type="button" class="bloom-swatch" data-color="Pinks &amp; soft reds" style="background:linear-gradient(160deg,#f0a0b8,#c85070)"><span class="bloom-label" style="color:#fff">Pink &amp; rose</span></button>
+            <button type="button" class="bloom-swatch" data-color="Bold reds &amp; burgundy" style="background:linear-gradient(160deg,#c02030,#6a0818)"><span class="bloom-label" style="color:#fff">Red &amp; burgundy</span></button>
+            <button type="button" class="bloom-swatch" data-color="Purples &amp; lavender" style="background:linear-gradient(160deg,#b0a0d0,#5848a0)"><span class="bloom-label" style="color:#fff">Purple &amp; lavender</span></button>
+            <button type="button" class="bloom-swatch" data-color="Blues &amp; violet" style="background:linear-gradient(160deg,#6888c8,#2840a0)"><span class="bloom-label" style="color:#fff">Blue &amp; violet</span></button>
+            <button type="button" class="bloom-swatch" data-color="Warm oranges" style="background:linear-gradient(160deg,#f08040,#c05818)"><span class="bloom-label" style="color:#fff">Orange &amp; copper</span></button>
+            <button type="button" class="bloom-swatch" data-color="Mixed naturalistic" style="background:linear-gradient(160deg,#78a850 0%,#c8a040 50%,#c84860 100%)"><span class="bloom-label" style="color:#fff">Mixed palette</span></button>
+          </div>
+          <input name="colors" id="colorsField" placeholder="Or describe your color preference..." style="margin-top:10px;font-size:13px">
+        </div>
+
         <!-- ── B2: Plant Browse ──────────────────────────────────────────── -->
         <div class="plant-browse-card" id="plantBrowseCard">
           <div class="plant-browse-head">
@@ -1077,6 +1098,20 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
               <p class="procurement-empty">Tap + on any plant above to add it to your list.</p>
             </div>
           </div>
+        </div>
+        <!-- ── Live bloom calendar (from selected plants) ── -->
+        <div class="livebloom-card" id="liveBloomCard">
+          <div class="livebloom-head">
+            <span class="plant-suggest-icon">&#128197;</span>
+            <div>
+              <strong>Bloom calendar</strong>
+              <span class="plant-suggest-sub">When your selected plants bloom across the year</span>
+            </div>
+          </div>
+          <div id="liveBloomPalette" class="livebloom-palette"></div>
+          <div id="liveBloomGrid" class="livebloom-grid"></div>
+          <p class="livebloom-note" id="liveBloomNote"></p>
+          <p class="livebloom-empty" id="liveBloomEmpty">Add plants above to see when your palette blooms across the year.</p>
         </div>
 
       </section>
@@ -1158,9 +1193,8 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
         <!-- ── Contractor section ── -->
         <div class="referral-card consultantOnly">
-          <h3 data-i18n="prosTitle">Need help bringing this to life?</h3>
-          <p data-i18n="prosCopy">Select the kinds of vetted local pros this project may need.</p>
-          <div class="choices multi" data-name="pros" data-choice="pros"></div>
+          <h3 data-i18n="handoffTitle">Contractor handoff</h3>
+          <p data-i18n="handoffCopy">Generate a contractor-ready handoff for the trades flagged in the project goals.</p>
           <button class="btn" type="button" id="prosIntro">&#8599; <span data-i18n="prosButton">Prepare contractor handoff</span></button>
         </div>
 
@@ -1458,7 +1492,7 @@ s0t:'Property Details',s0p:'Start with the basics so the profile can be tied to 
 name:'Name',phone:'Phone',zip:'ZIP',entryKicker:'Choose your path',entryTitle:'Start with the right workflow.',entryCopy:'Homeowners can prepare a clean project profile. Consultants can use the full planning workspace, field notes, dictation, and visit checklist.',homeownerTitle:'Homeowner',homeownerCopy:'Prepare for your consultation with address, goals, preferences, budget, and up to five site photos.',homeownerAction:'Prepare my profile →',consultantTitle:'Consultant',consultantCopy:'Run the full workflow onsite, including field notes, dictation, checklist, and discovery brief prep.',consultantAction:'Open consultant workspace →',
 address:'Project Address',addressHint:'Used for map reference and future geocode / USDA lookup.',updateMap:'Update map',directions:'Open directions',frontDoor:'Front door orientation',frontHint:'Facing direction when you stand at the front door.',zoneEstimate:'Planning zone estimate',lightZones:'Preliminary light-zone guidance',existing:'Describe the existing area',keepRemove:'Keep / remove / protect',utilities:'Known utilities, drainage, roots, slopes, or access issues',primaryGoals:'Primary goals',challenges:'Challenges',outcome:'Ideal outcome',colors:'Preferred colors',avoid:'Avoid',budget:'Budget range',timeline:'Timeline',installPref:'Installation preference',photoTitle:'Site Photos',photoHelp:'Recommended: overall property, project area, alternate angle, existing issues, and one detail photo.',selectPhotos:'Select photos',copyBrief:'Copy brief',
 secure:'Your information stays in this session and is not transmitted.',summaryTitle:'Site Intelligence Summary',summarySub:'Planning estimate for your property.',frontDoorShort:'Front Orientation',fieldNotesShort:'Field Notes',homeAccess:'Home',roleHomeowner:'Homeowner mode',roleConsultant:'Consultant mode',whyAsk:'Why we ask',whyAskText:'Your answers, photos, and field notes help align the right plants with the right place before design begins.',openNotes:'Open consultant notes',notesExplain:'Use on-site with the client to capture conditions, requests, and next actions.',notesTitle:'Consultant Field Notes',notesSub:'Use this during the site visit for typed or dictated notes.',consultantMode:'Consultant Mode',consultantTools:'Consultant Tools',onsiteCapture:'<b>On-site capture:</b> keep consultant observations separate from client requests. Dictate in the field, then edit before copying the recap into the discovery brief.',liveNotes:'General notes',conditions:'Observed conditions',conditionsHint:'What you see onsite: light, slope, drainage, soil, roots, utilities, existing plants.',requests:'Client requests',requestsHint:'What the client says they want: colors, privacy, maintenance level, plant likes/dislikes.',measurements:'Measurements / counts',nextActions:'Next actions',startDictation:'Start dictation',stopDictation:'Stop dictation',copyNotes:'Copy notes recap',clearNotes:'Clear notes',backPlanner:'Back to planner',visitChecklist:'Visit checklist',chk1:'Confirm sun exposure',chk2:'Check drainage / grade',chk3:'Identify roots or utilities',chk4:'Confirm budget and timing',chk5:'Capture follow-up photos',back:'← Back',next:'Save & Continue →',finish:'Prepare brief',selected:'selected',notStarted:'Not started',started:'In progress',copied:'Copied to clipboard',photoLimit:'Photo limit is 5 for MVP',mapUpdated:'Map reference updated',speechUnsupported:'Speech dictation not supported in this browser',
-prosTitle:'Need help bringing this to life?',prosCopy:'Select the kinds of vetted local pros this project may need. This prepares a contractor-ready handoff later.',prosButton:'Prepare contractor handoff',
+prosTitle:'Need help bringing this to life?',prosCopy:'Select the kinds of vetted local pros this project may need. This prepares a contractor-ready handoff later.',prosButton:'Prepare contractor handoff',handoffTitle:'Contractor handoff',handoffCopy:'Generate a contractor-ready handoff for the trades flagged in the project goals.',
 choices:{
 pros:[['Landscape installation','Planting and bed prep'],['Irrigation','Drip or sprinkler support'],['Drainage','Grading or water issues'],['Hardscape','Stone, edging, patios'],['Tree care','Pruning or arborist work'],['Maintenance','Ongoing care']],
 goals:[['Low maintenance','Reduce upkeep'],['Pollinator habitat','Support bees/butterflies'],['More privacy','Screen views'],['Curb appeal','Improve first impression'],['Drainage help','Solve wet areas'],['Seasonal color','Long bloom window']],
@@ -1470,7 +1504,7 @@ s0t:'Detalles de la Propiedad',s0p:'Comience con lo básico para vincular el per
 name:'Nombre',phone:'Teléfono',zip:'Código postal',entryKicker:'Elija su camino',entryTitle:'Comience con el flujo correcto.',entryCopy:'Los propietarios pueden preparar un perfil claro del proyecto. Los consultores pueden usar el espacio completo con notas de campo, dictado, lista de visita y brief.',homeownerTitle:'Propietario',homeownerCopy:'Prepare su consulta con dirección, metas, preferencias, presupuesto y hasta cinco fotos del sitio.',homeownerAction:'Preparar mi perfil →',consultantTitle:'Consultor',consultantCopy:'Use el flujo completo en sitio, incluyendo notas de campo, dictado, lista de visita y brief.',consultantAction:'Abrir espacio de consultor →',
 address:'Dirección del proyecto',addressHint:'Se usa para mapa y futura búsqueda geográfica / USDA.',updateMap:'Actualizar mapa',directions:'Abrir direcciones',frontDoor:'Orientación de la entrada',frontHint:'Dirección mirando desde la puerta principal.',zoneEstimate:'Estimación de zona',lightZones:'Guía preliminar de luz',existing:'Describa el área actual',keepRemove:'Conservar / retirar / proteger',utilities:'Servicios, drenaje, raíces, pendientes o acceso',primaryGoals:'Metas principales',challenges:'Retos',outcome:'Resultado ideal',colors:'Colores preferidos',avoid:'Evitar',budget:'Rango de presupuesto',timeline:'Cronograma',installPref:'Preferencia de instalación',photoTitle:'Fotos del sitio',photoHelp:'Recomendado: propiedad general, área del proyecto, otro ángulo, problemas existentes y una foto de detalle.',selectPhotos:'Seleccionar fotos',copyBrief:'Copiar brief',
 secure:'Su información permanece en esta sesión y no se transmite.',summaryTitle:'Resumen del Sitio',summarySub:'Estimación de planificación para su propiedad.',frontDoorShort:'Orientación Frontal',fieldNotesShort:'Notas de Campo',homeAccess:'Inicio',roleHomeowner:'Modo propietario',roleConsultant:'Modo consultor',whyAsk:'Por qué preguntamos',whyAskText:'Sus respuestas, fotos y notas de campo ayudan a alinear las plantas correctas con el lugar correcto antes del diseño.',openNotes:'Abrir notas del consultor',notesExplain:'Use en sitio con el cliente para capturar condiciones, solicitudes y próximos pasos.',notesTitle:'Notas de Campo del Consultor',notesSub:'Use durante la visita para notas escritas o dictadas.',consultantMode:'Modo Consultor',consultantTools:'Herramientas del consultor',onsiteCapture:'<b>Captura en sitio:</b> mantenga las observaciones del consultor separadas de las solicitudes del cliente. Dicte en campo y luego edite antes de copiar el resumen al brief.',liveNotes:'Notas generales',conditions:'Condiciones observadas',conditionsHint:'Lo que ve en sitio: luz, pendiente, drenaje, suelo, raíces, servicios y plantas existentes.',requests:'Solicitudes del cliente',requestsHint:'Lo que el cliente dice que quiere: colores, privacidad, mantenimiento y plantas que le gustan o no.',measurements:'Medidas / cantidades',nextActions:'Próximos pasos',startDictation:'Iniciar dictado',stopDictation:'Detener dictado',copyNotes:'Copiar resumen',clearNotes:'Borrar notas',backPlanner:'Volver al planificador',visitChecklist:'Lista de visita',chk1:'Confirmar exposición solar',chk2:'Revisar drenaje / pendiente',chk3:'Identificar raíces o servicios',chk4:'Confirmar presupuesto y tiempo',chk5:'Tomar fotos de seguimiento',back:'← Atrás',next:'Guardar y continuar →',finish:'Preparar brief',selected:'seleccionadas',notStarted:'Sin iniciar',started:'En progreso',copied:'Copiado',photoLimit:'El límite MVP es 5 fotos',mapUpdated:'Mapa actualizado',speechUnsupported:'El dictado no es compatible con este navegador',
-prosTitle:'¿Necesita ayuda para hacerlo realidad?',prosCopy:'Seleccione los profesionales locales que este proyecto podría necesitar. Esto prepara una entrega para contratistas más adelante.',prosButton:'Preparar entrega a contratistas',
+prosTitle:'¿Necesita ayuda para hacerlo realidad?',prosCopy:'Seleccione los profesionales locales que este proyecto podría necesitar. Esto prepara una entrega para contratistas más adelante.',prosButton:'Preparar entrega a contratistas',handoffTitle:'Entrega a contratistas',handoffCopy:'Genere una entrega lista para contratistas con los oficios indicados en las metas del proyecto.',
 choices:{
 pros:[['Instalación de paisaje','Plantación y preparación'],['Riego','Goteo o aspersores'],['Drenaje','Pendiente o agua'],['Hardscape','Piedra, bordes, patios'],['Árboles','Poda o arborista'],['Mantenimiento','Cuidado continuo']],
 goals:[['Bajo mantenimiento','Reducir cuidado'],['Hábitat polinizador','Abejas/mariposas'],['Más privacidad','Pantalla visual'],['Atractivo exterior','Mejor impresión'],['Ayuda con drenaje','Zonas húmedas'],['Color estacional','Floración prolongada']],
@@ -1628,6 +1662,28 @@ const CONFIG={
 let _plantCache = {};
 let _climateCache = {};
 let _procurementList = JSON.parse(sessionStorage.getItem('foxfield_procurement')||'[]');
+const BLOOM_CAL = {
+    // common name (lowercase) → months that bloom (0=Jan, 11=Dec)
+    'crabapple':[3,4],'dogwood':[3,4],'redbud':[3,4],'serviceberry':[3,4],'magnolia':[2,3],'forsythia':[2,3],
+    'lilac':[3,4],'azalea':[3,4],'rhododendron':[3,4],'weigela':[4,5],'abelia':[5,6,7,8],'butterfly bush':[5,6,7,8,9],
+    'catmint':[4,5,6,7,8],'nepeta':[4,5,6,7,8],'caryopteris':[7,8,9],'chokeberry':[4,5],'clethra':[6,7,8],
+    'crape myrtle':[6,7,8,9],'crapemyrtle':[6,7,8,9],'hypericum':[5,6,7],'mockorange':[5,6],'ninebark':[4,5,6],
+    'quince':[2,3],'spirea':[3,4,5],'viburnum':[4,5],'wisteria':[4,5],'echinacea':[5,6,7,8],'coneflower':[5,6,7,8],
+    'rudbeckia':[6,7,8,9],'black-eyed susan':[6,7,8,9],'liatris':[6,7,8],'blazing star':[6,7,8],
+    'amsonia':[3,4],'blue star':[3,4],'sedum':[8,9,10],'stonecrop':[8,9,10],'calamintha':[6,7,8,9],
+    'calamint':[6,7,8,9],'gaura':[5,6,7,8,9],'hellebore':[1,2,3],'hardy geranium':[4,5,6,7],
+    'rozanne':[4,5,6,7,8,9],'allium':[4,5],'tulip':[3,4],'shasta daisy':[5,6,7],'hibiscus':[7,8,9],
+    'althea':[6,7,8,9],'sand cherry':[3,4],'deutzia':[4,5],'pieris':[2,3,4],'mahonia':[1,2,3],
+    'cherry':[3,4],'ornamental cherry':[3,4],
+  };
+  function bloomMonthsFor(name){
+    const k=name.toLowerCase().replace(/[',*]/g,'').trim();
+    if(BLOOM_CAL[k]) return BLOOM_CAL[k];
+    for(const [pat,months] of Object.entries(BLOOM_CAL)){
+      if(k.includes(pat)||pat.includes(k.split(' ')[0])) return months;
+    }
+    return [];
+  }
 
 // ZIP prefix → [zone, state] — generated from USDA hardiness data
 
@@ -2762,6 +2818,7 @@ function go(i){
     const ps=document.getElementById('plantSuggest');
     fetchPlantSuggestions(); if(ps)ps.style.display='';
     const lbl=document.getElementById('plantSuggestZone'); if(lbl)lbl.textContent='Zone '+zdata().z+' · powered by Perenual';
+    if(typeof renderLiveBloomCal==='function') renderLiveBloomCal();
   }
   if(step===8){ renderPipeline(); fetchClimate(); }
   // Scroll active mobile step tab into center view
@@ -2847,28 +2904,7 @@ function openPaidBrief(){
   }
 
   // ── Plant palette ──
-  const BLOOM_CAL = {
-    // common name (lowercase) → months that bloom (0=Jan, 11=Dec)
-    'crabapple':[3,4],'dogwood':[3,4],'redbud':[3,4],'serviceberry':[3,4],'magnolia':[2,3],'forsythia':[2,3],
-    'lilac':[3,4],'azalea':[3,4],'rhododendron':[3,4],'weigela':[4,5],'abelia':[5,6,7,8],'butterfly bush':[5,6,7,8,9],
-    'catmint':[4,5,6,7,8],'nepeta':[4,5,6,7,8],'caryopteris':[7,8,9],'chokeberry':[4,5],'clethra':[6,7,8],
-    'crape myrtle':[6,7,8,9],'crapemyrtle':[6,7,8,9],'hypericum':[5,6,7],'mockorange':[5,6],'ninebark':[4,5,6],
-    'quince':[2,3],'spirea':[3,4,5],'viburnum':[4,5],'wisteria':[4,5],'echinacea':[5,6,7,8],'coneflower':[5,6,7,8],
-    'rudbeckia':[6,7,8,9],'black-eyed susan':[6,7,8,9],'liatris':[6,7,8],'blazing star':[6,7,8],
-    'amsonia':[3,4],'blue star':[3,4],'sedum':[8,9,10],'stonecrop':[8,9,10],'calamintha':[6,7,8,9],
-    'calamint':[6,7,8,9],'gaura':[5,6,7,8,9],'hellebore':[1,2,3],'hardy geranium':[4,5,6,7],
-    'rozanne':[4,5,6,7,8,9],'allium':[4,5],'tulip':[3,4],'shasta daisy':[5,6,7],'hibiscus':[7,8,9],
-    'althea':[6,7,8,9],'sand cherry':[3,4],'deutzia':[4,5],'pieris':[2,3,4],'mahonia':[1,2,3],
-    'cherry':[3,4],'ornamental cherry':[3,4],
-  };
-  function bloomMonthsFor(name){
-    const k=name.toLowerCase().replace(/[',*]/g,'').trim();
-    if(BLOOM_CAL[k]) return BLOOM_CAL[k];
-    for(const [pat,months] of Object.entries(BLOOM_CAL)){
-      if(k.includes(pat)||pat.includes(k.split(' ')[0])) return months;
-    }
-    return [];
-  }
+  
   const MONTH_ABBR=['J','F','M','A','M','J','J','A','S','O','N','D'];
   // Build aggregate bloom calendar across all selected plants
   const bloomMatrix = Array(12).fill(0); // count of plants blooming each month
@@ -3504,6 +3540,35 @@ async function fetchPlantSuggestions(lightFilter, waterFilter, typeFilter){
 
 // ── Plant procurement list ────────────────────────────────────────────────────
 
+function renderLiveBloomCal(){
+  const grid=document.getElementById('liveBloomGrid');
+  if(!grid) return;
+  const empty=document.getElementById('liveBloomEmpty');
+  const pal=document.getElementById('liveBloomPalette');
+  const note=document.getElementById('liveBloomNote');
+  const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  if(pal){
+    const sel=[...document.querySelectorAll('.bloom-swatch.sel')];
+    pal.innerHTML = sel.length
+      ? '<span class="livebloom-pal-label">Target palette</span>'+sel.map(s=>`<span class="livebloom-sw" style="background:${s.style.background}" title="${(s.dataset.color||'').replace(/&amp;/g,'&')}"></span>`).join('')
+      : '';
+  }
+  if(!_procurementList.length){ grid.innerHTML=''; if(empty)empty.style.display=''; if(note)note.textContent=''; return; }
+  if(empty)empty.style.display='none';
+  const matrix=Array(12).fill(0);
+  _procurementList.forEach(p=>{ (bloomMonthsFor(p.name)||[]).forEach(m=>{ if(m>=0&&m<12) matrix[m]++; }); });
+  const max=Math.max(...matrix,1);
+  const anyData=matrix.some(v=>v>0);
+  grid.innerHTML = MONTHS.map((mo,i)=>{
+    const v=matrix[i];
+    const h = v===0?0:Math.max(Math.round((v/max)*100),22);
+    return `<div class="livebloom-col${v===0?' gap':''}"><div class="livebloom-barwrap"><div class="livebloom-bar" style="height:${h}%"></div></div><div class="livebloom-count">${v||''}</div><div class="livebloom-month">${mo[0]}</div></div>`;
+  }).join('');
+  if(note){
+    if(!anyData){ note.textContent='Bloom timing isn\'t mapped for these picks yet — it sharpens once the catalog has bloom data.'; }
+    else { const gaps=MONTHS.filter((m,i)=>matrix[i]===0); note.textContent = gaps.length===0 ? '\u2713 Continuous bloom — no empty months.' : 'Bloom gaps: '+gaps.join(', ')+'.'; }
+  }
+}
 function saveProcurement(){
   sessionStorage.setItem('foxfield_procurement', JSON.stringify(_procurementList));
 }
@@ -3533,6 +3598,7 @@ function renderProcurement(){
     const btn = chip.querySelector('.plant-add-btn');
     if(btn) btn.textContent = inList ? '✓' : '+';
   });
+  if(typeof renderLiveBloomCal==='function') renderLiveBloomCal();
 }
 
 function addProcurement(name, sci, img){
@@ -4146,6 +4212,7 @@ document.querySelectorAll('.bloom-swatch').forEach(sw => {
       .map(s => s.dataset.color.replace(/&amp;/g,'&'));
     const input = document.getElementById('colorsField');
     if(input) input.value = selected.join(', ');
+    if(typeof renderLiveBloomCal==='function') renderLiveBloomCal();
   });
 });
 
