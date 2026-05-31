@@ -470,7 +470,15 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 .livebloom-palette{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:12px;min-height:0}
 .livebloom-pal-label{font-size:11px;color:var(--soft);font-weight:700;margin-right:2px}
 .livebloom-sw{width:18px;height:18px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:inline-block}
-.livebloom-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:96px}
+.livebloom-grid{display:block}
+.bloom-gantt{display:flex;flex-direction:column;gap:5px;margin-top:2px}
+.bg-row{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:10px}
+.bg-name{font-size:11.5px;font-weight:700;color:var(--ink);text-align:right;line-height:1.15;overflow:hidden}
+.bg-tbd{display:block;font-size:9px;font-weight:600;color:var(--soft);font-style:italic}
+.bg-track{display:grid;grid-template-columns:repeat(12,1fr);height:16px}
+.bg-cell{height:13px;align-self:center}
+.bg-head .bg-track{height:auto}
+.bg-mh{font-size:9px;font-weight:700;color:var(--soft);text-align:center}
 .livebloom-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px}
 .livebloom-barwrap{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center}
 .livebloom-bar{width:68%;min-height:0;background:linear-gradient(180deg,var(--accent2),var(--accent));border-radius:3px 3px 0 0;transition:height .2s}
@@ -1661,27 +1669,50 @@ const CONFIG={
 let _plantCache = {};
 let _climateCache = {};
 let _procurementList = JSON.parse(sessionStorage.getItem('foxfield_procurement')||'[]');
-const BLOOM_CAL = {
-    // common name (lowercase) → months that bloom (0=Jan, 11=Dec)
-    'crabapple':[3,4],'dogwood':[3,4],'redbud':[3,4],'serviceberry':[3,4],'magnolia':[2,3],'forsythia':[2,3],
-    'lilac':[3,4],'azalea':[3,4],'rhododendron':[3,4],'weigela':[4,5],'abelia':[5,6,7,8],'butterfly bush':[5,6,7,8,9],
-    'catmint':[4,5,6,7,8],'nepeta':[4,5,6,7,8],'caryopteris':[7,8,9],'chokeberry':[4,5],'clethra':[6,7,8],
-    'crape myrtle':[6,7,8,9],'crapemyrtle':[6,7,8,9],'hypericum':[5,6,7],'mockorange':[5,6],'ninebark':[4,5,6],
-    'quince':[2,3],'spirea':[3,4,5],'viburnum':[4,5],'wisteria':[4,5],'echinacea':[5,6,7,8],'coneflower':[5,6,7,8],
-    'rudbeckia':[6,7,8,9],'black-eyed susan':[6,7,8,9],'liatris':[6,7,8],'blazing star':[6,7,8],
-    'amsonia':[3,4],'blue star':[3,4],'sedum':[8,9,10],'stonecrop':[8,9,10],'calamintha':[6,7,8,9],
-    'calamint':[6,7,8,9],'gaura':[5,6,7,8,9],'hellebore':[1,2,3],'hardy geranium':[4,5,6,7],
-    'rozanne':[4,5,6,7,8,9],'allium':[4,5],'tulip':[3,4],'shasta daisy':[5,6,7],'hibiscus':[7,8,9],
-    'althea':[6,7,8,9],'sand cherry':[3,4],'deutzia':[4,5],'pieris':[2,3,4],'mahonia':[1,2,3],
-    'cherry':[3,4],'ornamental cherry':[3,4],
+const CANON_BLOOM = {
+    // common name (lowercase) -> [months(0=Jan..11=Dec), flowerColor, kind?]
+    'crabapple':[[3,4],'#e6b8c4'],'dogwood':[[3,4],'#ece8dc'],'redbud':[[3,4],'#b86a9a'],'serviceberry':[[3,4],'#ece8dc'],'magnolia':[[2,3],'#e8d4dc'],'forsythia':[[2,3],'#d8a528'],
+    'lilac':[[3,4],'#9a8fc8'],'azalea':[[3,4],'#c85878'],'rhododendron':[[3,4],'#c06888'],'weigela':[[4,5],'#c85878'],'abelia':[[5,6,7,8],'#ece8dc'],'butterfly bush':[[5,6,7,8,9],'#8e5aa8'],
+    'catmint':[[4,5,6,7,8],'#9a8fc8'],'nepeta':[[4,5,6,7,8],'#9a8fc8'],'caryopteris':[[7,8,9],'#6f86c8'],'chokeberry':[[4,5],'#ece8dc'],'clethra':[[6,7,8],'#ece8dc'],
+    'crape myrtle':[[6,7,8,9],'#c85878'],'crapemyrtle':[[6,7,8,9],'#c85878'],'hypericum':[[5,6,7],'#d8a528'],'mockorange':[[5,6],'#ece8dc'],'ninebark':[[4,5,6],'#eed8de'],
+    'quince':[[2,3],'#d87a30'],'spirea':[[3,4,5],'#e8d8dc'],'viburnum':[[4,5],'#ece8dc'],'wisteria':[[4,5],'#8e7ac0'],'echinacea':[[5,6,7,8],'#c85878'],'coneflower':[[5,6,7,8],'#c85878'],
+    'rudbeckia':[[6,7,8,9],'#d8a528'],'black-eyed susan':[[6,7,8,9],'#d8a528'],'liatris':[[6,7],'#8e5aa8'],'blazing star':[[6,7],'#8e5aa8'],
+    'amsonia':[[3,4],'#8a86c8'],'blue star':[[3,4],'#8a86c8'],'sedum':[[8,9],'#c87890'],'stonecrop':[[8,9],'#c87890'],'autumn joy':[[8,9],'#c87890'],'calamintha':[[6,7,8,9],'#9aa6c8'],
+    'calamint':[[6,7,8,9],'#9aa6c8'],'gaura':[[5,6,7,8,9],'#e6ddd0'],'hellebore':[[1,2,3],'#9aae7a'],'hardy geranium':[[4,5,6,7],'#9a72c0'],
+    'rozanne':[[4,5,6,7,8,9],'#9a72c0'],'allium':[[4,5],'#8e5aa8'],'tulip':[[3,4],'#d8a528'],'spring bulb':[[2,3],'#d8a528'],'daffodil':[[2,3],'#e8c840'],'shasta daisy':[[4,5,6],'#ece8dc'],'hibiscus':[[6,7,8],'#b83048'],
+    'althea':[[6,7,8,9],'#c06888'],'sand cherry':[[3,4],'#e6b8c4'],'deutzia':[[4,5],'#ece8dc'],'pieris':[[2,3,4],'#ece8dc'],'mahonia':[[1,2,3],'#d8a528'],
+    'cherry':[[3,4],'#e8c8d0'],'ornamental cherry':[[3,4],'#e8c8d0'],
+    'reed grass':[[5,6,7,8,9,10],'#b89a5e','structural'],'karl forester':[[5,6,7,8,9,10],'#b89a5e','structural'],'feather reed':[[5,6,7,8,9,10],'#b89a5e','structural'],
+    'carex':[[2,3,4,5,6,7,8,9,10],'#6f8a4a','foliage'],'sedge':[[2,3,4,5,6,7,8,9,10],'#6f8a4a','foliage'],
   };
-  function bloomMonthsFor(name){
-    const k=name.toLowerCase().replace(/[',*]/g,'').trim();
-    if(BLOOM_CAL[k]) return BLOOM_CAL[k];
-    for(const [pat,months] of Object.entries(BLOOM_CAL)){
-      if(k.includes(pat)||pat.includes(k.split(' ')[0])) return months;
+  function bloomEntryFor(name){
+    const k=(name||'').toLowerCase().replace(/[',*]/g,'').trim();
+    const norm=v=>({months:v[0],color:v[1],kind:v[2]||'bloom'});
+    if(CANON_BLOOM[k]) return norm(CANON_BLOOM[k]);
+    for(const [pat,val] of Object.entries(CANON_BLOOM)){
+      if(k.includes(pat)||pat.includes(k.split(' ')[0])) return norm(val);
     }
-    return [];
+    return null;
+  }
+  function bloomMonthsFor(name){ const e=bloomEntryFor(name); return e?e.months:[]; }
+  function bloomGanttHtml(list){
+    if(!list||!list.length) return '';
+    const M=['J','F','M','A','M','J','J','A','S','O','N','D'];
+    const head=`<div class="bg-row bg-head"><div class="bg-name"></div><div class="bg-track">${M.map(m=>`<div class="bg-mh">${m}</div>`).join('')}</div></div>`;
+    const rows=list.map(pl=>{
+      const e=bloomEntryFor(pl.name), mo=e?e.months:[], col=e?e.color:'';
+      const cells=M.map((m,i)=>{
+        if(mo.indexOf(i)===-1) return '<div class="bg-cell"></div>';
+        const prev=mo.indexOf(i-1)>-1, next=mo.indexOf(i+1)>-1;
+        let st='background:'+col+';';
+        if(!prev) st+='border-top-left-radius:6px;border-bottom-left-radius:6px;';
+        if(!next) st+='border-top-right-radius:6px;border-bottom-right-radius:6px;';
+        return `<div class="bg-cell on" style="${st}"></div>`;
+      }).join('');
+      const nm = e ? pl.name : pl.name+'<span class="bg-tbd">timing TBD</span>';
+      return `<div class="bg-row"><div class="bg-name">${nm}</div><div class="bg-track">${cells}</div></div>`;
+    }).join('');
+    return `<div class="bloom-gantt">${head}${rows}</div>`;
   }
 
 // ZIP prefix → [zone, state] — generated from USDA hardiness data
@@ -2917,13 +2948,7 @@ function openPaidBrief(){
   const bloomCalHtml = _procurementList.length ? `
     <div class="pb-bloom">
       <div class="pb-bloom-head">Bloom Calendar · combined palette</div>
-      <div class="pb-bloom-grid">
-        ${MONTH_ABBR.map((mo,i)=>{
-          const v=bloomMatrix[i];
-          const dotCls=v===0?'pb-bloom-dot':v===maxBloom?'pb-bloom-dot peak':'pb-bloom-dot has-bloom';
-          return `<div class="pb-bloom-col"><div class="pb-bloom-month">${mo}</div><div class="${dotCls}" title="${v} plant${v===1?'':'s'} blooming"></div></div>`;
-        }).join('')}
-      </div>
+      ${bloomGanttHtml(_procurementList)}
     </div>` : '';
 
   const plantsHtml=_procurementList.length
@@ -3545,7 +3570,6 @@ function renderLiveBloomCal(){
   const empty=document.getElementById('liveBloomEmpty');
   const pal=document.getElementById('liveBloomPalette');
   const note=document.getElementById('liveBloomNote');
-  const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   if(pal){
     const sel=[...document.querySelectorAll('.bloom-swatch.sel')];
     pal.innerHTML = sel.length
@@ -3554,18 +3578,12 @@ function renderLiveBloomCal(){
   }
   if(!_procurementList.length){ grid.innerHTML=''; if(empty)empty.style.display=''; if(note)note.textContent=''; return; }
   if(empty)empty.style.display='none';
-  const matrix=Array(12).fill(0);
-  _procurementList.forEach(p=>{ (bloomMonthsFor(p.name)||[]).forEach(m=>{ if(m>=0&&m<12) matrix[m]++; }); });
-  const max=Math.max(...matrix,1);
-  const anyData=matrix.some(v=>v>0);
-  grid.innerHTML = MONTHS.map((mo,i)=>{
-    const v=matrix[i];
-    const h = v===0?0:Math.max(Math.round((v/max)*100),22);
-    return `<div class="livebloom-col${v===0?' gap':''}"><div class="livebloom-barwrap"><div class="livebloom-bar" style="height:${h}%"></div></div><div class="livebloom-count">${v||''}</div><div class="livebloom-month">${mo[0]}</div></div>`;
-  }).join('');
+  grid.innerHTML = bloomGanttHtml(_procurementList);
   if(note){
-    if(!anyData){ note.textContent='Bloom timing isn\'t mapped for these picks yet — it sharpens once the catalog has bloom data.'; }
-    else { const gaps=MONTHS.filter((m,i)=>matrix[i]===0); note.textContent = gaps.length===0 ? '\u2713 Continuous bloom — no empty months.' : 'Bloom gaps: '+gaps.join(', ')+'.'; }
+    const matrix=Array(12).fill(0); let any=false;
+    _procurementList.forEach(pl=>{ const e=bloomEntryFor(pl.name); if(e){ any=true; e.months.forEach(m=>{ if(m>=0&&m<12) matrix[m]++; }); } });
+    if(!any){ note.textContent="Bloom timing isn't mapped for these picks yet \u2014 it sharpens once the catalog has bloom data."; }
+    else { const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; const gaps=MO.filter((m,i)=>matrix[i]===0); note.textContent = gaps.length===0 ? '\u2713 Continuous color \u2014 no empty months.' : 'Coverage gaps: '+gaps.join(', ')+'.'; }
   }
 }
 function saveProcurement(){
