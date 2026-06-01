@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="color-scheme" content="light dark">
 <style>:root{color-scheme:light dark}</style>
-<title>Foxfield Plant Consultant v59 — Zone-Based Intake</title>
+<title>Foxfield Plant Consultant — Zone-Based Intake</title>
 <meta name="description" content="Foxfield bilingual plant consultation intake with site intelligence, photo previews, map reference, and consultant field notes." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,12 +76,14 @@
 .brief-cta-text{flex:1;min-width:0}
 .brief-cta-text strong{display:block;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
 .brief-cta-text span{font-size:12px;color:var(--muted)}
-.brief-cta-btn{flex-shrink:0;font-size:14px;padding:12px 20px;white-space:nowrap}border-top:1px solid var(--line);font-size:10px;color:var(--soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px}
+.brief-cta-btn{flex-shrink:0;font-size:14px;padding:12px 20px;white-space:nowrap}
 @media(max-width:560px){.brief-preview .bp-grid{grid-template-columns:1fr}.brief-preview .bp-climate{grid-template-columns:repeat(3,1fr)}}
 @media print{.brief-preview{border:none;padding:0;background:#fff;color:#000}.brief-preview .bp-clim-stat{border:1px solid #ccc;background:#f8f8f8}}.actions{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:20px;margin-top:24px}.btn{border:1px solid var(--line2);background:var(--card2);color:var(--ink);border-radius:999px;padding:12px 16px;font-weight:800;text-decoration:none;display:inline-flex;gap:8px;align-items:center}.btn.primary{background:linear-gradient(90deg,var(--accent2),#8a5529);border-color:var(--accent2);color:#fff}.btn.ghost{background:transparent}.btn:hover{transform:translateY(-1px)}
 .checklist{display:grid;gap:9px}.checkline{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:13px}.checkline input{width:auto;margin-top:3px}.toast{position:fixed;right:22px;bottom:22px;background:var(--card);border:1px solid var(--line2);border-radius:999px;padding:12px 15px;color:var(--ink);box-shadow:var(--shadow);opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s var(--ease);z-index:100}.toast.show{opacity:1;transform:none}.mobilebar{display:none}.secure{font-size:12px;color:var(--soft);margin-top:10px}.divider{height:1px;background:var(--line);margin:22px 0}
 .note-field-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}.note-field-head label{margin:0}.dictate-btn{border:1px solid var(--line2);background:var(--card2);color:var(--ink);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.dictate-btn.on{background:rgba(197,138,66,.2);border-color:var(--accent2);color:var(--accent3)}.dictate-btn.compact{padding:6px 9px;font-size:11px;opacity:.82}.dictate-btn.compact span{display:none}.dictate-btn.compact:after{content:"Dictate"}.dictate-btn.compact.on:after{content:"Stop"}.notes-shell{grid-template-columns:minmax(0,1fr) 340px}.note-card{border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.018);padding:18px}.note-card textarea{min-height:160px}.onsite-note{border:1px solid var(--line);border-radius:18px;background:rgba(143,162,107,.09);padding:16px;color:var(--muted);line-height:1.6;text-wrap:balance}.right-note-panel{display:grid;gap:10px;align-content:start}.right-note-panel .btn{justify-content:center;width:100%}
-.rail-version{text-align:center;font-size:10px;letter-spacing:.08em;color:var(--soft);opacity:.5;margin-top:6px}@media print{.rail-version{display:none}}
+.rail-version{text-align:center;font-size:10px;letter-spacing:.08em;color:var(--soft);opacity:.5;margin-top:6px}
+.newclient-btn{font-size:12px;padding:6px 12px;background:transparent;border:1px solid var(--line);color:var(--soft);white-space:nowrap}
+.newclient-btn:hover{border-color:var(--accent2);color:var(--accent2)}@media print{.rail-version{display:none}}
 .rail-qr{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 0 10px;border-top:1px solid var(--line)}
 .rail-qr img{width:80px;height:80px;border-radius:8px;border:1px solid rgba(255,255,255,.08)}
 .rail-qr-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);opacity:.6;text-align:center}
@@ -475,6 +477,8 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 .bg-row{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:10px}
 .bg-name{font-size:11.5px;font-weight:700;color:var(--ink);text-align:right;line-height:1.15;overflow:hidden}
 .bg-tbd{display:block;font-size:9px;font-weight:600;color:var(--soft);font-style:italic}
+.bg-approx{display:block;font-size:8.5px;font-weight:600;color:var(--soft);font-style:italic;opacity:.75}
+.bg-cell.on.approx{opacity:.4}
 .bg-track{display:grid;grid-template-columns:repeat(12,1fr);height:16px}
 .bg-cell{height:13px;align-self:center}
 .bg-head .bg-track{height:auto}
@@ -692,7 +696,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
   <nav class="steps" id="steps"></nav>
   <svg class="rail-leaves" viewBox="0 0 180 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M90 110V20"/><path d="M91 86c-22-5-37-18-46-39 23 2 38 16 46 39Z"/><path d="M91 70c19-7 32-21 39-42-20 4-32 18-39 42Z"/><path d="M91 101c-27-2-48-13-64-33 28-2 49 9 64 33Z"/><path d="M91 55c-13-9-21-22-25-39 16 6 24 19 25 39Z"/></svg>
   <div class="rail-tag"><span data-i18n="tagline">Thoughtful landscapes.<br>Rooted in place.</span></div>
-  <div class="rail-version">v75 · 2026-05-30</div>
+  <div class="rail-version">v96 · 2026-06-01</div>
   <div class="rail-qr" id="railQr"></div>
   <div class="rail-footer-legal">
     <button onclick="openTerms()">Terms</button>
@@ -861,7 +865,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
       <!-- Step 1: Property Details -->
       <section class="step active" data-step="0">
-        <div class="stephead"><div><h2 data-i18n="s0t">Property Details</h2><p data-i18n="s0p">Start with the basics so the profile can be tied to a real site.</p></div><span class="badge">Step 1 of 8</span></div>
+        <div class="stephead"><div><h2 data-i18n="s0t">Property Details</h2><p data-i18n="s0p">Start with the basics so the profile can be tied to a real site.</p></div><div style="display:flex;align-items:center;gap:10px"><button class="btn newclient-btn" type="button" id="newClientBtn" data-i18n-title="newClientHint" title="Clear everything and start a fresh client" onclick="newClient()">&#10010; <span data-i18n="newClient">New client</span></button><span class="badge">Step 1 of 8</span></div></div>
         <div class="grid two">
           <div class="field"><label><span data-i18n="name">Name</span> <span style="color:var(--accent2)" title="Required">*</span></label><input id="name" name="name" autocomplete="name" required></div>
           <div class="field"><label>Email <span style="color:var(--accent2)" title="Required">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
@@ -1498,7 +1502,7 @@ steps:[['Property Details','Address & contact'],['Site Intelligence','Zone, map 
 s0t:'Property Details',s0p:'Start with the basics so the profile can be tied to a real site.',s1t:'Site Intelligence',s1p:'Capture orientation and preliminary conditions. Verify on-site before final recommendations.',s2t:'Existing Landscape',s2p:'What is already there, and what should stay or go?',s3t:'Goals & Challenges',s3p:'Tell us what you hope to improve.',s4t:'Style & Preferences',s4p:'Design character, bloom colors, and what to avoid.',styleLabel:'Design character',styleHint:'Choose the aesthetic that best matches your vision.',s5t:'Budget & Timing',s5p:'Set expectations for scope and phasing.',s6t:'Photos & Context',s6p:'Upload up to five photos of the area.',s7t:'Plant Palette',s7p:'Build the plant palette for this site — these flow into the discovery brief.',s8t:'Review & Confirm',s8p:'Prepare a consultant-ready discovery brief.',
 name:'Name',phone:'Phone',zip:'ZIP',entryKicker:'Choose your path',entryTitle:'Start with the right workflow.',entryCopy:'Homeowners can prepare a clean project profile. Consultants can use the full planning workspace, field notes, dictation, and visit checklist.',homeownerTitle:'Homeowner',homeownerCopy:'Prepare for your consultation with address, goals, preferences, budget, and up to five site photos.',homeownerAction:'Prepare my profile →',consultantTitle:'Consultant',consultantCopy:'Run the full workflow onsite, including field notes, dictation, checklist, and discovery brief prep.',consultantAction:'Open consultant workspace →',
 address:'Project Address',addressHint:'Used for map reference and future geocode / USDA lookup.',updateMap:'Update map',directions:'Open directions',frontDoor:'Front door orientation',frontHint:'Facing direction when you stand at the front door.',zoneEstimate:'Planning zone estimate',lightZones:'Preliminary light-zone guidance',existing:'Describe the existing area',keepRemove:'Keep / remove / protect',utilities:'Known utilities, drainage, roots, slopes, or access issues',primaryGoals:'Primary goals',challenges:'Challenges',outcome:'Ideal outcome',colors:'Preferred colors',avoid:'Avoid',budget:'Budget range',timeline:'Timeline',installPref:'Installation preference',photoTitle:'Site Photos',photoHelp:'Recommended: overall property, project area, alternate angle, existing issues, and one detail photo.',selectPhotos:'Select photos',copyBrief:'Copy brief',
-secure:'Your information stays in this session and is not transmitted.',summaryTitle:'Site Intelligence Summary',summarySub:'Planning estimate for your property.',frontDoorShort:'Front Orientation',fieldNotesShort:'Field Notes',homeAccess:'Home',roleHomeowner:'Homeowner mode',roleConsultant:'Consultant mode',whyAsk:'Why we ask',whyAskText:'Your answers, photos, and field notes help align the right plants with the right place before design begins.',openNotes:'Open consultant notes',notesExplain:'Use on-site with the client to capture conditions, requests, and next actions.',notesTitle:'Consultant Field Notes',notesSub:'Use this during the site visit for typed or dictated notes.',consultantMode:'Consultant Mode',consultantTools:'Consultant Tools',onsiteCapture:'<b>On-site capture:</b> keep consultant observations separate from client requests. Dictate in the field, then edit before copying the recap into the discovery brief.',liveNotes:'General notes',conditions:'Observed conditions',conditionsHint:'What you see onsite: light, slope, drainage, soil, roots, utilities, existing plants.',requests:'Client requests',requestsHint:'What the client says they want: colors, privacy, maintenance level, plant likes/dislikes.',measurements:'Measurements / counts',nextActions:'Next actions',startDictation:'Start dictation',stopDictation:'Stop dictation',copyNotes:'Copy notes recap',clearNotes:'Clear notes',backPlanner:'Back to planner',visitChecklist:'Visit checklist',chk1:'Confirm sun exposure',chk2:'Check drainage / grade',chk3:'Identify roots or utilities',chk4:'Confirm budget and timing',chk5:'Capture follow-up photos',back:'← Back',next:'Save & Continue →',finish:'Prepare brief',selected:'selected',notStarted:'Not started',started:'In progress',copied:'Copied to clipboard',photoLimit:'Photo limit is 5 for MVP',mapUpdated:'Map reference updated',speechUnsupported:'Speech dictation not supported in this browser',
+secure:'Your information stays in this session and is not transmitted.',summaryTitle:'Site Intelligence Summary',summarySub:'Planning estimate for your property.',frontDoorShort:'Front Orientation',fieldNotesShort:'Field Notes',homeAccess:'Home',roleHomeowner:'Homeowner mode',roleConsultant:'Consultant mode',whyAsk:'Why we ask',whyAskText:'Your answers, photos, and field notes help align the right plants with the right place before design begins.',openNotes:'Open consultant notes',notesExplain:'Use on-site with the client to capture conditions, requests, and next actions.',notesTitle:'Consultant Field Notes',notesSub:'Use this during the site visit for typed or dictated notes.',consultantMode:'Consultant Mode',consultantTools:'Consultant Tools',onsiteCapture:'<b>On-site capture:</b> keep consultant observations separate from client requests. Dictate in the field, then edit before copying the recap into the discovery brief.',liveNotes:'General notes',conditions:'Observed conditions',conditionsHint:'What you see onsite: light, slope, drainage, soil, roots, utilities, existing plants.',requests:'Client requests',requestsHint:'What the client says they want: colors, privacy, maintenance level, plant likes/dislikes.',measurements:'Measurements / counts',nextActions:'Next actions',startDictation:'Start dictation',stopDictation:'Stop dictation',copyNotes:'Copy notes recap',clearNotes:'Clear notes',backPlanner:'Back to planner',visitChecklist:'Visit checklist',chk1:'Confirm sun exposure',chk2:'Check drainage / grade',chk3:'Identify roots or utilities',chk4:'Confirm budget and timing',chk5:'Capture follow-up photos',back:'← Back',next:'Save & Continue →',finish:'Prepare brief',selected:'selected',notStarted:'Not started',started:'In progress',newClient:'New client',newClientHint:'Clear everything and start a fresh client',newClientConfirm:'Start a new client? This clears the current intake \u2014 form fields, notes, photos, and plant picks. This cannot be undone.',copied:'Copied to clipboard',photoLimit:'Photo limit is 5 for MVP',mapUpdated:'Map reference updated',speechUnsupported:'Speech dictation not supported in this browser',
 prosTitle:'Need help bringing this to life?',prosCopy:'Select the kinds of vetted local pros this project may need. This prepares a contractor-ready handoff later.',prosButton:'Prepare contractor handoff',handoffTitle:'Contractor handoff',handoffCopy:'Generate a contractor-ready handoff for the trades flagged in the project goals.',
 choices:{
 pros:[['Landscape installation','Planting and bed prep'],['Irrigation','Drip or sprinkler support'],['Drainage','Grading or water issues'],['Hardscape','Stone, edging, patios'],['Tree care','Pruning or arborist work'],['Maintenance','Ongoing care']],
@@ -1510,7 +1514,7 @@ steps:[['Detalles','Dirección y contacto'],['Sitio','Zona, mapa y luz'],['Paisa
 s0t:'Detalles de la Propiedad',s0p:'Comience con lo básico para vincular el perfil a un sitio real.',s1t:'Inteligencia del Sitio',s1p:'Capture orientación y condiciones preliminares. Verifique en sitio antes de recomendaciones finales.',s2t:'Paisaje Actual',s2p:'Qué existe ahora, y qué debe quedarse o retirarse.',s3t:'Metas y Retos',s3p:'Cuéntenos qué espera mejorar.',s4t:'Estilo y Preferencias',s4p:'Carácter de diseño, paleta de colores y qué evitar.',styleLabel:'Carácter del diseño',styleHint:'Elige el estilo que mejor represente tu visión.',s5t:'Presupuesto y Tiempo',s5p:'Defina expectativas de alcance y fases.',s6t:'Fotos y Contexto',s6p:'Suba hasta cinco fotos del área.',s7t:'Paleta de Plantas',s7p:'Arme la paleta de plantas para este sitio — pasan al brief.',s8t:'Revisar y Confirmar',s8p:'Prepare un brief listo para el consultor.',
 name:'Nombre',phone:'Teléfono',zip:'Código postal',entryKicker:'Elija su camino',entryTitle:'Comience con el flujo correcto.',entryCopy:'Los propietarios pueden preparar un perfil claro del proyecto. Los consultores pueden usar el espacio completo con notas de campo, dictado, lista de visita y brief.',homeownerTitle:'Propietario',homeownerCopy:'Prepare su consulta con dirección, metas, preferencias, presupuesto y hasta cinco fotos del sitio.',homeownerAction:'Preparar mi perfil →',consultantTitle:'Consultor',consultantCopy:'Use el flujo completo en sitio, incluyendo notas de campo, dictado, lista de visita y brief.',consultantAction:'Abrir espacio de consultor →',
 address:'Dirección del proyecto',addressHint:'Se usa para mapa y futura búsqueda geográfica / USDA.',updateMap:'Actualizar mapa',directions:'Abrir direcciones',frontDoor:'Orientación de la entrada',frontHint:'Dirección mirando desde la puerta principal.',zoneEstimate:'Estimación de zona',lightZones:'Guía preliminar de luz',existing:'Describa el área actual',keepRemove:'Conservar / retirar / proteger',utilities:'Servicios, drenaje, raíces, pendientes o acceso',primaryGoals:'Metas principales',challenges:'Retos',outcome:'Resultado ideal',colors:'Colores preferidos',avoid:'Evitar',budget:'Rango de presupuesto',timeline:'Cronograma',installPref:'Preferencia de instalación',photoTitle:'Fotos del sitio',photoHelp:'Recomendado: propiedad general, área del proyecto, otro ángulo, problemas existentes y una foto de detalle.',selectPhotos:'Seleccionar fotos',copyBrief:'Copiar brief',
-secure:'Su información permanece en esta sesión y no se transmite.',summaryTitle:'Resumen del Sitio',summarySub:'Estimación de planificación para su propiedad.',frontDoorShort:'Orientación Frontal',fieldNotesShort:'Notas de Campo',homeAccess:'Inicio',roleHomeowner:'Modo propietario',roleConsultant:'Modo consultor',whyAsk:'Por qué preguntamos',whyAskText:'Sus respuestas, fotos y notas de campo ayudan a alinear las plantas correctas con el lugar correcto antes del diseño.',openNotes:'Abrir notas del consultor',notesExplain:'Use en sitio con el cliente para capturar condiciones, solicitudes y próximos pasos.',notesTitle:'Notas de Campo del Consultor',notesSub:'Use durante la visita para notas escritas o dictadas.',consultantMode:'Modo Consultor',consultantTools:'Herramientas del consultor',onsiteCapture:'<b>Captura en sitio:</b> mantenga las observaciones del consultor separadas de las solicitudes del cliente. Dicte en campo y luego edite antes de copiar el resumen al brief.',liveNotes:'Notas generales',conditions:'Condiciones observadas',conditionsHint:'Lo que ve en sitio: luz, pendiente, drenaje, suelo, raíces, servicios y plantas existentes.',requests:'Solicitudes del cliente',requestsHint:'Lo que el cliente dice que quiere: colores, privacidad, mantenimiento y plantas que le gustan o no.',measurements:'Medidas / cantidades',nextActions:'Próximos pasos',startDictation:'Iniciar dictado',stopDictation:'Detener dictado',copyNotes:'Copiar resumen',clearNotes:'Borrar notas',backPlanner:'Volver al planificador',visitChecklist:'Lista de visita',chk1:'Confirmar exposición solar',chk2:'Revisar drenaje / pendiente',chk3:'Identificar raíces o servicios',chk4:'Confirmar presupuesto y tiempo',chk5:'Tomar fotos de seguimiento',back:'← Atrás',next:'Guardar y continuar →',finish:'Preparar brief',selected:'seleccionadas',notStarted:'Sin iniciar',started:'En progreso',copied:'Copiado',photoLimit:'El límite MVP es 5 fotos',mapUpdated:'Mapa actualizado',speechUnsupported:'El dictado no es compatible con este navegador',
+secure:'Su información permanece en esta sesión y no se transmite.',summaryTitle:'Resumen del Sitio',summarySub:'Estimación de planificación para su propiedad.',frontDoorShort:'Orientación Frontal',fieldNotesShort:'Notas de Campo',homeAccess:'Inicio',roleHomeowner:'Modo propietario',roleConsultant:'Modo consultor',whyAsk:'Por qué preguntamos',whyAskText:'Sus respuestas, fotos y notas de campo ayudan a alinear las plantas correctas con el lugar correcto antes del diseño.',openNotes:'Abrir notas del consultor',notesExplain:'Use en sitio con el cliente para capturar condiciones, solicitudes y próximos pasos.',notesTitle:'Notas de Campo del Consultor',notesSub:'Use durante la visita para notas escritas o dictadas.',consultantMode:'Modo Consultor',consultantTools:'Herramientas del consultor',onsiteCapture:'<b>Captura en sitio:</b> mantenga las observaciones del consultor separadas de las solicitudes del cliente. Dicte en campo y luego edite antes de copiar el resumen al brief.',liveNotes:'Notas generales',conditions:'Condiciones observadas',conditionsHint:'Lo que ve en sitio: luz, pendiente, drenaje, suelo, raíces, servicios y plantas existentes.',requests:'Solicitudes del cliente',requestsHint:'Lo que el cliente dice que quiere: colores, privacidad, mantenimiento y plantas que le gustan o no.',measurements:'Medidas / cantidades',nextActions:'Próximos pasos',startDictation:'Iniciar dictado',stopDictation:'Detener dictado',copyNotes:'Copiar resumen',clearNotes:'Borrar notas',backPlanner:'Volver al planificador',visitChecklist:'Lista de visita',chk1:'Confirmar exposición solar',chk2:'Revisar drenaje / pendiente',chk3:'Identificar raíces o servicios',chk4:'Confirmar presupuesto y tiempo',chk5:'Tomar fotos de seguimiento',back:'← Atrás',next:'Guardar y continuar →',finish:'Preparar brief',selected:'seleccionadas',notStarted:'Sin iniciar',started:'En progreso',newClient:'Nuevo cliente',newClientHint:'Borra todo y empieza un cliente nuevo',newClientConfirm:'¿Iniciar un cliente nuevo? Esto borra el registro actual — campos, notas, fotos y plantas seleccionadas. No se puede deshacer.',copied:'Copiado',photoLimit:'El límite MVP es 5 fotos',mapUpdated:'Mapa actualizado',speechUnsupported:'El dictado no es compatible con este navegador',
 prosTitle:'¿Necesita ayuda para hacerlo realidad?',prosCopy:'Seleccione los profesionales locales que este proyecto podría necesitar. Esto prepara una entrega para contratistas más adelante.',prosButton:'Preparar entrega a contratistas',handoffTitle:'Entrega a contratistas',handoffCopy:'Genere una entrega lista para contratistas con los oficios indicados en las metas del proyecto.',
 choices:{
 pros:[['Instalación de paisaje','Plantación y preparación'],['Riego','Goteo o aspersores'],['Drenaje','Pendiente o agua'],['Hardscape','Piedra, bordes, patios'],['Árboles','Poda o arborista'],['Mantenimiento','Cuidado continuo']],
@@ -1662,6 +1666,8 @@ const TRAIT_CONFIG = {
 const CONFIG={
   PERENUAL_KEY:'',
   WORKER_URL:'https://super-star-3d60.cgzorro.workers.dev',
+  CATALOG_URL:'./foxfield-plants.json',
+  CATALOG_IMG_BASE:'',  // set to jsDelivr base to light up product photos
   FORMSPREE_ID:'xlgvzoqy',
 };
 
@@ -1700,17 +1706,19 @@ const CANON_BLOOM = {
     const M=['J','F','M','A','M','J','J','A','S','O','N','D'];
     const head=`<div class="bg-row bg-head"><div class="bg-name"></div><div class="bg-track">${M.map(m=>`<div class="bg-mh">${m}</div>`).join('')}</div></div>`;
     const rows=list.map(pl=>{
-      const e=bloomEntryFor(pl.name), mo=e?e.months:[], col=e?e.color:'';
+      let mo,col,approx=false,known=true;
+      if(Array.isArray(pl.bloom_months)&&pl.bloom_months.length){ mo=pl.bloom_months; col=pl.flower_color||'#c8a85a'; approx=(pl.bloom_source==='category'); }
+      else { const e=bloomEntryFor(pl.name); if(e){mo=e.months;col=e.color;} else {mo=[];known=false;} }
       const cells=M.map((m,i)=>{
         if(mo.indexOf(i)===-1) return '<div class="bg-cell"></div>';
         const prev=mo.indexOf(i-1)>-1, next=mo.indexOf(i+1)>-1;
         let st='background:'+col+';';
         if(!prev) st+='border-top-left-radius:6px;border-bottom-left-radius:6px;';
         if(!next) st+='border-top-right-radius:6px;border-bottom-right-radius:6px;';
-        return `<div class="bg-cell on" style="${st}"></div>`;
+        return `<div class="bg-cell on${approx?' approx':''}" style="${st}"></div>`;
       }).join('');
-      const nm = e ? pl.name : pl.name+'<span class="bg-tbd">timing TBD</span>';
-      return `<div class="bg-row"><div class="bg-name">${nm}</div><div class="bg-track">${cells}</div></div>`;
+      const tag = known ? (approx?'<span class="bg-approx">approx.</span>':'') : '<span class="bg-tbd">timing TBD</span>';
+      return `<div class="bg-row"><div class="bg-name">${pl.name}${tag}</div><div class="bg-track">${cells}</div></div>`;
     }).join('');
     return `<div class="bloom-gantt">${head}${rows}</div>`;
   }
@@ -2847,7 +2855,7 @@ function go(i){
   if(step===7){ fetchClimate();
     const ps=document.getElementById('plantSuggest');
     fetchPlantSuggestions(); if(ps)ps.style.display='';
-    const lbl=document.getElementById('plantSuggestZone'); if(lbl)lbl.textContent='Zone '+zdata().z+' · powered by Perenual';
+    const lbl=document.getElementById('plantSuggestZone'); if(lbl)lbl.textContent='Zone '+zdata().z;
     if(typeof renderLiveBloomCal==='function') renderLiveBloomCal();
   }
   if(step===8){ renderPipeline(); fetchClimate(); }
@@ -3533,10 +3541,49 @@ if(_ssub) _ssub.onclick = () => {
 };
 // ── Layer 2: Perenual plant suggestions ───────────────────────────────────────
 
+const PLANT_PLACEHOLDER='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22><rect width=%2280%22 height=%2280%22 rx=%2210%22 fill=%22%231d2b1e%22/><text x=%2240%22 y=%2250%22 font-size=%2230%22 text-anchor=%22middle%22>\uD83C\uDF3F</text></svg>';
+let _catalog=null,_catalogIndex=null,_catalogPromise=null;
+function _ingestCatalog(arr){
+  _catalog=Array.isArray(arr)?arr:[]; _catalogIndex={};
+  _catalog.forEach(p=>{ if(p&&p.common) _catalogIndex[p.common.toLowerCase().trim()]={bloom_months:p.bloom_months,flower_color:p.flower_color,bloom_source:p.bloom_source,bloom_kind:p.bloom_kind,price:(p.vendor||{}).price,url:(p.vendor||{}).url}; });
+}
+function loadCatalog(){
+  if(_catalog) return Promise.resolve(_catalog);
+  if(window.__FOXFIELD_CATALOG__){ _ingestCatalog(window.__FOXFIELD_CATALOG__); return Promise.resolve(_catalog); }
+  if(_catalogPromise) return _catalogPromise;
+  const url=CONFIG.CATALOG_URL||'./foxfield-plants.json';
+  _catalogPromise=fetch(url).then(r=>r.ok?r.json():[]).then(d=>{_ingestCatalog(d); return _catalog;}).catch(()=>{_ingestCatalog([]); return _catalog;});
+  return _catalogPromise;
+}
+function _zoneInRange(rng,zn){ if(!rng) return true; const m=String(rng).match(/(\d+)\s*-\s*(\d+)/); if(!m) return true; return zn>=+m[1]&&zn<=+m[2]; }
+function _catalogImg(p){
+  const v=p.vendor||{}, b=CONFIG.CATALOG_IMG_BASE||'', f=v.image_filename||v.image||'';
+  if(/^https?:/.test(f)) return f;
+  if(b&&f) return b.replace(/\/$/,'')+'/'+String(f).replace(/^\.?\/?(images\/)?/,'');
+  return PLANT_PLACEHOLDER;
+}
+function _catalogToCards(zn,lightFilter,waterFilter,typeFilter){
+  let list=_catalog.filter(p=>_zoneInRange(p.zone_range,zn));
+  if(lightFilter){ const lf=lightFilter.toLowerCase(); list=list.filter(p=>{const pl=(p.light||'').toLowerCase(); return pl.includes(lf)||lf.includes(pl.split(' ')[0]||'\u0000');}); }
+  if(typeFilter){ const tf=typeFilter.toLowerCase(); list=list.filter(p=>(p.type||'').toLowerCase().includes(tf)); }
+  if(waterFilter&&/drought|low/i.test(waterFilter)){ list=list.filter(p=>/drought/i.test(p.water||'')); }
+  list.sort((a,b)=>(a.bloom_source==='genus'?0:1)-(b.bloom_source==='genus'?0:1));
+  return list.slice(0,24).map(p=>({common_name:p.common,scientific_name:[p.scientific||''],default_image:{thumbnail:_catalogImg(p)},_catalog:true}));
+}
+
 async function fetchPlantSuggestions(lightFilter, waterFilter, typeFilter){
-  const zn = parseInt(zdata().z);
+  const zn = parseInt(zdata().z)||6;
   const cacheKey = 'plants_z'+zn+(lightFilter||'')+(waterFilter||'')+(typeFilter||'');
   if(_plantCache[cacheKey]){ renderPlantSuggestions(_plantCache[cacheKey]); return; }
+
+  // Catalog-first: real Suburban products carrying bloom + color
+  try{
+    await loadCatalog();
+    if(_catalog && _catalog.length){
+      const cards=_catalogToCards(zn,lightFilter,waterFilter,typeFilter);
+      if(cards.length){ _plantCache[cacheKey]=cards; renderPlantSuggestions(cards); return; }
+    }
+  }catch(e){ console.warn('Catalog:',e.message); }
 
   let url;
   if(CONFIG.WORKER_URL){
@@ -3580,10 +3627,15 @@ function renderLiveBloomCal(){
   if(empty)empty.style.display='none';
   grid.innerHTML = bloomGanttHtml(_procurementList);
   if(note){
-    const matrix=Array(12).fill(0); let any=false;
-    _procurementList.forEach(pl=>{ const e=bloomEntryFor(pl.name); if(e){ any=true; e.months.forEach(m=>{ if(m>=0&&m<12) matrix[m]++; }); } });
+    const matrix=Array(12).fill(0); let any=false, approx=false;
+    _procurementList.forEach(pl=>{
+      let mo=null;
+      if(Array.isArray(pl.bloom_months)&&pl.bloom_months.length){ mo=pl.bloom_months; if(pl.bloom_source==='category') approx=true; }
+      else { const e=bloomEntryFor(pl.name); if(e) mo=e.months; }
+      if(mo){ any=true; mo.forEach(m=>{ if(m>=0&&m<12) matrix[m]++; }); }
+    });
     if(!any){ note.textContent="Bloom timing isn't mapped for these picks yet \u2014 it sharpens once the catalog has bloom data."; }
-    else { const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; const gaps=MO.filter((m,i)=>matrix[i]===0); note.textContent = gaps.length===0 ? '\u2713 Continuous color \u2014 no empty months.' : 'Coverage gaps: '+gaps.join(', ')+'.'; }
+    else { const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; const gaps=MO.filter((m,i)=>matrix[i]===0); let t = gaps.length===0 ? '\u2713 Continuous color \u2014 no empty months.' : 'Coverage gaps: '+gaps.join(', ')+'.'; if(approx) t+=' Faded bars = approximate timing.'; note.textContent=t; }
   }
 }
 function saveProcurement(){
@@ -3620,7 +3672,10 @@ function renderProcurement(){
 
 function addProcurement(name, sci, img){
   if(_procurementList.some(p=>p.name===name)) return removeProcurementByName(name);
-  _procurementList.push({name, sci, img});
+  const pick={name, sci, img};
+  const c=_catalogIndex && _catalogIndex[(name||'').toLowerCase().trim()];
+  if(c){ pick.bloom_months=c.bloom_months; pick.flower_color=c.flower_color; pick.bloom_source=c.bloom_source; pick.bloom_kind=c.bloom_kind; pick.price=c.price; pick.vendor_url=c.url; }
+  _procurementList.push(pick);
   saveProcurement();
   renderProcurement();
   toast(name + ' added to list');
@@ -3642,6 +3697,8 @@ function renderPlantSuggestions(plants){
   const wrap = document.getElementById('plantSuggest');
   if(!wrap||!plants?.length) return;
   wrap.style.display='';
+  const _lbl=document.getElementById('plantSuggestZone');
+  if(_lbl) _lbl.textContent='Zone '+zdata().z+(plants[0]&&plants[0]._catalog?' · '+plants.length+' from catalog':' · powered by Perenual');
   const grid = wrap.querySelector('.plant-suggest-grid');
   if(!grid) return;
   const isConsultant = document.body.dataset.role === 'consultant';
@@ -3670,7 +3727,7 @@ function renderPlantSuggestions(plants){
   renderProcurement();
 
   // A4: async native + iNaturalist nearby check
-  if(CONFIG.WORKER_URL || CONFIG.PERENUAL_KEY){
+  if((CONFIG.WORKER_URL || CONFIG.PERENUAL_KEY) && !(plants[0]&&plants[0]._catalog)){
     plants.forEach((p,idx)=>{
       const sci = (p.scientific_name||[])[0]||'';
       checkNative(p.common_name).then(isNative=>{
@@ -4137,6 +4194,7 @@ document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
   }
 
   function _doSendBrief(d, z){
+    const btn=document.getElementById('sendBriefBtn');
     const msg=document.getElementById('briefSentMsg');
     if(btn){btn.disabled=true;btn.innerHTML='Sending…';}
     const fields={Name:d.name||'—',Email:d.email||'—',Phone:d.phone||'—',Address:d.address||'—',ZIP:d.zip||'—',Zone:z.z||'—',Goals:d.goals||'—',Style:d.style||'—',Colors:d.colors||'—',Avoid:d.avoid||'—',Budget:d.budget||'—',Timeline:d.timeline||'—',Challenges:d.challenges||'—',Outcome:d.outcome||'—',Photos:(typeof photos!=='undefined'?photos.length:0)+' of 5',PlantList:_procurementList.length?_procurementList.map(p=>p.name+'  ('+p.sci+')').join(', '):'—',Role:document.body.dataset.role||'homeowner',Date:new Date().toISOString().split('T')[0],Source:'App brief'};
@@ -4334,6 +4392,31 @@ function openPrivacy() { document.getElementById('privacyModal').classList.add('
   window.addEventListener('load',()=>setTimeout(restore,700));
   window._foxfieldAutosaveClear=function(){ try{ localStorage.removeItem(KEY); }catch(e){} };
 })();
+
+// New-client reset: clears the current intake so a fresh session starts clean.
+function newClient(force){
+  if(!force){
+    const msg=(window.I18N&&I18N[window.lang||'en']&&I18N[window.lang||'en'].newClientConfirm)||'Start a new client? This clears the current intake \u2014 form fields, notes, photos, and plant picks. This cannot be undone.';
+    if(!confirm(msg)) return;
+  }
+  try{ if(window._foxfieldAutosaveClear) _foxfieldAutosaveClear(); }catch(e){}
+  // form fields
+  try{ const f=document.getElementById('form'); if(f) f.reset();
+       f && f.querySelectorAll('input,textarea,select').forEach(el=>{ if(el.type==='checkbox'||el.type==='radio') el.checked=false; else el.value=''; }); }catch(e){}
+  // consultant notes
+  try{ ['notes1','notes2','notes3','notes4'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; }); }catch(e){}
+  // selections: bloom swatches, choice chips
+  try{ document.querySelectorAll('.bloom-swatch.sel,.choice.selected,.plant-chip.selected,.chip.sel').forEach(el=>el.classList.remove('sel','selected')); }catch(e){}
+  try{ const cf=document.getElementById('colorsField'); if(cf) cf.value=''; }catch(e){}
+  // photos
+  try{ if(typeof photos!=='undefined'&&Array.isArray(photos)){ photos.length=0; if(typeof renderPhotos==='function') renderPhotos(); } }catch(e){}
+  // plant procurement list
+  try{ if(typeof _procurementList!=='undefined'){ _procurementList.length=0; sessionStorage.removeItem('foxfield_procurement'); if(typeof renderProcurement==='function') renderProcurement(); if(typeof renderLiveBloomCal==='function') renderLiveBloomCal(); } }catch(e){}
+  // back to step 1
+  try{ if(typeof go==='function') go(0); }catch(e){}
+  try{ if(typeof toast==='function') toast('Started a new client'); }catch(e){}
+  try{ const n=document.getElementById('name'); if(n) n.focus(); }catch(e){}
+}
 
 </script>
 </body>
