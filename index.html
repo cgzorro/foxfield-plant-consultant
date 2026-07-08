@@ -618,8 +618,20 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
   padding:8px 18px !important;
 }
 </style>
-<!-- C1: Analytics — no cookies, GDPR-safe -->
-<script defer data-domain="foxfield.studio" src="https://plausible.io/js/script.js"></script>
+<!-- C1: Analytics — GA4 (G-NFMZDY1SL0), disclosed in Privacy Policy §2/§5 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NFMZDY1SL0"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NFMZDY1SL0');</script>
+<link rel="canonical" href="https://app.foxfield.studio/">
+<link rel="icon" type="image/png" href="https://foxfield.studio/foxmark-amber.png">
+<link rel="apple-touch-icon" href="https://foxfield.studio/foxmark-amber.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Foxfield Studio">
+<meta property="og:title" content="Foxfield Plant Consultant — Professional Planting Briefs">
+<meta property="og:description" content="Bilingual plant consultation intake with site intelligence, USDA zone data, and professional planting briefs for landscapers and garden centers.">
+<meta property="og:url" content="https://app.foxfield.studio/">
+<meta property="og:image" content="https://foxfield.studio/foxmark-amber.png">
+<meta name="twitter:card" content="summary">
+</head>
 <!-- B1: Plant scanner library -->
 <body data-theme="dark">
 <section class="entry" id="entry">
@@ -802,17 +814,17 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
       <p>Foxfield Studio LLC ("we", "us", "Foxfield") operates app.foxfield.studio. We take privacy seriously. This policy describes what data we collect and how we use it.</p>
       <h3>2. Data We Collect</h3>
       <p><strong>You provide:</strong> Name, email, phone, project address/ZIP, site photos, and landscape notes you enter into the intake form. For consultant accounts: business name, license number, and payment information (processed by Stripe — we never see full card numbers).</p>
-      <p><strong>We automatically collect:</strong> Page-view analytics via Plausible (privacy-friendly, no cookies, no cross-site tracking). ZIP codes are used to fetch USDA zone and NOAA climate data from public APIs.</p>
+      <p><strong>We automatically collect:</strong> Usage analytics via Google Analytics 4 — pages viewed, wizard steps completed, device type, and approximate location derived from IP. Google Analytics sets cookies on your browser for this purpose (see Section 5). ZIP codes you enter are used to fetch USDA zone and NOAA climate data from public APIs.</p>
       <h3>3. How We Use Your Data</h3>
       <p>We use your data to generate plant consultation briefs, sync records to your Airtable base (consultant feature), send brief emails via Formspree, and improve the Service. We do not sell your data to third parties.</p>
       <h3>4. Data Storage</h3>
       <p>Project data is stored in your browser (localStorage/sessionStorage) and in your connected Airtable base. We do not operate a central database of homeowner project records.</p>
       <h3>5. Third-Party Services</h3>
-      <p>We use: <strong>Stripe</strong> for payments; <strong>Plausible</strong> for analytics; <strong>Formspree</strong> for email delivery; <strong>Perenual API</strong> for plant images; <strong>NOAA/USDA APIs</strong> for climate data.</p>
+      <p>We use: <strong>Stripe</strong> for payments; <strong>Google Analytics 4</strong> for analytics; <strong>Formspree</strong> for email delivery; <strong>Perenual API</strong> for plant images; <strong>NOAA/USDA APIs</strong> for climate data.</p>
       <h3>6. Your Rights</h3>
       <p>You may request deletion of any personally identifiable data by emailing <a href="mailto:hello@foxfield.studio">hello@foxfield.studio</a>. Project data in your browser can be cleared via your browser settings.</p>
       <h3>7. Cookies</h3>
-      <p>We do not use tracking cookies. The Service uses browser localStorage solely to persist your session and consultant profile.</p>
+      <p>The Service uses browser localStorage to persist your session and consultant profile on your device. Google Analytics 4 sets analytics cookies to measure how the Service is used; no other tracking cookies are set by us.</p>
       <h3>8. Changes</h3>
       <p>We will post updates to this page. Continued use after changes constitutes acceptance of the updated policy.</p>
       <h3>9. Contact</h3>
@@ -866,7 +878,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
       <!-- Step 1: Property Details -->
       <section class="step active" data-step="0">
-        <div class="stephead"><div><h2 data-i18n="s0t">Property Details</h2><p data-i18n="s0p">Start with the basics so the profile can be tied to a real site.</p></div><div style="display:flex;align-items:center;gap:10px"><button class="btn newclient-btn" type="button" id="newClientBtn" data-i18n-title="newClientHint" title="Clear everything and start a fresh client" onclick="newClient()">&#10010; <span data-i18n="newClient">New client</span></button><span class="badge">Step 1 of 8</span></div></div>
+        <div class="stephead"><div><h2 data-i18n="s0t">Property Details</h2><p data-i18n="s0p">Start with the basics so the profile can be tied to a real site.</p></div><div style="display:flex;align-items:center;gap:10px"><button class="btn newclient-btn" type="button" id="newClientBtn" data-i18n-title="newClientHint" title="Clear everything and start a fresh client" onclick="newClient()">&#10010; <span data-i18n="newClient">New client</span></button><span class="badge">Step 1 of 9</span></div></div>
         <div class="grid two">
           <div class="field"><label><span data-i18n="name">Name</span> <span style="color:var(--accent2)" title="Required">*</span></label><input id="name" name="name" autocomplete="name" required></div>
           <div class="field"><label>Email <span style="color:var(--accent2)" title="Required">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
@@ -884,7 +896,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
       <!-- Step 2: Site Intelligence (compass-only) -->
       <section class="step" data-step="1">
-        <div class="stephead"><div><h2 data-i18n="s1t">Site Intelligence</h2><p data-i18n="s1p">Capture orientation and preliminary conditions. Verify on-site before final recommendations.</p></div><span class="badge">Step 2 of 8</span></div>
+        <div class="stephead"><div><h2 data-i18n="s1t">Site Intelligence</h2><p data-i18n="s1p">Capture orientation and preliminary conditions. Verify on-site before final recommendations.</p></div><span class="badge">Step 2 of 9</span></div>
         <div class="site-intel-layout">
           <div class="orientation-card">
             <h3 data-i18n="frontDoor">Front door orientation</h3>
@@ -930,7 +942,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
       <!-- Step 3: Existing Landscape -->
       <section class="step" data-step="2">
-        <div class="stephead"><div><h2 data-i18n="s2t">Existing Landscape</h2><p data-i18n="s2p">What is already there, and what should stay or go?</p></div><span class="badge">Step 3 of 8</span></div>
+        <div class="stephead"><div><h2 data-i18n="s2t">Existing Landscape</h2><p data-i18n="s2p">What is already there, and what should stay or go?</p></div><span class="badge">Step 3 of 9</span></div>
         <div class="grid">
           <div class="field">
             <div class="note-field-head">
@@ -958,7 +970,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
       <!-- Step 4: Goals & Challenges -->
       <section class="step" data-step="3">
-        <div class="stephead"><div><h2 data-i18n="s3t">Goals &amp; Challenges</h2><p data-i18n="s3p">Tell us what you hope to improve.</p></div><span class="badge">Step 4 of 8</span></div>
+        <div class="stephead"><div><h2 data-i18n="s3t">Goals &amp; Challenges</h2><p data-i18n="s3p">Tell us what you hope to improve.</p></div><span class="badge">Step 4 of 9</span></div>
         <div class="field"><label data-i18n="primaryGoals">Primary goals</label></div>
         <div class="choices multi" data-name="goals" data-choice="goals"></div>
         <div class="field" style="margin-top:16px">
@@ -984,7 +996,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
       <!-- Step 5: Style & Preferences -->
       <section class="step" data-step="4">
-        <div class="stephead"><div><h2 data-i18n="s4t">Style &amp; Preferences</h2><p data-i18n="s4p">Design direction, color mood, and what to avoid.</p></div><span class="badge">Step 5 of 8</span></div>
+        <div class="stephead"><div><h2 data-i18n="s4t">Style &amp; Preferences</h2><p data-i18n="s4p">Design direction, color mood, and what to avoid.</p></div><span class="badge">Step 5 of 9</span></div>
         <div class="field" style="margin-bottom:18px">
           <label data-i18n="styleLabel">Design character</label>
           <span class="hint" data-i18n="styleHint">Choose all that apply.</span>
@@ -1002,7 +1014,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
       <!-- Step 6: Budget & Timing -->
       <section class="step" data-step="5">
-        <div class="stephead"><div><h2 data-i18n="s5t">Budget &amp; Timing</h2><p data-i18n="s5p">Set expectations for scope and phasing.</p></div><span class="badge">Step 6 of 8</span></div>
+        <div class="stephead"><div><h2 data-i18n="s5t">Budget &amp; Timing</h2><p data-i18n="s5p">Set expectations for scope and phasing.</p></div><span class="badge">Step 6 of 9</span></div>
         <div class="grid two">
           <div class="field"><label data-i18n="budget">Budget range</label><select name="budget"><option></option><option>$500&ndash;$1,500</option><option>$1,500&ndash;$3,500</option><option>$3,500&ndash;$7,500</option><option>$7,500+</option></select></div>
           <div class="field"><label data-i18n="timeline">Timeline</label><select name="timeline"><option></option><option>ASAP</option><option>1&ndash;3 months</option><option>Seasonal planning</option><option>Just exploring</option></select></div>
@@ -1012,7 +1024,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
 
       <!-- Step 7: Photos & Context -->
       <section class="step" data-step="6">
-        <div class="stephead"><div><h2 data-i18n="s6t">Photos &amp; Context</h2><p data-i18n="s6p">Up to five site photos help the consultant see what you're working with.</p></div><span class="badge">Step 7 of 8</span></div>
+        <div class="stephead"><div><h2 data-i18n="s6t">Photos &amp; Context</h2><p data-i18n="s6p">Up to five site photos help the consultant see what you're working with.</p></div><span class="badge">Step 7 of 9</span></div>
         <div class="upload">
           <strong data-i18n="photoTitle">Site Photos</strong>
           <p data-i18n="photoHelp">Aim for: overall property, project area, an alternate angle, any problem areas, and one close detail.</p>
@@ -2851,7 +2863,7 @@ function go(i){
       }, 30);
     }
   }
-  if(window.plausible) window.plausible('Step Complete',{props:{step:i+1,name:(I18N[lang]?.steps?.[i]?.[0]||'Step '+(i+1))}});
+  if(window.gtag) gtag('event','step_complete',{step_number:i+1,step_name:(I18N[lang]?.steps?.[i]?.[0]||'Step '+(i+1))});
   if(step===1){ fetchClimate(); }
   if(step===7){ fetchClimate();
     const ps=document.getElementById('plantSuggest');
