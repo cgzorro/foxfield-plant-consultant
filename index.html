@@ -737,7 +737,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
             <li>Unlimited briefs</li>
             <li>White-label branding</li>
             <li>Bloom calendar</li>
-            <li>Airtable sync</li>
+            <li>Client record sync</li>
           </ul>
         </div>
         <div class="stripe-plan" id="planAnnual" onclick="selectPlan('annual')">
@@ -817,11 +817,11 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
       <p><strong>You provide:</strong> Name, email, phone, project address/ZIP, site photos, and landscape notes you enter into the intake form. For consultant accounts: business name, license number, specialty, and expected volume. No payment information is collected while Foxfield Pro is in early access.</p>
       <p><strong>We automatically collect:</strong> Usage analytics via Google Analytics 4 — pages viewed, wizard steps completed, device type, and approximate location derived from IP. Google Analytics sets cookies on your browser for this purpose (see Section 5). ZIP codes you enter are used to fetch USDA zone and NOAA climate data from public APIs.</p>
       <h3>3. How We Use Your Data</h3>
-      <p>We use your data to generate plant consultation briefs. When you send a brief, join the waitlist, or complete consultant sign-up, that information is sent to Foxfield (stored in Foxfield&rsquo;s Airtable records and delivered by email through Formspree) so we can follow up. We also use analytics to improve the Service. We do not sell your data to third parties.</p>
+      <p>We use your data to generate plant consultation briefs. When you send a brief, join the waitlist, or complete consultant sign-up, that information is sent to Foxfield (saved in Foxfield&rsquo;s Google Sheet and emailed to Foxfield through Google Workspace) so we can follow up. We also use analytics to improve the Service. We do not sell your data to third parties.</p>
       <h3>4. Data Storage</h3>
-      <p>Drafts, saved projects, branding, and your consultant profile are stored in your browser (localStorage/sessionStorage) and stay on your device. Information you choose to send (a brief, a waitlist sign-up, or consultant sign-up) is stored in Foxfield&rsquo;s Airtable records and email.</p>
+      <p>Drafts, saved projects, branding, and your consultant profile are stored in your browser (localStorage/sessionStorage) and stay on your device. Information you choose to send (a brief, a waitlist sign-up, consultant sign-up, or feedback) is stored in Foxfield&rsquo;s Google Sheet and email.</p>
       <h3>5. Third-Party Services</h3>
-      <p>We use: <strong>Stripe</strong> for payments, once paid plans launch (not active yet); <strong>Google Analytics 4</strong> for analytics; <strong>Formspree</strong> for email delivery; <strong>Perenual API</strong> for plant images; <strong>NOAA/USDA APIs</strong> for climate data.</p>
+      <p>We use: <strong>Stripe</strong> for payments, once paid plans launch (not active yet); <strong>Google Analytics 4</strong> for analytics; <strong>Google Workspace</strong> (Google Sheets and Gmail) to receive the information you send; <strong>Perenual API</strong> for plant images; <strong>NOAA/USDA APIs</strong> for climate data.</p>
       <h3>6. Your Rights</h3>
       <p>You may request deletion of any personally identifiable data by emailing <a href="mailto:hello@foxfield.studio">hello@foxfield.studio</a>. Project data in your browser can be cleared via your browser settings.</p>
       <h3>7. Cookies</h3>
@@ -1201,16 +1201,7 @@ body[data-print-mode=paper] .pb-qr-corner{ opacity:.25!important }
           </div>
           <div class="hn-form">
             <input type="email" id="notifyEmail" class="hn-input" placeholder="your@email.com" autocomplete="email">
-            <button class="btn primary hn-btn" type="button" onclick="
-              const em=document.getElementById('notifyEmail').value.trim();
-              if(!em||!em.includes('@')){toast('Enter a valid email.');return;}
-              const zip=(document.getElementById('zip')?.value||'').trim();
-              if(window.CONFIG?.FORMSPREE_ID){
-                fetch('https://formspree.io/f/'+CONFIG.FORMSPREE_ID,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({_subject:'Consultant Waitlist — '+zip,email:em,zip:zip,source:'homeowner-waitlist'})}).catch(()=>{});
-              }
-              document.getElementById('notifyEmail').value='';
-              document.getElementById('homeownerNotifyCard').innerHTML='<div style=\'text-align:center;padding:8px 0;font-size:13px;color:var(--good)\'>✓ You\'re on the list — we\'ll reach out when consultants are available in '+zip+'.</div>';
-            ">Notify me</button>
+            <button class="btn primary hn-btn" type="button" onclick="ffJoinWaitlist()">Notify me</button>
           </div>
         </div>
 
@@ -1682,8 +1673,38 @@ const CONFIG={
   WORKER_URL:'https://super-star-3d60.cgzorro.workers.dev',
   CATALOG_URL:'./foxfield-plants.json',
   CATALOG_IMG_BASE:'',  // set to jsDelivr base to light up product photos
-  FORMSPREE_ID:'xlgvzoqy',
+  // All leads (briefs, consultant sign-ups, waitlist, feedback) go to the
+  // Foxfield Inquiries Google Sheet + email, via Apps Script.
+  LEADS_URL:'https://script.google.com/macros/s/AKfycbwt9m9cCh4AcbhxIRDjzz6Uq9c4xAUjXYTK0oYMXW6h6uTKV97i12J-99EXKFwQvlvx/exec',
 };
+// Sends one lead. Resolves true only when the Sheet confirms it was saved.
+function ffSend(kind, data){
+  if(!CONFIG.LEADS_URL) return Promise.resolve(false);
+  const body=new URLSearchParams(); body.append('kind',kind); body.append('source','app.foxfield.studio');
+  Object.keys(data||{}).forEach(k=>{ const v=data[k]; if(v!==undefined&&v!==null&&v!=='') body.append(k,String(v)); });
+  const ctl=('AbortController' in window)?new AbortController():null;
+  const t=ctl?setTimeout(()=>ctl.abort(),15000):null;
+  return fetch(CONFIG.LEADS_URL,Object.assign({method:'POST',body},ctl?{signal:ctl.signal}:{}))
+    .then(r=>r.ok?r.json():null).then(d=>!!(d&&d.ok)).catch(()=>false).finally(()=>{if(t)clearTimeout(t);});
+}
+window.ffSend=ffSend;
+// Homeowner waitlist
+function ffJoinWaitlist(){
+  const inp=document.getElementById('notifyEmail'); const btn=document.querySelector('.hn-btn');
+  const em=(inp&&inp.value||'').trim();
+  if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){toast('Enter a valid email.');return;}
+  const zip=(document.getElementById('zip')?.value||'').trim();
+  if(btn){ if(btn.disabled) return; btn.disabled=true; btn.textContent='Joining…'; }
+  ffSend('waitlist',{email:em,zip:zip,_subject:'Consultant waitlist — '+(zip||'no ZIP')}).then(ok=>{
+    if(ok){
+      document.getElementById('homeownerNotifyCard').innerHTML='<div style="text-align:center;padding:8px 0;font-size:13px;color:var(--good)">✓ You\'re on the list. We\'ll reach out when consultants are available'+(zip?' in '+zip:'')+'.</div>';
+    } else {
+      if(btn){btn.disabled=false;btn.textContent='Notify me';}
+      toast('Couldn\u2019t join the list. Try again, or email hello@foxfield.studio.');
+    }
+  });
+}
+window.ffJoinWaitlist=ffJoinWaitlist;
 
 // ── Hoisted state — must be before build() ────────────────────────────────────
 let _plantCache = {};
@@ -3532,26 +3553,16 @@ if(_ssub) _ssub.onclick = () => {
     'Goals: ' + (d.goals||'—')
   );
   const subject = encodeURIComponent('Foxfield Feedback — ' + (role));
-  const _fid = CONFIG.FORMSPREE_ID;
-  if(_fid){
-    fetch(`https://formspree.io/f/${_fid}`, {
-      method:'POST',
-      headers:{'Accept':'application/json','Content-Type':'application/json'},
-      body: JSON.stringify({
-        role, rating: surveyRating + '/5', features: feats, willPay: pay,
-        openFeedback: free, zip: d.zip||'—', zone: zdata().z, _replyto:'hello@foxfield.studio'
-      })
-    }).then(r => {
-      const sc=document.getElementById('surveyCard');
-      if(sc) sc.innerHTML='<div style="padding:20px;text-align:center;color:var(--good);font-weight:700">✓ Thanks — feedback received!</div>';
-    }).catch(() => {
+  const sc0=document.getElementById('surveyCard');
+  if(_ssub.disabled) return; _ssub.disabled=true; _ssub.textContent='Sending…';
+  ffSend('feedback',{role:role, rating:surveyRating?surveyRating+'/5':'—', features:feats, wouldPay:pay, feedback:free, zip:d.zip||'', zone:zdata().z, _subject:'Plant Consultant feedback — '+role}).then(ok=>{
+    if(ok){ if(sc0) sc0.innerHTML='<div style="padding:20px;text-align:center;color:var(--good);font-weight:700">&#10003; Thanks — feedback received!</div>'; }
+    else {
+      _ssub.disabled=false; _ssub.textContent='Try again';
+      toast('Couldn\u2019t send feedback. Opening an email instead.');
       window.open('mailto:hello@foxfield.studio?subject=' + subject + '&body=' + body);
-    });
-  } else {
-    window.open('mailto:hello@foxfield.studio?subject=' + subject + '&body=' + body);
-  }
-  const sc = document.getElementById('surveyCard');
-  if(sc){ sc.innerHTML = '<div style="padding:20px;text-align:center;color:var(--good);font-weight:700">&#10003; Thanks — feedback sent!</div>'; }
+    }
+  });
 };
 // ── Layer 2: Perenual plant suggestions ───────────────────────────────────────
 
@@ -4131,10 +4142,8 @@ document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
     if(biz && document.getElementById('wlBizName')) document.getElementById('wlBizName').value=biz;
     if(lic && document.getElementById('wlLicNum'))  document.getElementById('wlLicNum').value=lic;
     if(typeof wlSave==='function') wlSave();
-    // Airtable
-    saveToAirtable('Consultants',{Name:name,Business:biz,License:lic,ZIP:zip,Email:email,Specialty:spec,ClientsPerMonth:vol,Source:'App onboarding',Date:new Date().toISOString().split('T')[0]});
-    // Formspree backup
-    if(CONFIG.FORMSPREE_ID) fetch(`https://formspree.io/f/${CONFIG.FORMSPREE_ID}`,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({_subject:'New Consultant — '+(name||'unknown'),name,biz,email,zip,spec,vol})}).catch(()=>{});
+    ffSend('consultant',{name:name,business:biz,license:lic,zip:zip,email:email,specialty:spec,clientsPerMonth:vol,_subject:'New consultant — '+(biz||name||email)})
+      .then(ok=>{ if(!ok) toast('Saved on this device, but Foxfield wasn\u2019t notified. Email hello@foxfield.studio to finish sign-up.'); });
     closeOnboard();
     toast('Welcome'+(name?' '+name.split(' ')[0]:'')+' — workspace ready');
   }
@@ -4224,8 +4233,7 @@ document.getElementById('scanSkuInput')?.addEventListener('keydown',e=>{
         .then(r=>r.ok).catch(()=>false).finally(()=>{if(t)clearTimeout(t);});
     };
     const jobs=[];
-    if(CONFIG.WORKER_URL) jobs.push(send(CONFIG.WORKER_URL+'/airtable/Homeowners',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields})}));
-    if(CONFIG.FORMSPREE_ID) jobs.push(send(`https://formspree.io/f/${CONFIG.FORMSPREE_ID}`,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({_subject:'New Brief — '+(d.name||'Client')+' · Zone '+(z.z||'—'),...fields,briefText})}));
+    if(CONFIG.LEADS_URL) jobs.push(ffSend('brief',Object.assign({},fields,{briefText:briefText,_subject:'New brief — '+(d.name||'Client')+' · Zone '+(z.z||'—')})));
     const show=(text,good)=>{ if(msg){msg.style.display='block';msg.textContent=text;msg.style.color=good?'':'var(--bad, #c0504d)';} toast(text.replace(/^✓ /,'')); };
     if(!jobs.length){ show(T.none,false); return; }
     _briefSending=true;
