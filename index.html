@@ -1685,7 +1685,13 @@ function ffSend(kind, data){
   const ctl=('AbortController' in window)?new AbortController():null;
   const t=ctl?setTimeout(()=>ctl.abort(),15000):null;
   return fetch(CONFIG.LEADS_URL,Object.assign({method:'POST',body},ctl?{signal:ctl.signal}:{}))
-    .then(r=>r.ok?r.json():null).then(d=>!!(d&&d.ok)).catch(()=>false).finally(()=>{if(t)clearTimeout(t);});
+    .then(r=>r.ok?r.json():null).then(d=>!!(d&&d.ok)).catch(()=>false).finally(()=>{if(t)clearTimeout(t);})
+    .then(ok=>{
+      // Outcome events only: no names, emails, or notes are sent to analytics.
+      const EV={brief:'brief_submit',consultant:'consultant_signup',waitlist:'waitlist_join',feedback:'feedback_submit'};
+      try{ if(window.gtag) gtag('event',(EV[kind]||('lead_'+kind))+(ok?'':'_error'),{role:document.body.dataset.role||'homeowner'}); }catch(e){}
+      return ok;
+    });
 }
 window.ffSend=ffSend;
 // Homeowner waitlist
